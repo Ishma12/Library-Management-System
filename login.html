@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herald College</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Add Font Awesome for icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Login form container -->
+    <div class="form-container">
+        <h2>Welcome to the Login Panel!</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="username">Enter your Username:</label>
+                <div class="input-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" required class="common-input">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Enter your Password:</label>
+                <div class="input-icon">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" required class="common-input">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user_mode">Select your User Mode:</label>
+                <div class="input-icon">
+                    <select id="user_mode" name="user_mode" class="common-input">
+                        <option value="employee">Employee</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+            </div>
+            <input type="submit" value="Login" style="background-color: lightgreen; color: white; border: none; padding: 5px 10px;">
+            <p><a href="forgot_password.html" class="forgot-password-link">Forgot Password?</a></p>
+
+        </form>
+    </div>
+</body>
+</html>
