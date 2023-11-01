@@ -1,0 +1,25 @@
+/* Increase the width of the dropdown */
+#user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    width: 150px; /* Adjust the width as needed */
+}
+
+/* Style the links inside the dropdown */
+#user-dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #299B63;
+    font-size: 14px; /* Adjust the font size as needed */
+}
+
+#user-dropdown a:hover {
+    background: #f0f0f0;
+}
+

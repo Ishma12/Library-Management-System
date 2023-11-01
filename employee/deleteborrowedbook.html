@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="addbook.css">
+    <link rel="stylesheet" href="/profile.css">
+    <title>Employee Panel</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
+            </div>
+            <div class="search">
+                <input type="text" name="search" placeholder="search here">
+                <label for="search"><i class="fas fa-search"></i></label>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="images.png" alt="" id="user-avatar">
+                <div class="dropdown" id="user-dropdown">
+                    <a href="/changepw.html">Change Password</a>
+                    <a href="#" onclick="confirmLogout()">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="borrowedbook.html">
+                        <i class="fas fa-th-large"></i>
+                        <div>Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="editborrowedbook.html">
+                        <i class="fas fa-book"></i>
+                        <div>Edit Borrowed Books</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="addborrowedbook.html">
+                        <i class="fas fa-book"></i>
+                        <div>Add Borrowed Books</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="deleteborrowedbook.html">
+                        <i class="fas fa-book"></i>
+                        <div>Delete Borrowed Books </div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#"onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <div>Logout</div>
+                    </a>    
+                </li>
+            </ul>
+        
+    </div>
+</div>
+<div class="charts">
+        <div class="add-book-box">
+            <h2>Delete Borrowed Book</h2>
+            <form>
+                <div class="form-group">
+                    <label for="bookID">Book ID:</label>
+                    <input type="text" id="bookID" name="bookID" required >
+                </div>
+               
+                <div class="button-group">
+                    <button type="button" class="add-button">Delete</button>
+                </div>
+            </form>
+            </div>
+                <button type="button" class="done-button">Done</button> <!-- Place the "Done" button here, outside the "Add Book" box -->
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/logout.js"></script>
+<script src="/profile.js"></script>
+</body>
+
+</html>
