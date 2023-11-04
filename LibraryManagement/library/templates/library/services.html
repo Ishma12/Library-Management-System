@@ -1,0 +1,53 @@
+{% extends 'library/base.html'%}
+{%load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'library/services.css' %}">
+{%endblock%}
+{%block content %}
+<!-- Container for content and footer -->
+<div class="container">
+
+    <div class="inner-container">
+        <div class="section">
+            <div class="about-holder">
+                <div class="content">
+                    <h4 class="title">Services</h4>
+                    <h4 class="sub-title">Library Management System</h4>
+                    <div class="content-holder">
+                        <p>Our services include access to a diverse collection of books, digital resources, and multimedia materials for learning and leisure. 
+                            We provide a quiet and welcoming space for study and research, along with support from knowledgeable librarians.  </p>
+                    </div>
+                </div>
+                <div class="img-holder">
+                    <img class="aboutimg" src="{%static 'library\Student-in-law-library-section.x7622d211.jpg'%}" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section centered">
+            <h1 class="page-title">
+                Welcome to <br>
+                <span>Library Management System
+                    <br> (HCK)</span>
+            </h1>
+            <div class="row">
+                <div class="col-12">
+                    <div class="content">
+                        <p>
+                            The library at our  college is a dynamic and essential resource hub that caters to
+                             the diverse needs of our tech-savvy community. It offers an extensive collection of cutting-edge textbooks, reference materials, and journals related to the ever-evolving field of Information Technology
+                        </p>
+                        <p>
+                            For convenience, we offer online catalog access, enabling students to search for resources, renew books, and access e-books from anywhere. We also provide extended hours during peak study times to accommodate the busy schedules of our students.
+
+                             Our  library is a vibrant and tech-forward space that empowers our community with the knowledge and resources needed to excel in the fast-paced world of Information Technology.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% include "library/footer.html" %}
+    {% endblock %}

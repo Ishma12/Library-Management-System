@@ -1,0 +1,63 @@
+{% extends 'library/base.html'%}
+{%load static%}
+{% block css%}
+<link rel="stylesheet" href="{% static 'library/aboutus.css' %}">
+{%endblock%}
+{%block content %}
+<!-- Container for content and footer -->
+<div class="container">
+
+    <div class="inner-container">
+        <div class="section">
+            <div class="about-holder">
+                <div class="content">
+                    <h4 class="title">About</h4>
+                    <h4 class="sub-title">herald college kathmandu</h4>
+                    <div class="content-holder">
+                        <p>Herald College Kathmandu (HCK) provides the best UK university education at most
+                            affordable
+                            fees. It
+                            offers Bachelor Degrees in IT and Business in direct partnership with the University of
+                            Wolverhampton, UK. </p>
+                    </div>
+                </div>
+                <div class="img-holder">
+                    <img class="aboutimg" src="https://heraldcollege.edu.np/images/banner/about__banner.png" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section centered">
+            <h1 class="page-title">
+                Welcome to <br>
+                <span>Herald College Kathmandu
+                    <br> (HCK)</span>
+            </h1>
+            <div class="row">
+                <div class="col-12">
+                    <div class="content">
+                        <p>
+                            Herald College Kathmandu (HCK)  provides the best UK university
+                            education at most affordable fees. It offers Bachelor Degrees in IT and Business in direct
+                            partnership with the University of Wolverhampton, UK. Programmes that Herald College
+                            Kathmandu
+                            offers are flexible and have always aimed to foster a broader based knowledge.
+                        </p>
+                        <p>
+                            Herald College Kathmandu offers the BSc (Hons) International Business Management and BSc
+                            (Hons)
+                            in Computer Science qualification from the University of Wolverhampton (WLV). Considering
+                            effort, aptitude and knowledge, Herald College Kathmandu organizes a competition every year
+                            where students are awarded with scholarships to participate in 15-Day Summer-Camp organized
+                            at
+                            the University of Wolverhampton, UK.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% include "library/footer.html" %}
+    {% endblock %}
