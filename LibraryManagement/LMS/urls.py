@@ -19,8 +19,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('abc/', admin.site.urls),
-    path('',include('library.urls'))
+    path('',include('library.urls')),
+
+
     
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

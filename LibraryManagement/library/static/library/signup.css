@@ -1,7 +1,6 @@
-
 body {
     font-family: 'Poppins', sans-serif;
-    background-image: url('Herald-College-Graduation.jpg'); /* Use forward slashes or escape backslashes */
+    background-image: url('Herald-College-Graduation.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
@@ -60,7 +59,7 @@ header a:hover {
 }
 
 .form-group label {
-    color: #299B63;;
+    color: #299B63;
     display: block;
 }
 
@@ -69,7 +68,7 @@ header a:hover {
     padding: 10px;
     margin: 5px 0;
     border: none;
-    border-bottom: 2px solid  #299B63;
+    border-bottom: 2px solid #299B63;
     outline: none;
 }
 
@@ -77,12 +76,13 @@ input[type="text"]::placeholder,
 input[type="email"]::placeholder,
 input[type="password"]::placeholder,
 select::placeholder {
-    color: #299B63;;
+    color: #299B63;
 }
 
 p {
     color: #299B63;
 }
+
 h2 {
-   color:#299B63;;
+    color: #299B63;
 }

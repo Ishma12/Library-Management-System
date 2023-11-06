@@ -78,7 +78,6 @@ outline: none;
 }
 
 input[type="text"]::placeholder,
-input[type="email"]::placeholder,
 input[type="password"]::placeholder,
 select::placeholder {
 color: #299B63;
