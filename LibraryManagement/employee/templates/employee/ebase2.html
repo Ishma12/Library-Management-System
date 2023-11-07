@@ -1,0 +1,48 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'employee/addbook.css' %}">
+    <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
+    
+    <title>Employee Panel</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
+            </div>
+            <div class="search">
+                <input type="text" name="search" placeholder="search here">
+                <label for="search"><i class="fas fa-search"></i></label>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="{%static 'employee/images.png'%}" alt="" id="user-avatar">
+                <div class="dropdown" id="user-dropdown">
+                    <a href="{% url 'employee-changepw' %}">Change Password</a>
+                    <a href="#" onclick="confirmLogout()">Logout</a>
+                </div>
+            </div>
+        </div>
+        {%block slidebar %}
+        {% endblock %}
+        {%block charts %}
+        {% endblock %}
+
+    </div>
+</div>
+
+<script src="{% static 'employee/logout.js' %}"></script>
+<script src="{% static 'employee/profile.js' %}"></script>
+</body>
+
+</html>

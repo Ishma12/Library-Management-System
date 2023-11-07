@@ -1,0 +1,75 @@
+{% extends 'employee/ebase2.html'%}
+{%load static%}
+{%block slidebar %}
+<div class="sidebar">
+    <ul>
+        <li>
+            <a href="{% url 'employee-ebook' %}">
+                <i class="fas fa-th-large"></i>
+                <div>Dashboard</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'employee-addbook' %}">
+                <i class="fas fa-books"></i>
+                <div>Add Books</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'employee-editbook' %}">
+                <i class="fas fa-books"></i>
+                <div>Edit Books</div>
+            </a>
+        </li>
+       
+        <li>
+            <a href="{% url 'employee-deletebook' %}">
+                <i class="fas fa-books"></i>
+                <div>Delete Books </div>
+            </a>
+        </li>
+        
+        <li>
+            <a href="#"onclick="confirmLogout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <div>Logout</div>
+            </a>    
+        </li>
+    </ul>
+</div>
+{% endblock %}
+{%block charts %}
+    
+<div class="charts">
+    <div class="add-book-box">
+        <h2>Add Book</h2>
+        <form>
+            <div class="form-group">
+                <label for="bookID">Book ID:</label>
+                <input type="text" id="bookID" name="bookID" required >
+            </div>
+            <div class="form-group">
+                <label for="bookName">Book Name:</label>
+                <input type="text" id="bookName" name="bookName" required>
+            </div>
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price" required >
+            </div>
+            <div class="button-group">
+                <button type="button" class="add-button">Add</button>
+            </div>
+        </form>
+        </div>
+            <button type="button" class="done-button">Done</button> <!-- Place the "Done" button here, outside the "Add Book" box -->
+        </div>
+    </div>
+{% endblock %}

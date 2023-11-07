@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
+    <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
+    
+ 
+    <title>Employee Panel</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
+            </div>
+            <div class="search">
+                <input type="text" name="search" placeholder="search here">
+                <label for="search"><i class="fas fa-search"></i></label>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="{%static 'employee/images.png'%}" alt="" id="user-avatar">
+                <div class="dropdown" id="user-dropdown">
+                    <a href="{% url 'employee-changepw' %}">Change Password</a>
+                    <a href="#" onclick="confirmLogout()">Logout</a>
+                </div>
+            </div>
+        </div>
+        {%block slidebar %}
+        {% endblock %}
+        <div class="main">
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">1217</div>
+                        <div class="card-name">Students</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">42</div>
+                        <div class="card-name">Books</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-books"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">68</div>
+                        <div class="card-name">Book Issued</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-books"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="charts">
+                <table class="content-table" >
+                    <thead>
+                      <tr>
+                      <th>Book ID</th>
+                      <th>Book Name</th>
+                      <th>Author</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>ABC</td>
+                            <td>sjkhfiwuf</td>
+                            <td>Java</td>
+                            <td>300</td>
+                              
+                           
+
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>ABC</td>
+                            <td>sjkhfiwuf</td>
+                            <td>Java</td>
+                            <td>200</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>ABC</td>
+                            <td>sjkhfiwuf</td>
+                            <td>Java</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>ABC</td>
+                            <td>sjkhfiwuf</td>
+                            <td>Java</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>ABC</td>
+                            <td>sjkhfiwuf</td>
+                            <td>Java</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>ABC</td>
+                            <td>sjkhfiwuf</td>
+                            <td>Java</td>
+                            <td>200</td>
+                        </tr>
+                  
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'employee/logout.js' %}"></script>
+    <script src="{% static 'employee/profile.js' %}"></script>
+    
+</body>
+
+</html>

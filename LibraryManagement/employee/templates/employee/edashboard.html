@@ -1,0 +1,34 @@
+{% extends 'employee/ebase.html'%}
+{%load static%}
+{%block slidebar %}
+       
+<div class="sidebar">
+    <ul>
+        <li>
+            <a href="{% url 'employee-edashboard' %}">
+                <i class="fas fa-th-large"></i>
+                <div>Dashboard</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'employee-ebook' %}">
+                <i class="fas fa-books"></i>
+                <div> Books</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'employee-eborrowedbook' %}">
+                <i class="fas fa-book"></i>
+                <div>Borrowed Book </div>
+            </a>
+        </li>
+        
+        <li>
+            <a href="#"onclick="confirmLogout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <div>Logout</div>
+            </a>    
+        </li>
+    </ul>
+</div>
+{% endblock %}
