@@ -55,7 +55,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 text-align: center;
 width: 300px;
 margin: 20px auto;
-color: white;
+
 }
 
 .form-group {
@@ -101,4 +101,7 @@ font-size: 100%;
 
 .forgot-password-link:hover {
 color :#082e1c; /* Change link color on hover (adjust as needed) */
+}
+.errormessages{
+    color:red !important;
 }

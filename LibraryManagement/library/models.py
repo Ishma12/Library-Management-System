@@ -1,13 +1,11 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
     
-class Employee(models.Model):
-    username = models.CharField(max_length=100)
-    email = models.EmailField()
-    password = models.CharField(max_length=100)
-   
-
-class Student(models.Model):
-    username = models.CharField(max_length=100)
-    email = models.EmailField()
-    password = models.CharField(max_length=100)
+class User(AbstractUser):
+    EMPLOYEE ="employee"
+    STUDENT="student"
+    USERTYPE_CHOICES=[
+        (EMPLOYEE,"Employee"),
+        (STUDENT,"Student"),
+    ]
+    usertype= models.CharField(max_length=10,choices=USERTYPE_CHOICES)

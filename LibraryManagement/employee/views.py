@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 
 
 def employee(request):
+    print(request.user)
+    if not request.user.is_authenticated:
+        return redirect('library-login')
     return render(request, 'employee/edashboard.html')
 
 def book(request):
