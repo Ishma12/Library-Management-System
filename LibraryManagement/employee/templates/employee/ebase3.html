@@ -21,7 +21,7 @@
                 <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
             </div>
             <div class="search">
-                <input type="text" id="searchInput" name="search" placeholder="Search here">
+                <input type="text"  id="searchInput" name="search" placeholder="search here">
                 <label for="search"><i class="fas fa-search"></i></label>
             </div>
             <i class="fas fa-bell"></i>
@@ -70,33 +70,40 @@
                 <table class="content-table">
                     <thead>
                         <tr>
-                            <th>Book ID</th>
-                            <th>Book Name</th>
-                            <th>Author</th>
-                            <th>Category</th>
-                            <th>Price</th>
+                        <th>Book ID</th>
+                        <th>Book Name</th>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Borrowed Date</th>
+                        <th>Returned Date</th>
+                        <th>Fine</th>
+                        
+  
                         </tr>
-                    </thead>
-                    <tbody>
-                        {% for book in books %}
+                      </thead>
+                      <tbody>
+                        {% for borrowed_book in borrowed_books %}
                         <tr class="searchable-content">
-                                <td>{{ book.book_id }}</td>
-                                <td>{{ book.book_name }}</td>
-                                <td>{{ book.author }}</td>
-                                <td>{{ book.category }}</td>
-                                <td>{{ book.price }}</td>
+                                <td>{{ borrowed_book.borrowedbook_id }}</td>
+                                <td>{{ borrowed_book.borrowedbook_name }}</td>
+                                <td>{{ borrowed_book.student_id }}</td>
+                                <td>{{ borrowed_book.student_name }}</td>
+                                <td>{{ borrowed_book.borrowed_date }}</td>
+                                <td>{{ borrowed_book.returned_date }}</td>
+                                <td>{{ borrowed_book.fine }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
+                    
                 </table>
 
                 </div>
             </div>
         </div>
     </div>
-    <script src="{% static 'employee/logout.js' %}"></script>
     <script src="{% static 'employee/profile.js' %}"></script>
-<!--  script for search -->
+ 
+<!-- script for search -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('searchInput');
@@ -127,7 +134,6 @@
     });
 </script>
 
-    
 </body>
 
 </html>

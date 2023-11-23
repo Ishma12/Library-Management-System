@@ -9,4 +9,7 @@ urlpatterns = [
     path('forgetpw/', views.forgetpw, name='library-forgetpw'),
     path('signup/', views.signup, name='library-signup'),
     path('logout/',views.logoutview, name='library-logout'),
+    
+    
+
 ]

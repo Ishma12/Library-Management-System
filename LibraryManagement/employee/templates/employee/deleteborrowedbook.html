@@ -41,20 +41,44 @@
 <div class="charts">
     <div class="add-book-box">
         <h2>Delete Borrowed Book</h2>
-        <form>
+        <form id="deleteBorrowedBookForm">
             <div class="form-group">
-                <label for="bookID">Book ID:</label>
-                <input type="text" id="bookID" name="bookID" required >
+                <label for="borrowedbookID">Book ID:</label>
+                <input type="text" id="borrowedbookID" name="borrowedbookID" required>
             </div>
-           
             <div class="button-group">
-                <button type="button" class="add-button">Delete</button>
+                <button type="button" class="add-button" onclick="deleteBorrowedBook()">Delete</button>
             </div>
         </form>
-        </div>
-            <button type="button" class="done-button">Done</button> <!-- Place the "Done" button here, outside the "Add Book" box -->
-        </div>
     </div>
+    <button type="button" class="done-button" onclick="redirectToDashboard()">Done</button>
 </div>
 </div>
+<script>
+    function deleteBorrowedBook() {
+        const formData = new FormData(document.getElementById('deleteBorrowedBookForm'));
+
+        fetch('{% url "employee-deleteborrowedbook" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Handle the response, you can display a success message or handle errors
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function redirectToDashboard() {
+        window.location.href = '{% url "employee-eborrowedbook" %}';
+    }
+</script>
+
 {% endblock %}

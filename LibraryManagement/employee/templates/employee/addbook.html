@@ -43,7 +43,7 @@
 <div class="charts">
     <div class="add-book-box">
         <h2>Add Book</h2>
-        <form>
+        <form id="addBookForm">
             <div class="form-group">
                 <label for="bookID">Book ID:</label>
                 <input type="text" id="bookID" name="bookID" required >
@@ -65,11 +65,36 @@
                 <input type="text" id="price" name="price" required >
             </div>
             <div class="button-group">
-                <button type="button" class="add-button">Add</button>
+                <button type="button" class="add-button" onclick="addBook()">Add</button>
             </div>
         </form>
         </div>
-            <button type="button" class="done-button">Done</button> <!-- Place the "Done" button here, outside the "Add Book" box -->
+            <button type="button" class="done-button" onclick="redirectToDashboard()">Done</button> 
         </div>
     </div>
+    <script>
+        function addBook() {
+            const formData = new FormData(document.getElementById('addBookForm'));
+    
+            fetch('{% url "employee-addbook" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',  // Add this header for Django to identify AJAX requests
+                    'X-CSRFToken': '{{ csrf_token }}'      // Add the CSRF token for security
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response, you can update the table or do other actions
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        function redirectToDashboard() {
+            window.location.href = '{% url "employee-edashboard" %}';
+    }
+    </script>
 {% endblock %}

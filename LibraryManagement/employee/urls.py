@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import book
 
 urlpatterns = [
     path('edashboard/', views.employee, name='employee-edashboard'),

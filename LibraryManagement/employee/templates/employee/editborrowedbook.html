@@ -41,42 +41,68 @@
     <div class="charts">
         <div class="add-book-box">
             <h2>Edit Borrowed Book</h2>
-            <form>
+            <form id="editBorrowedBookForm">
                 <div class="form-group">
-                    <label for="bookID">Book ID:</label>
-                    <input type="text" id="bookID" name="bookID" required >
+                    <label for="borrowedbookID">Book ID:</label>
+                    <input type="text" id="borrowedbookID" name="borrowedbookID" required>
                 </div>
                 <div class="form-group">
-                    <label for="bookName">Book Name:</label>
-                    <input type="text" id="bookName" name="bookName" required>
+                    <label for="borrowedbookName">Book Name:</label>
+                    <input type="text" id="borrowedbookName" name="borrowedbookName" required>
                 </div>
                 <div class="form-group">
                     <label for="studentID">Student ID:</label>
-                    <input type="text" id="author" name="author" required>
+                    <input type="text" id="studentID" name="studentID" required>
                 </div>
                 <div class="form-group">
-                    <label for="studentname">Student Name:</label>
-                    <input type="text" id="category" name="category" required>
+                    <label for="studentName">Student Name:</label>
+                    <input type="text" id="studentName" name="studentName" required>
                 </div>
                 <div class="form-group">
                     <label for="borrowdate">Borrowed Date:</label>
-                    <input type="date" id="price" name="price" required >
+                    <input type="date" id="borrowdate" name="borrowdate" required>
                 </div>
                 <div class="form-group">
                     <label for="returndate">Returned Date:</label>
-                    <input type="date" id="price" name="price" required >
+                    <input type="date" id="returndate" name="returndate" required>
                 </div>
                 <div class="form-group">
                     <label for="fine">Fine:</label>
-                    <input type="text" id="fine" name="fine" required >
+                    <input type="text" id="fine" name="fine" required>
                 </div>
                 <div class="button-group">
-                    <button type="button" class="add-button">Update</button>
+                    <button type="button" class="add-button" onclick="editBorrowedBook()">Update</button>
                 </div>
             </form>
             </div>
-                <button type="button" class="done-button">Done</button> <!-- Place the "Done" button here, outside the "Add Book" box -->
+                <button type="button" class="done-button" onclick="redirectToDashboard()">Done</button> <!-- Place the "Done" button here, outside the "Add Book" box -->
             </div>
         </div>
     </div>
+    <script>
+        function editBorrowedBook() {
+            const formData = new FormData(document.getElementById('editBorrowedBookForm'));
+    
+            fetch('{% url "employee-editborrowedbook" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response, you can update the table or do other actions
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    
+        function redirectToDashboard() {
+            window.location.href = '{% url "employee-eborrowedbook" %}';
+        }
+    </script>
 {% endblock %}
