@@ -18,7 +18,7 @@ def forgetpw(request):
 
 def logoutview(request):
     logout(request)
-    return redirect ('library-login')
+    return redirect ('login')
 
 
 def user_login(request):
@@ -61,11 +61,11 @@ def signup(request):
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            user_mode = form.cleaned_data['user_mode']
-            user = User(username=username,email=email,password=password,usertype=user_mode)
+            usermode = form.cleaned_data['usermode']
+            user = User(username=username,email=email,password=password,usertype=usermode)
             user.set_password(password)
             user.save()
-            return redirect('library-login')
+            return redirect('login')
     else:
         form = SignupForm()
 
@@ -78,9 +78,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = 'library/password_reset.html'
     email_template_name = 'library/password_reset_email.html'
-    subject_template_name = 'library/password_reset_subject'
+    subject_template_name = 'library/password_reset_subject.txt'
     success_message = "We've emailed you instructions for setting your password, " \
                       "if an account exists with the email you entered. You should receive them shortly." \
                       " If you don't receive an email, " \
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('library-index')
+    # from_email="eeshmarai@gmail.com"

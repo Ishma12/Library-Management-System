@@ -29,11 +29,13 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="{{ form.user_mode.id_for_label }}">Select your User Mode:</label>
+            <label for="{{ form.usermode.id_for_label }}">Select your User Mode:</label>
             <div>
-                {{ form.user_mode }}
+                {{ form.usermode }}
             </div>
+
         </div>
+        <div class="errormessages">{{ form.non_field_errors }}</div>
         <input type="submit" value="Signup" style="background-color: lightgreen; color: white; border: none; padding: 5px 10px; border-radius: 3px; height: 35px; width: 70px;">
     </form>
 </div>

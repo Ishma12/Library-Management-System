@@ -5,21 +5,18 @@ from django.http import JsonResponse
 from datetime import datetime  
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt  # Add this import
-@csrf_exempt  # Add this decorator to exempt CSRF verification for simplicity in this example
+from django.contrib.auth.decorators import login_required
 
 
-
+@login_required
 def employee(request):
-    print(request.user)
-    if not request.user.is_authenticated:
-        return redirect('library-login')
     books = Book.objects.all()
      # Fetch the count of books and borrowed books
     book_count = Book.objects.count()
     borrowed_book_count = BorrowedBook.objects.count()
     return render(request, 'employee/edashboard.html', {'books': books, 'book_count': book_count, 'borrowed_book_count': borrowed_book_count})
 
-
+@login_required
 def book(request):
     books = Book.objects.all()
     borrowed_books = BorrowedBook.objects.all()
@@ -27,7 +24,7 @@ def book(request):
     borrowed_book_count = BorrowedBook.objects.count()
     return render(request, 'employee/ebook.html', {'books': books,'book_count': book_count,  'borrowed_books': borrowed_books,'borrowed_book_count': borrowed_book_count})
 
-
+@login_required
 def borrowedbook(request):
     borrowed_books = BorrowedBook.objects.all()
     book_count = Book.objects.count()
@@ -38,6 +35,7 @@ def borrowedbook(request):
 def changepw(request):
     return render(request, 'employee/changepw.html')
 
+@login_required
 def addbook(request):
     if request.method == 'POST':
         # Process the form data and save the book
@@ -69,6 +67,7 @@ def addbook(request):
 
     return render(request, 'employee/addbook.html')
 
+@login_required
 def editbook(request):
     if request.method == 'POST':
         book_id = request.POST.get('bookID')
@@ -98,6 +97,8 @@ def editbook(request):
     # If the request method is not POST, render the editbook.html template
     return render(request, 'employee/editbook.html')
 
+
+@login_required
 def deletebook(request):
     if request.method == 'POST':
         book_id = request.POST.get('bookID')
@@ -122,7 +123,7 @@ def deletebook(request):
 
 
 
-
+@login_required
 def addborrowedbook(request):
     if request.method == 'POST':
         # Process the form data and save the borrowed book
@@ -159,6 +160,9 @@ def addborrowedbook(request):
 
     return render(request, 'employee/addborrowedbook.html')
 
+
+
+@login_required
 def editborrowedbook(request):
     if request.method == 'POST':
         borrowedbook_id = request.POST.get('borrowedbookID')
@@ -192,7 +196,7 @@ def editborrowedbook(request):
     # If the request method is not POST, render the editborrowedbook.html template
     return render(request, 'employee/editborrowedbook.html')
 
-
+@login_required
 def deleteborrowedbook(request):
     if request.method == 'POST':
         borrowedbook_id = request.POST.get('borrowedbookID')

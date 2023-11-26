@@ -23,12 +23,7 @@
             </a>
         </li>
         
-        <li>
-            <a href="{% url 'library-logout' %}">
-                <i class="fas fa-sign-out-alt"></i>
-                <div>Logout</div>
-            </a>    
-        </li>
+        {% include "employee/logout-button.html" %}
     </ul>
 </div>
 {% endblock %}

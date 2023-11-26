@@ -9,3 +9,5 @@ class User(AbstractUser):
         (STUDENT,"Student"),
     ]
     usertype= models.CharField(max_length=10,choices=USERTYPE_CHOICES)
+
+    email = models.EmailField(unique=True)

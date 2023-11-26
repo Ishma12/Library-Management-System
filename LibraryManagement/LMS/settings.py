@@ -133,3 +133,21 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "library.User"
 
+# EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+# EMAIL_HOST_USER = '8477f2fbba9357'
+# EMAIL_HOST_PASSWORD = '04fd021059373a'
+# EMAIL_PORT = '2525'
+
+LOGIN_URL="login"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+# EMAIL_HOST_USER = "anjalbam208@gmail.com"
+# EMAIL_HOST_PASSWORD = "ffdo wrkf bdzj zbyv"
+EMAIL_HOST_USER = "eeshmarai@gmail.com"
+EMAIL_HOST_PASSWORD = "nlyj rwvs gbng neme"
+# DEFAULT_FROM_EMAIL="eeshmarai123@gmail.com"
+#ffdo wrkf bdzj zbyv
+# nlyj rwvs gbng neme
