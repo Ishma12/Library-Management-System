@@ -110,29 +110,29 @@
         const rows = document.querySelectorAll('.searchable-content');
 
         searchInput.addEventListener('input', function () {
-            const searchTerm = searchInput.value.toLowerCase();
+            const searchTerm = searchInput.value.trim().toLowerCase();
 
             rows.forEach(function (row) {
                 const contentText = row.innerText.toLowerCase();
+                const containsTerm = contentText.includes(searchTerm);
 
-                if (contentText.includes(searchTerm)) {
-                    row.style.backgroundColor = '#ffeeba'; // Highlight color
-                } else {
-                    row.style.backgroundColor = ''; // Reset background color
-                }
+                row.style.display = containsTerm ? '' : 'none';
             });
         });
 
-        // Add this event listener to reset colors when the input is cleared
+        // Add this event listener to reset visibility when the input is cleared
         searchInput.addEventListener('input', function () {
-            if (searchInput.value.trim() === '') {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+
+            if (searchTerm === '') {
                 rows.forEach(function (row) {
-                    row.style.backgroundColor = ''; // Reset background color
+                    row.style.display = ''; // Reset visibility
                 });
             }
         });
     });
 </script>
+
 
 </body>
 

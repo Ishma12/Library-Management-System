@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from .views import book
+from .views import GeneratePDFReportView
 
 urlpatterns = [
     path('edashboard/', views.employee, name='employee-edashboard'),
@@ -13,5 +14,6 @@ urlpatterns = [
     path('addborrowedbook/', views.addborrowedbook, name='employee-addborrowedbook'),
     path('editborrowedbook/', views.editborrowedbook, name='employee-editborrowedbook'),
     path('deleteborrowedbook/', views.deleteborrowedbook, name='employee-deleteborrowedbook'),
+    path('generate_pdf_report/', GeneratePDFReportView.as_view(), name='generate_pdf_report'),
     
 ]

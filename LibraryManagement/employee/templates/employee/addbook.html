@@ -55,10 +55,7 @@
                 <label for="category">Category:</label>
                 <input type="text" id="category" name="category" required>
             </div>
-            <div class="form-group">
-                <label for="price">Price:</label>
-                <input type="text" id="price" name="price" required >
-            </div>
+    
             <div class="button-group">
                 <button type="button" class="add-button" onclick="addBook()">Add</button>
             </div>
@@ -75,7 +72,7 @@
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'X-Requested-With': 'XMLHttpRequest',  // Add this header for Django to identify AJAX requests
+                    'X-Requested-With': 'XMLHttpRequest',  // Add the header for Django to identify AJAX requests
                     'X-CSRFToken': '{{ csrf_token }}'      // Add the CSRF token for security
                 },
             })

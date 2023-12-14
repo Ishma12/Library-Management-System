@@ -26,7 +26,7 @@ def user_login(request):
         if request.user.usertype== User.EMPLOYEE:
             return redirect('employee-edashboard')
         elif request.user.usertype==User.STUDENT:
-            return redirect('library-services')
+            return redirect('library-index')
        
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -43,7 +43,7 @@ def user_login(request):
                 if user.usertype== User.EMPLOYEE:
                     return redirect('employee-edashboard')
                 elif user.usertype==User.STUDENT:
-                    return redirect('library-services')
+                    return redirect('library-index')
     
             else:
                 print("Authentication failed")

@@ -1,11 +1,36 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import Book
 from .models import BorrowedBook
 from django.http import JsonResponse
 from datetime import datetime  
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt  # Add this import
+from django.views.decorators.csrf import csrf_exempt  
 from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
+from django.views.generic.base import View
+from xhtml2pdf import pisa
+
+
+class GeneratePDFReportView(View):
+    def get(self, request, *args, **kwargs):
+        books = Book.objects.all()  
+        template_path = 'employee/pdf_report_template.html'  
+        context = {'books': books}
+        
+        # Render the template
+        template = get_template(template_path)
+        html = template.render(context)
+
+        # Create a PDF response
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'filename="book_report.pdf"'
+        pisa_status = pisa.CreatePDF(html, dest=response)
+
+        # Return the PDF response if the PDF was created successfully
+        if pisa_status.err:
+            return HttpResponse('We had some errors <pre>' + html + '</pre>')
+        return response
 
 
 @login_required
@@ -43,7 +68,7 @@ def addbook(request):
         book_name = request.POST.get('bookName')
         author = request.POST.get('author')
         category = request.POST.get('category')
-        price = request.POST.get('price')
+       
 
 
         # Save the book to the database
@@ -52,7 +77,7 @@ def addbook(request):
             book_name=book_name,
             author=author,
             category=category,
-            price=price
+            
         )
 
         # Return the added book details as JSON response
@@ -61,7 +86,7 @@ def addbook(request):
             'book_name': book.book_name,
             'author': book.author,
             'category': book.category,
-            'price': str(book.price)  
+            
         })
 
 
@@ -74,7 +99,7 @@ def editbook(request):
         new_book_name = request.POST.get('bookName')
         new_author = request.POST.get('author')
         new_category = request.POST.get('category')
-        new_price = request.POST.get('price')
+        
 
         # Use filter to handle multiple books with the same ID
         books = Book.objects.filter(book_id=book_id)
@@ -85,7 +110,7 @@ def editbook(request):
                 book.book_name = new_book_name
                 book.author = new_author
                 book.category = new_category
-                book.price = new_price
+               
                 book.save()
 
             # Return a success message as JSON response
