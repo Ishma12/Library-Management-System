@@ -66,6 +66,7 @@
     </div>
     <script>
         function addBook() {
+            console.log('addBook function called');
             const formData = new FormData(document.getElementById('addBookForm'));
     
             fetch('{% url "employee-addbook" %}', {
@@ -85,8 +86,10 @@
                 console.error('Error:', error);
             });
         }
+    
         function redirectToDashboard() {
             window.location.href = '{% url "employee-edashboard" %}';
-    }
+        }
     </script>
+    
 {% endblock %}

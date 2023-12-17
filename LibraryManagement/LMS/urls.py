@@ -26,6 +26,7 @@ urlpatterns = [
     path('abc/', admin.site.urls),
     path('',include('library.urls')),
     path('employee/',include('employee.urls')),
+    path('student/',include('student.urls')),
     # Password reset URLs
     path('password-reset/', ResetPasswordView.as_view(), name='password_reset'),
     path('password-reset-confirm/<uidb64>/<token>/',

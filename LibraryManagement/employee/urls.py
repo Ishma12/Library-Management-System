@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from .views import book
 from .views import GeneratePDFReportView
+from .views import generate_borrowed_books_excel
 
 urlpatterns = [
     path('edashboard/', views.employee, name='employee-edashboard'),
@@ -15,5 +16,6 @@ urlpatterns = [
     path('editborrowedbook/', views.editborrowedbook, name='employee-editborrowedbook'),
     path('deleteborrowedbook/', views.deleteborrowedbook, name='employee-deleteborrowedbook'),
     path('generate_pdf_report/', GeneratePDFReportView.as_view(), name='generate_pdf_report'),
+    path('generate-borrowed-books-excel/', generate_borrowed_books_excel, name='generate_borrowed_books_excel'),
     
 ]

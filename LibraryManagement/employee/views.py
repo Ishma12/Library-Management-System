@@ -10,6 +10,68 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import get_template
 from django.views.generic.base import View
 from xhtml2pdf import pisa
+from django.http import FileResponse
+from openpyxl import Workbook
+from openpyxl.styles import NamedStyle
+from openpyxl.utils import get_column_letter
+from tempfile import NamedTemporaryFile
+
+
+
+def generate_borrowed_books_excel(request):
+    # Query the BorrowedBook data
+    borrowed_books = BorrowedBook.objects.all()
+
+    # Create a new Workbook
+    wb = Workbook()
+    ws = wb.active
+
+    # Add headers to the sheet
+    headers = ['ID', 'Book Name', 'Student ID', 'Student Name', 'Borrowed Date', 'Returned Date', 'Fine']
+    ws.append(headers)
+
+    # Add data to the sheet
+    for borrowed_book in borrowed_books:
+        data = [
+            f"'{borrowed_book.borrowedbook_id}",  # Add an apostrophe before ID to treat it as text
+            borrowed_book.borrowedbook_name,
+            f"'{borrowed_book.student_id}",  # Add an apostrophe before Student ID to treat it as text
+            borrowed_book.student_name,
+            borrowed_book.borrowed_date,
+            borrowed_book.returned_date,
+            borrowed_book.fine,
+        ]
+        ws.append(data)
+
+    # Apply date formatting to the date cells in the Borrowed Date and Returned Date columns
+    date_style = NamedStyle(name='date_style', number_format='YYYY-MM-DD')
+
+    # Borrowed Date column (column E)
+    for row in ws.iter_rows(min_row=2, max_col=5, max_row=ws.max_row):
+        for cell in row:
+            cell.style = date_style
+
+    # Returned Date column (column F)
+    for row in ws.iter_rows(min_row=2, max_col=6, max_row=ws.max_row):
+        for cell in row:
+            cell.style = date_style
+
+    # Set column width for date columns
+    date_columns = [5, 6]  # Columns E (Borrowed Date) and F (Returned Date)
+    for col_num in date_columns:
+        col_letter = get_column_letter(col_num)
+        ws.column_dimensions[col_letter].width = 15  # Adjust the width as needed
+
+    # Save the workbook to a temporary file
+    with NamedTemporaryFile(delete=False) as tmpfile:
+        wb.save(tmpfile.name)
+
+    # Create a FileResponse and delete the temporary file after serving
+    response = FileResponse(open(tmpfile.name, 'rb'), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'inline; filename=borrowed_books.xlsx'
+
+    return response
+
 
 
 class GeneratePDFReportView(View):
@@ -68,8 +130,6 @@ def addbook(request):
         book_name = request.POST.get('bookName')
         author = request.POST.get('author')
         category = request.POST.get('category')
-       
-
 
         # Save the book to the database
         book = Book.objects.create(
@@ -77,7 +137,6 @@ def addbook(request):
             book_name=book_name,
             author=author,
             category=category,
-            
         )
 
         # Return the added book details as JSON response
@@ -86,9 +145,7 @@ def addbook(request):
             'book_name': book.book_name,
             'author': book.author,
             'category': book.category,
-            
         })
-
 
     return render(request, 'employee/addbook.html')
 

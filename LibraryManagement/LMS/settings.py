@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'jazzmin',
     'library.apps.LibraryConfig',
     'employee.apps.EmployeeConfig',
+    'student.apps.StudentConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

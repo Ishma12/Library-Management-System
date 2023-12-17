@@ -28,6 +28,14 @@
                 <div>Delete Borrowed Books</div>
             </a>
         </li>
+        <li>
+            <a href="{% url 'generate_borrowed_books_excel' %}">
+                <i class="fas fa-download"></i> 
+                <div>Download Borrowed Books Excel</div>
+            </a>
+        </li>
+        
+
         
         {% include "employee/logout-button.html" %}
     </ul>
