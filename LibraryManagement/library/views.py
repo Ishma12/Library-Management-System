@@ -1,7 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.sites.shortcuts import get_current_site
 from .forms import SignupForm, LoginForm
 from django.contrib.auth import authenticate, login,logout
 from .models import User
+from django.template.loader import render_to_string
+from django.urls import reverse_lazy,reverse
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage
 
 def index(request):
     return render(request, 'library/index.html')
@@ -20,13 +26,54 @@ def logoutview(request):
     logout(request)
     return redirect ('login')
 
+def staff_or_superuser_required(function=None, redirect_field_name=None,
+     unauthorized_url=reverse_lazy('login')):
+    actual_decorator = user_passes_test(
+        lambda u: u.is_staff or u.is_superuser,
+        login_url=unauthorized_url,
+        redirect_field_name=redirect_field_name
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
+
+@login_required
+@staff_or_superuser_required
+def verify_user(request, username, *args, **kwargs):
+    if request.method == 'GET':
+        user = get_object_or_404(User, username=username)
+        user.is_active = True
+        current_site = get_current_site(request=request).domain
+        relative_link = reverse(
+            'login',
+        )
+        abs_url = 'http://' + current_site + relative_link
+        email_body = render_to_string('library/user-register-email-success.html',
+                                      {'username': user.username, 'email': user.email, 'login_url': abs_url})
+        data = {
+            'email_body': email_body,
+            'to_email': user.email,
+            'email_subject': 'Account Verified!!'
+        }
+ 
+        email = EmailMessage(
+            subject=data['email_subject'],
+            body=data['email_body'],
+            to=[data['to_email']]
+        )
+        email.content_subtype = 'html'
+        email.send()
+        user.save()
+        return redirect(reverse('admin:library_user_changelist'))
+    redirect(reverse('admin:library_user_changelist'))
+
 
 def user_login(request):
     if request.user.is_authenticated:
         if request.user.usertype== User.EMPLOYEE:
             return redirect('employee-edashboard')
         elif request.user.usertype==User.STUDENT:
-            return redirect('library-index')
+            return redirect('student_dashboard')
        
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -43,7 +90,7 @@ def user_login(request):
                 if user.usertype== User.EMPLOYEE:
                     return redirect('employee-edashboard')
                 elif user.usertype==User.STUDENT:
-                    return redirect('library-index')
+                    return redirect('student_dashboard')
     
             else:
                 print("Authentication failed")
@@ -64,6 +111,7 @@ def signup(request):
             usermode = form.cleaned_data['usermode']
             user = User(username=username,email=email,password=password,usertype=usermode)
             user.set_password(password)
+            user.is_active=False
             user.save()
             return redirect('login')
     else:

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Register Success</title>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            padding: 5px 0;
+            box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-wrapper .logo img {
+            height: 3rem;
+        }
+
+        .logo-text {
+            align-self: center;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            font-weight: 400;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .mt-5 {
+            margin-top: 2.5rem;
+        }
+
+        .heading {
+            font-weight: bold;
+            color:#299B63;
+            margin-bottom: 10px;
+        }
+
+        .action-button {
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: 2px solid #299B63;
+            background: #299B63;
+            font-weight: bold;
+            color: white;
+            border-radius: 2px;
+            transition: all ease 200ms;
+        }
+
+        .action-button:hover {
+            color: #299B63;
+            background: white;
+        }
+    </style>
+</head>
+<body></body>
+    <div class="container">
+        <div class="mt-5">
+            <div class="title">
+                <h1 class="heading">Welcome Onboard</h1>
+            </div>
+            <div class="email-body-wrapper">
+                <div class="email-body">
+                    <p>Hello {{ username }},</p>
+                    <p>Your identity is verified by <strong>Herald College</strong>. And you can proceed with your account as <strong>{{ email }}</strong>.</p>
+                    <p>Thank you!</p>
+                </div>
+                <div>
+                    <p>Or, follow this link:</p>
+                    <p><a href="{{ login_url }}" class="action-button">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

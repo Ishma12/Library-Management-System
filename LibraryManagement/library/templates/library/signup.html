@@ -7,7 +7,7 @@
 
 <!-- Signup form container -->
 <div class="signup-container">
-    <h2>Welcome to Sign Up!</h2>
+    <h2>Library Request Form!</h2>
     <form method="POST">
         {% csrf_token %}
         <div class="form-group">
@@ -36,7 +36,7 @@
 
         </div>
         <div class="errormessages">{{ form.non_field_errors }}</div>
-        <input type="submit" value="Signup" style="background-color: lightgreen; color: white; border: none; padding: 5px 10px; border-radius: 3px; height: 35px; width: 70px;">
+        <input type="submit" value="Submit" style="background-color: lightgreen; color: white; border: none; padding: 5px 10px; border-radius: 3px; height: 35px; width: 70px;">
     </form>
 </div>
 
