@@ -102,6 +102,11 @@ def user_login(request):
 
 
 def signup(request):
+    if request.user.is_authenticated:
+        if request.user.usertype== User.EMPLOYEE:
+            return redirect('employee-edashboard')
+        elif request.user.usertype==User.STUDENT:
+            return redirect('student_dashboard')
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():

@@ -1,13 +1,12 @@
 {% extends 'student/sbase.html'%}
 {%load static%}
 {%block slidebar %}
-       
 <div class="sidebar">
     <ul>
         <div class="sidebar">
             <ul>
                 <li>
-                    <a href="">
+                    <a href="{% url 'student_dashboard' %}">
                         <i class="fas fa-th-large"></i>
                         <div>Dashboard</div>
                     </a>
@@ -28,6 +27,12 @@
                     <a href="">
                         <i class="fas fa-books"></i>
                         <div>Bookselves</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'student_request' %}">
+                        <i class="fas fa-books"></i>
+                        <div>Request For Books</div>
                     </a>
                 </li>
                 {% include "employee/logout-button.html" %}

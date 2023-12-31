@@ -28,6 +28,7 @@
             <div class="user">
                 <img src="{%static 'employee/images.png'%}" alt="" id="user-avatar">
                 <div class="dropdown" id="user-dropdown">
+                    <a href="#">{{user_fullname}}</a>
                     <a href="{% url 'employee-changepw' %}">Change Password</a>
                     <a href="#" onclick="confirmLogout()">Logout</a>
                 </div>
