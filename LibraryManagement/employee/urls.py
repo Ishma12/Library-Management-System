@@ -17,5 +17,6 @@ urlpatterns = [
     path('deleteborrowedbook/', views.deleteborrowedbook, name='employee-deleteborrowedbook'),
     path('generate_pdf_report/', GeneratePDFReportView.as_view(), name='generate_pdf_report'),
     path('generate-borrowed-books-excel/', generate_borrowed_books_excel, name='generate_borrowed_books_excel'),
+    path('requestfromstudent/', views.bookrequest, name='employee-requestfromstudent'),
     
 ]

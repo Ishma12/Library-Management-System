@@ -16,7 +16,8 @@ from openpyxl.styles import NamedStyle
 from openpyxl.utils import get_column_letter
 from tempfile import NamedTemporaryFile
 
-
+def bookrequest(request):
+    return render(request, 'employee/requestfromstudent.html')
 
 def generate_borrowed_books_excel(request):
     # Query the BorrowedBook data

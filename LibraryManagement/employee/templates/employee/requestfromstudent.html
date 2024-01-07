@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{% static 'student/student.css' %}">
+    <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
     <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
     
  
-    <title>Student Panel</title>
+    <title>Employee Panel</title>
 </head>
 
 <body>
@@ -34,8 +34,18 @@
                 </div>
             </div> 
         </div>
-        {%block sslidebar %}
-        {% endblock %}
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="{% url 'employee-edashboard' %}">
+                        <i class="fas fa-th-large"></i>
+                        <div>Dashboard</div>
+                    </a>
+                </li>
+
+                {% include "employee/logout-button.html" %}
+        </ul>
+        </div>
         <div class="main">
             <div class="cards">
                 <div class="card">
@@ -70,11 +80,12 @@
                 <table class="content-table" >
                     <thead>
                       <tr>
-                      <th>Book ID</th>
+                      <th>Student ID</th>
                       <th>Book Name</th>
                       <th>Author</th>
                       <th>Category</th>
-                      <th>Price</th>
+                      <th>Action</th>
+
                       </tr>
                     </thead>
                     <tbody>
@@ -83,55 +94,30 @@
                       <td>Tarkeshwor</td>
                       <td>Ram Basnet</td>
                       <td>AI</td>
-                      <td>200</td>
+                      <td>
+                        <button style="background-color: red; color: white;">Decline</button>
+                        <button style="background-color: #299b63; color: white;">Approve</button>
+
+                    </td>
+                      
                       </tr>
                       <td>3</td>
                       <td>Tarkeshwor</td>
                       <td>Hari karki</td>
                       <td>AI</td>
-                      <td>200</td>
-                      <tr>
-                      <td>3</td>
-                      <td>Tarkeshwor</td>
-                      <td>Raja Ram Basnet</td>
-                      <td>AI</td>
-                      <td>200</td>
-                      <tr>
-                      <td>3</td>
-                      <td>Tarkeshwor</td>
-                      <td>Raj Magar</td>
-                      <td>AI</td>
-                      <td>200</td>
-                      </tr>
-                      <tr>
-                      <td>3</td>
-                      <td>Tarkeshwor</td>
-                      <td>YAm Tamang</td>
-                      <td>AI</td>
-                      <td>200</td>
-                      </tr>
-                      <tr>
-                      <td>3</td>
-                      <td>Tarkeshwor</td>
-                      <td>Ram Basnet</td>
-                      <td>AI</td>
-                      <td>200</td>
-                      </tr>
-                  
+                      <td>
+                        <button class="approve-button">Approve</button>
+                        <button class="decline-button">Decline</button>
+                    </td>
+                      
+                      
                     </tbody>
                     </table>
-                <div class="chart bar-chart">
-                    <h2>Available Books</h2>
-                    <div>
-                        <canvas id="bar"></canvas>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
     <script src="{% static 'employee/profile.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-    <script src="{% static 'student/chart.js' %}"></script>
+
 
 
     
