@@ -1,53 +1,70 @@
 {% extends 'student/abase.html'%}
-{%load static%}
-{%block sslidebar %}
-<div class="sidebar">
-    <ul>
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <a href="{% url 'student_dashboard' %}">
-                        <i class="fas fa-th-large"></i>
-                        <div>Dashboard</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'student-availablebook' %}">
-                        <i class="fas fa-books"></i>
-                        <div>Available Books</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-book"></i>
-                        <div>Borrowed Books</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-books"></i>
-                        <div>Bookselves</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'student_request' %}">
-                        <i class="fas fa-books"></i>
-                        <div>Request For Books</div>
-                    </a>
-                </li>
+{%block content %}
+<div class="charts">
+            <table class="content-table" >
+                <thead>
+                  <tr>
+                  <th>Book ID</th>
+                  <th>Book Name</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                  <td>1</td>
+                  <td>Tarkeshwor</td>
+                  <td>Ram Basnet</td>
+                  <td>AI</td>
+                  <td>200</td>
+                  </tr>
+                  <td>3</td>
+                  <td>Tarkeshwor</td>
+                  <td>Hari karki</td>
+                  <td>AI</td>
+                  <td>200</td>
+                  <tr>
+                  
+              
+                </tbody>
+            
+    </table>
 
-                <li>
-                    <a href="{%url 'student-reviews'%}">
-                        <i class="fas fa-star"></i>
-                        <div>Reviews and Ratings</div>
-                    </a>
-                </li>
-                {% include "employee/logout-button.html" %}
-                
-            </ul>
-        </div>
-
-        <!-- {% include "employee/logout-button.html" %} -->
-    </ul>
+    </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+const searchInput = document.getElementById('searchInput');
+const rows = document.querySelectorAll('.searchable-content');
+
+searchInput.addEventListener('input', function () {
+const searchTerm = searchInput.value.trim().toLowerCase();
+
+rows.forEach(function (row) {
+    const contentText = row.innerText.toLowerCase();
+    const containsTerm = contentText.includes(searchTerm);
+
+    row.style.display = containsTerm ? '' : 'none';
+});
+});
+
+// Add this event listener to reset visibility when the input is cleared
+searchInput.addEventListener('input', function () {
+const searchTerm = searchInput.value.trim().toLowerCase();
+
+if (searchTerm === '') {
+    rows.forEach(function (row) {
+        row.style.display = ''; // Reset visibility
+    });
+}
+});
+});
+</script>
 {% endblock %}
+{% load static %}
+{% block js%}
+    <script src="{% static 'employee/profile.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script src="{% static 'student/chart.js' %}"></script>
+{%endblock%}

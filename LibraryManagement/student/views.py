@@ -11,3 +11,5 @@ def reviews(request):
     return render(request,'student/reviews.html')
 def available(request):
     return render(request,'student/availablebook.html')
+def bookselves(request):
+    return render(request,'student/addbook.html')

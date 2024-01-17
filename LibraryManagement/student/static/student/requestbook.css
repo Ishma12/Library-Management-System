@@ -1,0 +1,91 @@
+
+.add-book-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin: 20px auto;
+    max-width: 400px;
+    color: #000;
+}
+
+.add-book-box h2 {
+    color: #299B63;
+}
+
+.add-book-box .form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.add-book-box label {
+    color: #299B63;
+    display: block;
+}
+
+.add-book-box input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-bottom: 2px solid #299B63;
+    outline: none;
+}
+
+.add-book-box .button-group {
+    display: flex;
+    justify-content: center;
+}
+
+.add-book-box .add-button {
+    background-color: #299B63;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Optional hover effect for the Add button */
+.add-book-box .add-button:hover {
+    background-color: #167B4D;
+}
+/* Styles for the charts */
+.charts {
+    position: absolute;
+    top: 60px;
+    width: calc(100% - 260px);
+    min-height: calc(100vh - 60px);
+    left: 260px;
+    background: #f5f5f5;
+    z-index: 0; /* Ensure this is below both topbar and sidebar */
+}
+/* Styles for the "Done" button */
+.done-button {
+    background-color: #299B63;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 800px; /* Adjust margin as needed to create space between the "Add" and "Done" buttons */
+}
+
+/* Optional hover effect for the "Done" button */
+.done-button:hover {
+    background-color: #167B4D;
+}
+
+/* Style the date input fields as a line */
+.form-group input[type="date"] {
+width: 100%;
+padding: 5px;
+margin-bottom: 15px;
+border: none;
+border-bottom: 2px solid #167B4D; /* Add a bottom border for the line effect */
+font-size: 16px;
+background-color: transparent; /* Make the background transparent */
+outline: none; /* Remove the default outline when the input is selected */
+}
+

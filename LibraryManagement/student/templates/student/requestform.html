@@ -1,82 +1,9 @@
+{% extends 'student/abase.html'%}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{% static 'student/student.css' %}">
-    <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
-    <link rel="stylesheet" href="{% static 'employee/addbook.css' %}">
-    <body>
-        <div class="container">
-            <div class="topbar">
-                <div class="logo">
-                    <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
-                </div>
-                <div class="search">
-                    <input type="text" name="search" placeholder="search here">
-                    <label for="search"><i class="fas fa-search"></i></label>
-                </div>
-                <i class="fas fa-bell"></i>
-                <div class="user">
-                    <img src="{%static 'employee/images.png'%}" alt="" id="user-avatar">
-                    <div class="dropdown" id="user-dropdown">
-                        <a href="#">{{user_fullname}}</a>
-                        <a href="{% url 'employee-changepw' %}">Change Password</a>
-                        <a href="#" onclick="confirmLogout()">Logout</a>
-                    </div>
-                </div>
-            </div>
-    
- 
-    <title>Student Panel</title>
-</head>
-<div class="sidebar">
-    <ul>
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <a href="{% url 'student_dashboard' %}">
-                        <i class="fas fa-th-large"></i>
-                        <div>Dashboard</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-books"></i>
-                        <div>Available Books</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-book"></i>
-                        <div>Borrowed Books</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'student_request' %}">
-                        <i class="fas fa-books"></i>
-                        <div>Bookselves</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-books"></i>
-                        <div>Request For Books</div>
-                    </a>
-                </li>
-                {% include "employee/logout-button.html" %}
-                
-            </ul>
-        </div>
-
-        <!-- {% include "employee/logout-button.html" %} -->
-    </ul>
-</div>
-<div class="charts">
+{% block css%}
+<link rel="stylesheet" href="{% static 'student/requestbook.css' %}">
+{%endblock%}
+{%block content %}
     <div class="add-book-box">
         <h2>Request Book</h2>
         <form id="addBookForm">
@@ -104,7 +31,7 @@
         </form>
     </div>
 </div>
-
+{% endblock %}
     
 
     

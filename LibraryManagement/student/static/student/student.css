@@ -200,3 +200,83 @@ img {
     text-align: center
 }
 
+.content-table {
+	border-collapse: collapse;
+	margin: 20px ;
+	font-size: 0.9em;
+	min-width:1%;
+	min-height: 0.1%;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	text-align:left;
+	padding-left: 30px;
+
+  }
+  
+  .content-table thead tr {
+	background-color: #299b63;
+	color: #ffffff;
+	text-align: center;
+	font-weight: bold;
+  }
+  
+  .content-table th,
+  .content-table td {
+	padding: 12px 15px;
+  }
+  
+  .content-table tbody tr {
+	border-bottom: 1px solid #dddddd;
+  }
+  
+  .content-table tbody tr:nth-of-type(even) {
+	background-color: #f3f3f3;
+  }
+  
+  .content-table tbody tr:last-of-type {
+	border-bottom: 2px solid  #299b63;
+  }
+  
+  .table{
+	 align-content: center;
+	  
+  }
+
+/* Style the first table (content-table) */
+.content-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 96%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: left;
+    padding-left: 30px;
+}
+
+
+/* Style for the Decline button */
+.content-table .decline-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Style for the Approve button */
+.content-table .approve-button {
+    background-color: #299b63;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+  

@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
     <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
-    
- 
-    <title>Student Panel</title>
+   <title>Student Panel</title>
+   {%block css %}
+   {% endblock %}
 </head>
 
 <body>
@@ -45,7 +45,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'employee-ebook' %}">
+                            <a href="{% url 'student-availablebook' %}">
                                 <i class="fas fa-books"></i>
                                 <div>Available Books</div>
                             </a>
@@ -114,70 +114,11 @@
                 </div>
                 
             </div>
-            <div class="charts">
+            {%block content %}
+            {% endblock %}
 
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th>Book ID</th>
-                            <th>Book Name</th>
-                            <th>Author</th>
-                            <th>Category</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for book in books %}
-                        <tr class="searchable-content">
-                                <td>{{ book.book_id }}</td>
-                                <td>{{ book.book_name }}</td>
-                                <td>{{ book.author }}</td>
-                                <td>{{ book.category }}</td>
-                               
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="{% static 'employee/logout.js' %}"></script>
-    <script src="{% static 'employee/profile.js' %}"></script>
-<!--  script for search -->
-<!-- script for search -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const searchInput = document.getElementById('searchInput');
-        const rows = document.querySelectorAll('.searchable-content');
-
-        searchInput.addEventListener('input', function () {
-            const searchTerm = searchInput.value.trim().toLowerCase();
-
-            rows.forEach(function (row) {
-                const contentText = row.innerText.toLowerCase();
-                const containsTerm = contentText.includes(searchTerm);
-
-                row.style.display = containsTerm ? '' : 'none';
-            });
-        });
-
-        // Add this event listener to reset visibility when the input is cleared
-        searchInput.addEventListener('input', function () {
-            const searchTerm = searchInput.value.trim().toLowerCase();
-
-            if (searchTerm === '') {
-                rows.forEach(function (row) {
-                    row.style.display = ''; // Reset visibility
-                });
-            }
-        });
-    });
-</script>
-
-
-    
+            {% block js%}
+            {% endblock %}
 </body>
 
 </html>
