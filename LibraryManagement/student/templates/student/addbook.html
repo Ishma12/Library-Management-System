@@ -45,21 +45,21 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{% url 'student-bookselves' %}">
                         <i class="fas fa-books"></i>
-                        <div>Add Book</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-book"></i>
-                        <div>Delete Book</div>
+                        <div>My Book</div>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'student-addbook' %}">
                         <i class="fas fa-books"></i>
-                        <div>Edit Book</div>
+                        <div>Add Book</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'student-deletebook' %}">
+                        <i class="fas fa-book"></i>
+                        <div>Delete Book</div>
                     </a>
                 </li>
                 
@@ -73,13 +73,9 @@
 </div>
 <div class="charts">
     <div class="add-book-box">
-        <h2>Request Book</h2>
+        <h2>My Book</h2>
         <form id="addBookForm">
 
-            <div class="form-group">
-                <label for="studentID">Student ID:</label>
-                <input type="text" id="studentID" name="studentID" required>
-            </div>
             <div class="form-group">
                 <label for="bookName">Book Name:</label>
                 <input type="text" id="bookName" name="bookName" required>
@@ -92,13 +88,47 @@
                 <label for="category">Category:</label>
                 <input type="text" id="category" name="category" required>
             </div>
+            <div class="form-group">
+                <label for="about">About:</label>
+                <input type="text" id="about" name="about" required>
+            </div>
     
             <div class="button-group">
-                <button type="button" class="add-button" onclick="">Submit</button>
+                <button type="button" class="add-button" onclick="addBook()">Submit</button>
+
             </div>
-        </form>
+        </form>   
     </div>
 </div>
+<script>
+    function addBook() {
+        console.log('addBook function called');
+        const formData = new FormData(document.getElementById('addBookForm'));
+
+        fetch('{% url "student-addbook" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',  // Add the header for Django to identify AJAX requests
+                'X-CSRFToken': '{{ csrf_token }}'      // Add the CSRF token for security
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response, you can update the table or do other actions
+            console.log(data);
+        })
+        .catch(error => {
+        console.error('Error:', error);
+         alert('Error adding book. Please try again.');
+        });
+
+    }
+
+    function redirectToDashboard() {
+        window.location.href = '{% url "student-bookselves" %}';
+    }
+</script>
 
     
 

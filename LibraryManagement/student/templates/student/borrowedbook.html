@@ -4,30 +4,28 @@
             <table class="content-table" >
                 <thead>
                   <tr>
-                  <th>Book ID</th>
-                  <th>Book Name</th>
-                  <th>Author</th>
-                  <th>Category</th>
-                  
+                    <th>Book ID</th>
+                    <th>Book Name</th>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Borrowed Date</th>
+                    <th>Returned Date</th>
+                    <th>Fine</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                  <td>1</td>
-                  <td>Tarkeshwor</td>
-                  <td>Ram Basnet</td>
-                  <td>AI</td>
-                  
-                  </tr>
-                  <td>3</td>
-                  <td>Tarkeshwor</td>
-                  <td>Hari karki</td>
-                  <td>AI</td>
-                  
-                  <tr>
-                  
-              
-                </tbody>
+                  {% for borrowed_book in borrowed_books %}
+                  <tr class="searchable-content">
+                          <td>{{ borrowed_book.borrowedbook_id }}</td>
+                          <td>{{ borrowed_book.borrowedbook_name }}</td>
+                          <td>{{ borrowed_book.student_id }}</td>
+                          <td>{{ borrowed_book.student_name }}</td>
+                          <td>{{ borrowed_book.borrowed_date }}</td>
+                          <td>{{ borrowed_book.returned_date }}</td>
+                          <td>{{ borrowed_book.fine }}</td>
+                      </tr>
+                  {% endfor %}
+              </tbody>
             
     </table>
 

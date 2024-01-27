@@ -1,37 +1,71 @@
-{% extends 'student/abase.html'%}
+{% extends 'student/abase.html' %}
 {% load static %}
-{% block css%}
+{% block css %}
 <link rel="stylesheet" href="{% static 'student/requestbook.css' %}">
-{%endblock%}
-{%block content %}
-    <div class="add-book-box">
-        <h2>Request Book</h2>
-        <form id="addBookForm">
-
-            <div class="form-group">
-                <label for="studentID">Student ID:</label>
-                <input type="text" id="studentID" name="studentID" required>
-            </div>
-            <div class="form-group">
-                <label for="bookName">Book Name:</label>
-                <input type="text" id="bookName" name="bookName" required>
-            </div>
-            <div class="form-group">
-                <label for="author">Author:</label>
-                <input type="text" id="author" name="author" required>
-            </div>
-            <div class="form-group">
-                <label for="category">Category:</label>
-                <input type="text" id="category" name="category" required>
-            </div>
-    
-            <div class="button-group">
-                <button type="button" class="add-button" onclick="">Submit</button>
-            </div>
-        </form>
-    </div>
-</div>
 {% endblock %}
-    
+{% block content %}
+<div class="add-book-box">
+    <h2>Request Book</h2>
+    <form id="addBookForm">
+        <div class="form-group">
+            <label for="studentID">Student ID:</label>
+            <input type="text" id="studentID" name="studentID" required>
+        </div>
+        <div class="form-group">
+            <label for="bookName">Book Name:</label>
+            <input type="text" id="bookName" name="bookName" required>
+        </div>
+        <div class="form-group">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required>
+        </div>
+        {% csrf_token %}
+        <div class="button-group">
+            <button type="button" class="add-button" onclick="submitBook()">Submit</button>
+        </div>
+    </form>
+</div>
+<script>
 
-    
+function submitBook() {
+    const formData = new FormData(document.getElementById('addBookForm'));
+
+    fetch('{% url "employee-requestfromstudent" %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        if (data.message === 'Book request submitted successfully') {
+            // Update your employee panel with the book information
+            const bookInfo = data.book_info;
+            // Add logic to update the employee panel with the book information
+            console.log('Book Information:', bookInfo);
+        } else {
+            // Handle other cases or show an error message
+            console.error('Error:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Fetch Error:', error);
+    });
+}
+
+
+
+</script>
+{% endblock %}

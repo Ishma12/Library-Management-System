@@ -15,8 +15,25 @@ from openpyxl import Workbook
 from openpyxl.styles import NamedStyle
 from openpyxl.utils import get_column_letter
 from tempfile import NamedTemporaryFile
+from .models import BookRequest 
 
 def bookrequest(request):
+    if request.method == 'POST':
+        student_id = request.POST.get('studentID')
+        book_name = request.POST.get('bookName')
+        author = request.POST.get('author')
+        category = request.POST.get('category')
+
+        # Save the book request to the database
+        BookRequest.objects.create(
+            student_id=student_id,
+            book_name=book_name,
+            author=author,
+            category=category
+        )
+
+        return JsonResponse({'message': 'Book request submitted successfully.'})
+ 
     return render(request, 'employee/requestfromstudent.html')
 
 def generate_borrowed_books_excel(request):

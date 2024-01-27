@@ -62,7 +62,6 @@
                         <div>Delete Book</div>
                     </a>
                 </li>
-                
                 {% include "employee/logout-button.html" %}
                 
             </ul>
@@ -72,32 +71,61 @@
     </ul>
 </div>
 <div class="charts">
-    <table class="content-table" >
-        <thead>
-          <tr>
-          <th>Book Name</th>
-          <th>Author</th>
-          <th>Category</th>
-          <th>About</th>
-          
-          </tr>
-        </thead>
-        <tbody>
-            {% for book in books %}
-                <tr class="searchable-content">
-                    <td>{{ book.book_name }}</td>
-                    <td>{{ book.author }}</td>
-                    <td>{{ book.category }}</td>
-                    <td>{{ book.about }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-        
+    <div class="add-book-box">
+        <h2>Delete Book</h2>
+        <form id="deleteBookForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="bookName">Book Name:</label>
+                <input type="text" id="bookName" name="bookName" required>
+            </div>
     
-</table>
+            <div class="button-group">
+                <button type="button" class="add-button" onclick="deleteBook()">Submit</button>
 
+            </div>
+        </form>
+    </div>
 </div>
-</div>
+<script>
     
+    function deleteBook() {
+        const formData = new FormData(document.getElementById('deleteBookForm'));
+
+        fetch('{% url "student-deletebook" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Check if the deletion was successful
+            if (data.success) {
+                // Display a success message
+                alert('Book successfully deleted!');
+                
+                // Redirect to the dashboard or update the UI as needed
+                redirectToDashboard();
+            } else {
+                // Handle errors or display an error message
+                console.error('Deletion failed:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function redirectToDashboard() {
+        window.location.href = '{% url "student-bookselves" %}';
+    }
+</script>
+
+
+
+
 
     

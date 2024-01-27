@@ -26,6 +26,13 @@ class BorrowedBook(models.Model):
 
     def __str__(self):
         return self.borrowedbook_name
+class BookRequest(models.Model):
+    student_id = models.CharField(max_length=50)
+    book_name = models.CharField(max_length=255)
+    author = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f'{self.student_id} - {self.book_name}'
 
 

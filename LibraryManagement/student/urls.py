@@ -7,5 +7,9 @@ urlpatterns = [
     path('request/', views.student_requestform, name='student_request'),
     path('reviews/', views.reviews, name='student-reviews'),
     path('available/', views.available, name='student-availablebook'),
-    path('bookselves/', views.available, name='student-addbook'),
+    path('borrowed/', views.borrowed, name='student-borrowedbook'),
+    path('addbook/', views.addbook, name='student-addbook'),
+    path('bookselves/', views.bookselves, name='student-bookselves'),
+    path('deletebook/', views.deletebook, name='student-deletebook'),
 ]
+
