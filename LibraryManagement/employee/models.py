@@ -9,6 +9,13 @@ class Book(models.Model):
     author = models.CharField(max_length=255)
     category = models.CharField(max_length=255)
     
+    @classmethod
+    def get_book_data(cls):
+        books = cls.objects.all()
+        borrowed_books = BorrowedBook.objects.all()
+        book_count = cls.objects.count()
+        borrowed_book_count = BorrowedBook.objects.count()
+        return {'books': books,'book_count': book_count,  'borrowed_books': borrowed_books,'borrowed_book_count': borrowed_book_count}
 
     def __str__(self):
         return self.book_name
@@ -26,12 +33,14 @@ class BorrowedBook(models.Model):
 
     def __str__(self):
         return self.borrowedbook_name
+
+
 class BookRequest(models.Model):
     student_id = models.CharField(max_length=50)
     book_name = models.CharField(max_length=255)
     author = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
-
+    is_approved=models.BooleanField(default=None, null=True, blank=True) 
     def __str__(self):
         return f'{self.student_id} - {self.book_name}'
 

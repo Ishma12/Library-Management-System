@@ -6,6 +6,10 @@
 {% block content %}
 <div class="add-book-box">
     <h2>Request Book</h2>
+    <div id="msg-container">
+
+
+    </div>
     <form id="addBookForm">
         <div class="form-group">
             <label for="studentID">Student ID:</label>
@@ -30,7 +34,8 @@
     </form>
 </div>
 <script>
-
+const messagecontainer= document.getElementById("msg-container")      
+const messagebox= `<p class="alert-message">Book Request Sucessful!</p>`
 function submitBook() {
     const formData = new FormData(document.getElementById('addBookForm'));
 
@@ -42,19 +47,15 @@ function submitBook() {
             'X-CSRFToken': formData.get('csrfmiddlewaretoken')
         },
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
+    .then(res=>res.json())
     .then(data => {
         console.log(data);
-        if (data.message === 'Book request submitted successfully') {
+        if (data.message === 'success') {
             // Update your employee panel with the book information
             const bookInfo = data.book_info;
             // Add logic to update the employee panel with the book information
             console.log('Book Information:', bookInfo);
+            messagecontainer.innerHTML=messagebox
         } else {
             // Handle other cases or show an error message
             console.error('Error:', data.message);

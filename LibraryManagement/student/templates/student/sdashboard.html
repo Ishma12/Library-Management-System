@@ -1,59 +1,27 @@
 {% extends 'student/abase.html'%}
 {%block content %}
 <div class="charts">
-            <table class="content-table" >
-                <thead>
-                  <tr>
-                  <th>Book ID</th>
-                  <th>Book Name</th>
-                  <th>Author</th>
-                  <th>Category</th>
-                  <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                  <td>1</td>
-                  <td>Tarkeshwor</td>
-                  <td>Ram Basnet</td>
-                  <td>AI</td>
-                  <td>200</td>
-                  </tr>
-                  <td>3</td>
-                  <td>Tarkeshwor</td>
-                  <td>Hari karki</td>
-                  <td>AI</td>
-                  <td>200</td>
-                  <tr>
-                  <td>3</td>
-                  <td>Tarkeshwor</td>
-                  <td>Raja Ram Basnet</td>
-                  <td>AI</td>
-                  <td>200</td>
-                  <tr>
-                  <td>3</td>
-                  <td>Tarkeshwor</td>
-                  <td>Raj Magar</td>
-                  <td>AI</td>
-                  <td>200</td>
-                  </tr>
-                  <tr>
-                  <td>3</td>
-                  <td>Tarkeshwor</td>
-                  <td>YAm Tamang</td>
-                  <td>AI</td>
-                  <td>200</td>
-                  </tr>
-                  <tr>
-                  <td>3</td>
-                  <td>Tarkeshwor</td>
-                  <td>Ram Basnet</td>
-                  <td>AI</td>
-                  <td>200</td>
-                  </tr>
-              
-                </tbody>
-            
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Category</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr class="searchable-content">
+                    <td>{{ book.book_id }}</td>
+                    <td>{{ book.book_name }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.category }}</td>
+                   
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
     </div>

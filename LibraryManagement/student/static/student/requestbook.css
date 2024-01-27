@@ -89,3 +89,10 @@ background-color: transparent; /* Make the background transparent */
 outline: none; /* Remove the default outline when the input is selected */
 }
 
+.alert-message{
+    padding: 16px 8px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    border-radius: 4px;
+    background-color:rgba(22, 123, 77, 0.2);
+}

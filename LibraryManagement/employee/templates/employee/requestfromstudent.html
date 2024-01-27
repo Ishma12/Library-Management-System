@@ -47,35 +47,7 @@
         </ul>
         </div>
         <div class="main">
-            <div class="cards">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="number">1217</div>
-                        <div class="card-name">Students</div>
-                    </div>
-                    <div class="icon-box">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="number">42</div>
-                        <div class="card-name">Books</div>
-                    </div>
-                    <div class="icon-box">
-                        <i class="fas fa-books"></i>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="number">68</div>
-                        <div class="card-name">Borrowed Books</div>
-                    </div>
-                    <div class="icon-box">
-                        <i class="fas fa-books"></i>
-                    </div>
-                </div>
-            </div>
+            
             <div class="charts">
                 <table class="content-table" >
                     <thead>
@@ -89,27 +61,31 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                      <td>1</td>
-                      <td>Tarkeshwor</td>
-                      <td>Ram Basnet</td>
-                      <td>AI</td>
-                      <td>
-                        <button style="background-color: red; color: white;">Decline</button>
-                        <button style="background-color: #299b63; color: white;">Approve</button>
-
-                    </td>
-                      
-                      </tr>
-                      <td>3</td>
-                      <td>Tarkeshwor</td>
-                      <td>Hari karki</td>
-                      <td>AI</td>
-                      <td>
-                        <button class="approve-button">Approve</button>
-                        <button class="decline-button">Decline</button>
-                    </td>
-                      
+                        {% for request in book_requests %}
+                            <tr>
+                                <td>{{ request.student_id }}</td>
+                                <td>{{ request.book_name }}</td>
+                                <td>{{ request.author }}</td>
+                                <td>{{ request.category }}</td>
+                                {%if request.is_approved is None %}
+                                <td>
+                                    <a href='{% url "employee-requestfromstudent-decline" request.id %}' style="background-color: red; color: white;">Decline</a>
+                                    <a href='{% url "employee-requestfromstudent-approve" request.id %}' style="background-color: #299b63; color: white;">Approve</a>
+                                </td>
+                                {%endif%}
+                                {%if request.is_approved is True %}
+                                <td style="color:#299b63;">
+                                    Approved
+                                </td>
+                                {%endif%}
+                                {%if request.is_approved is False %}
+                                <td style="color: red;">
+                                    Declined
+                                </td>
+                                {%endif%}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                       
                     </tbody>
                     </table>
@@ -117,7 +93,34 @@
         </div>
     </div>
     <script src="{% static 'employee/profile.js' %}"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('searchInput');
+        const rows = document.querySelectorAll('.searchable-content');
+        
+        searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        
+        rows.forEach(function (row) {
+            const contentText = row.innerText.toLowerCase();
+            const containsTerm = contentText.includes(searchTerm);
+        
+            row.style.display = containsTerm ? '' : 'none';
+        });
+        });
+        
+        // Add this event listener to reset visibility when the input is cleared
+        searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        
+        if (searchTerm === '') {
+            rows.forEach(function (row) {
+                row.style.display = ''; // Reset visibility
+            });
+        }
+        });
+        });
+        </script>
 
 
     

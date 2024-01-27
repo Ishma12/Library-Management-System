@@ -1,22 +1,30 @@
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Book
+from employee.models import Book
+from employee.models import BorrowedBook
 from django.http import HttpResponse
 from django.http import JsonResponse
 
 
 def student_dashboard(request):
-    return render(request, 'student/sdashboard.html')
+    book_data = Book.get_book_data()
+    return render(request, 'student/sdashboard.html', book_data)
+
+
 def student_requestform(request):
     return render(request,'student/requestform.html')
 
 def reviews(request):
     return render(request,'student/reviews.html')
+
 def available(request):
-    return render(request,'student/availablebook.html')
+    book_data = Book.get_book_data()
+    return render(request,'student/availablebook.html', book_data)
+
 def borrowed(request):
-    return render(request,'student/borrowedbook.html')
+    book_data = Book.get_book_data()
+    return render(request,'student/borrowedbook.html', book_data)
 @login_required
 def addbook(request):
     if request.method == 'POST':

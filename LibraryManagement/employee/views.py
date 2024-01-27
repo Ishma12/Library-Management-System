@@ -32,9 +32,24 @@ def bookrequest(request):
             category=category
         )
 
-        return JsonResponse({'message': 'Book request submitted successfully.'})
- 
-    return render(request, 'employee/requestfromstudent.html')
+        return JsonResponse({'message': 'success'})
+    book_requests=BookRequest.objects.all().order_by("-id")    
+    return render(request, 'employee/requestfromstudent.html', {"book_requests": book_requests})
+
+
+def approve_bookrequest(request,book_id):
+    req= BookRequest.objects.get(id=book_id)
+    req.is_approved=True
+    req.save()
+    return redirect("employee-requestfromstudent")
+
+
+def decline_bookrequest(request,book_id):
+    req= BookRequest.objects.get(id=book_id)
+    req.is_approved=False
+    req.save()
+    return redirect("employee-requestfromstudent") 
+   
 
 def generate_borrowed_books_excel(request):
     # Query the BorrowedBook data

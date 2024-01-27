@@ -1,47 +1,52 @@
-{% load static %}
+{% extends 'student/abase.html'%}
+{%block content %}
+<div class="charts">
+	<table class="content-table" >
+		<thead>
+		  <tr>
+		  <th>Book ID</th>
+		  <th>Book Name</th>
+		  <th>Author</th>
+		  <th>Category</th>
+		  <th>Reviews</th>
+		  <th>Ratings</th>
+		  </tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>ABC</td>
+				<td>sjkhfiwuf</td>
+				<td>Java</td>
+				<td>adhdcbjsadhcasdh</td>
+				<td class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
 
- 
-<!-- index.html -->
+			   
 
-<!DOCTYPE html>
-<html>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>ABC</td>
+				<td>sjkhfiwuf</td>
+				<td>Java</td>
+				<td>asjhdajscha</td>
+				<td class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
 
-<head>
-	<meta charset="utf-8" />
-	<title>Star Rating</title>
-	<meta name="viewport"
-		content="width=device-width, 
-				initial-scale=1" />
-                <link rel="stylesheet" href="{% static 'student/reviews.css' %}">
-	
-</head>
-
-<body>
-	<div class="card">
-		<h1> Star Rating</h1>
-		<br />
-		<span onclick="gfg(1)"
-			class="star">★
-		</span>
-		<span onclick="gfg(2)"
-			class="star">★
-		</span>
-		<span onclick="gfg(3)"
-			class="star">★
-		</span>
-		<span onclick="gfg(4)"
-			class="star">★
-		</span>
-		<span onclick="gfg(5)"
-			class="star">★
-		</span>
-		<h3 id="output">
-			Rating is: 0/5
-		</h3>
+				
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>ABC</td>
+				<td>sjkhfiwuf</td>
+				<td>Java</td>
+				<td>djhbajfaehb</td>
+				<td class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+</tr>
+			</tr>
+			
+		</tbody>
+		</table>
 	</div>
-	<script src="{% static 'student/reviews.js' %}"></script>
-
-    
-</body>
-
-</html>
+</div>
+</div>
+{% endblock %}
