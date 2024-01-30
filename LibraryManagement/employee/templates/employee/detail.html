@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
+    <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'employee/detail.css' %}">
+    <title>Employee Panel</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
+            </div>
+            <div class="search">
+                <input type="text" id="searchInput" name="search" placeholder="Search here">
+                <label for="search"><i class="fas fa-search"></i></label>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="{%static 'employee/images.png'%}" alt="" id="user-avatar">
+                <div class="dropdown" id="user-dropdown">
+                    <a href="#">{{user_fullname}}</a>
+                    <a href="{% url 'employee-changepw' %}">Change Password</a>
+                    <a href="#" onclick="confirmLogout()">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="{% url 'employee-edashboard' %}">
+                        <i class="fas fa-th-large"></i>
+                        <div>Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee-ebook' %}">
+                        <i class="fas fa-books"></i>
+                        <div> Books</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee-eborrowedbook' %}">
+                        <i class="fas fa-book"></i>
+                        <div>Borrowed Book </div>
+                    </a>
+                </li>
+                
+                
+        
+                <li>
+                    <a href="{%url 'employee-requestfromstudent'%}">
+                        <i class="fas fa-book"></i>
+                        <div>Request from Student</div>
+                    </a>
+                </li>
+        
+                {% include "employee/logout-button.html" %}
+            </ul>
+        </div>
+        <div class="main">
+            <div class="charts">
+                <div class="content-container1">
+                    <div class="book-item1">
+                        <img src="{%static 'employee/Picture1.jpg'%}" alt="Book Image" class="book-image1">
+                        <div class="book-info-box">
+                            <h2>Deep learning</h2>
+                            <p>Author/Creator: Mueller, John Paul., author.; Massaron, Luca , author.</p>
+                            <p>Publication Date: 2019</p>
+                            <p>Subject: Machine learning </p>
+                            <p>Description: Take a deep dive into deep learning Deep learning provides the means for discerning patterns in the data that drive online business and social media outlets. Deep Learning for Dummies gives you the information you need to take the mystery out of the topic—and all of the underlying technologies associated with it. In no time, you’ll make sense of those increasingly confusing algorithms, and find a simple and safe environment to experiment with deep learning. The book develops a sense of precisely what deep learning can do at a high level and then provides examples of the major deep learning application types. Includes sample code Provides real-world examples within the approachable text Offers hands-on activities to make learning easier Shows you how to use Deep Learning more effectively with the right tools This book is perfect for those who want to better understand the basis of the underlying technologies that we use each and every day.</p>
+                            <p>Contents : Intro -- Title Page -- Copyright Page -- Table of Contents -- Introduction -- About This Book -- Foolish Assumptions -- Icons Used in This Book -- Beyond the Book -- Where to Go from Here -- Part 1 Discovering Deep Learning -- Chapter 1 Introducing Deep Learning -- Defining What Deep Learning Means -- Starting from Artificial Intelligence -- Considering the role of AI -- Focusing on machine learning -- Moving from machine learning to deep learning -- Using Deep Learning in the Real World -- Understanding the concept of learning -- Performing deep learning tasks -- Employing deep learning in applications</p>
+                            <p>Publisher: Hoboken, New Jersey : For Dummies</p>
+                            <p>Edition: 1st edition</p>
+                            <p>Source: Library Catalogue</p>
+                            <p>Identifier: ISBN : 1-119-54303-9</p>
+                            
+                            
+                        </div>
+                    </div>
+                
+            </div>
+         </div>
+
+    </div>       
+    <script src="{% static 'employee/logout.js' %}"></script>
+    <script src="{% static 'employee/profile.js' %}"></script>
+
+
+    
+</body>
+
+</html>

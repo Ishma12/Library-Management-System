@@ -20,5 +20,6 @@ urlpatterns = [
     path('requestfromstudent/', views.bookrequest, name='employee-requestfromstudent'),
     path('requestfromstudent/approve/<book_id>', views.approve_bookrequest, name='employee-requestfromstudent-approve'),
     path('requestfromstudent/decline/<book_id>', views.decline_bookrequest, name='employee-requestfromstudent-decline'),
-    
+    path('detail/', views.detail, name='employee-detail'),
+
 ]

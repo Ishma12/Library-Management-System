@@ -17,6 +17,13 @@ from openpyxl.utils import get_column_letter
 from tempfile import NamedTemporaryFile
 from .models import BookRequest 
 
+
+def detail(request):
+    return render(request, 'employee/detail.html')
+
+
+
+
 def bookrequest(request):
     if request.method == 'POST':
         student_id = request.POST.get('studentID')
