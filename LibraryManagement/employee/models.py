@@ -4,10 +4,27 @@ from django.conf import settings
 from django.utils import timezone
 
 class Book(models.Model):
-    book_id = models.IntegerField()
+    '''Image
+    Book Name
+    IBSN
+    Publication Date
+    Description
+    Author
+    Subject
+    Publisher
+    Edition
+    Status'''
+    image=models.ImageField(upload_to ='book-images/')
+    isbn = models.CharField(max_length=255)
     book_name = models.CharField(max_length=255)
+    publication_date=models.DateField()
+    description=models.TextField()
     author = models.CharField(max_length=255)
-    category = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255)
+    publisher=models.CharField(max_length=255)
+    edition=models.CharField(max_length=255)
+    is_available=models.BooleanField(default=True)
+
     
     @classmethod
     def get_book_data(cls):

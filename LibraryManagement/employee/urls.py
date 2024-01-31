@@ -10,8 +10,8 @@ urlpatterns = [
     path('eborrowedbook/', views.borrowedbook, name='employee-eborrowedbook'),
     path('changepw/', views.changepw, name='employee-changepw'),
     path('addbook/', views.addbook, name='employee-addbook'),
-    path('editbook/', views.editbook, name='employee-editbook'),
-    path('deletebook/', views.deletebook, name='employee-deletebook'),
+    path('editbook/<book_id>', views.editbook, name='employee-editbook'),
+    path('deletebook/<book_id>', views.deletebook, name='employee-deletebook'),
     path('addborrowedbook/', views.addborrowedbook, name='employee-addborrowedbook'),
     path('editborrowedbook/', views.editborrowedbook, name='employee-editborrowedbook'),
     path('deleteborrowedbook/', views.deleteborrowedbook, name='employee-deleteborrowedbook'),
@@ -20,6 +20,6 @@ urlpatterns = [
     path('requestfromstudent/', views.bookrequest, name='employee-requestfromstudent'),
     path('requestfromstudent/approve/<book_id>', views.approve_bookrequest, name='employee-requestfromstudent-approve'),
     path('requestfromstudent/decline/<book_id>', views.decline_bookrequest, name='employee-requestfromstudent-decline'),
-    path('detail/', views.detail, name='employee-detail'),
+    path('book-detail/<book_id>', views.detail, name='book-detail'),
 
 ]

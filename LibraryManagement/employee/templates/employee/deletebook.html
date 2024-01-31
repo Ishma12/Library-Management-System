@@ -15,12 +15,6 @@
                 <div>Add Books</div>
             </a>
         </li>
-        <li>
-            <a href="{% url 'employee-editbook' %}">
-                <i class="fas fa-books"></i>
-                <div>Edit Books</div>
-            </a>
-        </li>
        
         <li>
             <a href="{% url 'employee-deletebook' %}">
@@ -40,7 +34,7 @@
             <h2>Delete Book</h2>
             <form id="deleteBookForm">
                 <div class="form-group">
-                    <label for="bookID">Book ID:</label>
+                    <label for="bookID">Book I:</label>
                     <input type="text" id="bookID" name="bookID" required >
                 </div>
                 <div class="button-group">

@@ -15,32 +15,36 @@
                 <div>Add Books</div>
             </a>
         </li>
-        <li>
-            <a href="{% url 'employee-editbook' %}">
-                <i class="fas fa-books"></i>
-                <div>Edit Books</div>
-            </a>
-        </li>
-       
-        <li>
-            <a href="{% url 'employee-deletebook' %}">
-                <i class="fas fa-books"></i>
-                <div>Delete Books </div>
-            </a>
-        </li>
-
-       
         
+
+        
+
+
         {% include "employee/logout-button.html" %}
     </ul>
 </div>
 {% endblock %}
 {%block charts %}
-    
+
 <div class="charts">
     <div class="add-book-box">
         <h2>Add Book</h2>
-        <form id="addBookForm">
+        <form method="post"  enctype="multipart/form-data" id="addBookForm">
+            {%csrf_token%}
+            {% for field in form %}
+            <div class="form-group">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                <p class="help" id="{{ field.auto_id }}_helptext">
+                    {{ field.help_text|safe }}
+                </p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="done-button" >Add Book</button>
+        </form>
+        <!-- <form id="addBookForm">
             <div class="form-group">
                 <label for="bookID">Book ID:</label>
                 <input type="text" id="bookID" name="bookID" required >
@@ -61,24 +65,24 @@
             <div class="button-group">
                 <button type="button" class="add-button" onclick="addBook()">Add</button>
             </div>
-        </form>
-        </div>
-            <button type="button" class="done-button" onclick="redirectToDashboard()">Done</button> 
-        </div>
+        </form> -->
     </div>
-    <script>
-        function addBook() {
-            console.log('addBook function called');
-            const formData = new FormData(document.getElementById('addBookForm'));
     
-            fetch('{% url "employee-addbook" %}', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',  // Add the header for Django to identify AJAX requests
-                    'X-CSRFToken': '{{ csrf_token }}'      // Add the CSRF token for security
-                },
-            })
+</div>
+</div>
+<script>
+    function addBook() {
+        console.log('addBook function called');
+        const formData = new FormData(document.getElementById('addBookForm'));
+
+        fetch('{% url "employee-addbook" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',  // Add the header for Django to identify AJAX requests
+                'X-CSRFToken': '{{ csrf_token }}'      // Add the CSRF token for security
+            },
+        })
             .then(response => response.json())
             .then(data => {
                 // Handle the response, you can update the table or do other actions
@@ -87,11 +91,11 @@
             .catch(error => {
                 console.error('Error:', error);
             });
-        }
-    
-        function redirectToDashboard() {
-            window.location.href = '{% url "employee-edashboard" %}';
-        }
-    </script>
-    
+    }
+
+    function redirectToDashboard() {
+        window.location.href = '{% url "employee-edashboard" %}';
+    }
+</script>
+
 {% endblock %}

@@ -72,13 +72,22 @@
                 <div class="content-container">
                     {% for book in books %}
                         <div class="book-item">
-                            <img src="{%static 'employee/Picture1.jpg'%}" alt="Book Image" class="book-image">
+                            <img src="{{book.image.url}}" alt="Book Image" class="book-image">
                             <div class="book-info searchable-content">
-                                <p>Book ID: {{ book.book_id }}</p>
+                                <h2>{{ book.book_name}}</h2>
+                                <p>Book ISBN: {{ book.isbn }}</p>
                                 <p>Book Name: {{ book.book_name }}</p>
                                 <p>Author: {{ book.author }}</p>
-                                <p>Category: {{ book.category }}</p>
-                                <a href="{% url 'employee-detail' %}">Details</a>
+                                <p>Subject: {{ book.subject }}</p>
+                                {% if book.is_available%}
+                                <p>Status: Available</p>
+                                {% else %}
+                                <p>Status: Not Available</p>
+                                {% endif %}
+                                <a href="{% url 'book-detail' book.id %}">Details</a>
+                                <a href="{% url 'employee-editbook' book.id %}">Edit</a>
+                                <a href="{% url 'employee-deletebook' book.id %}">Delete</a>
+
 
                             </div>
                             

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404, reverse
 from django.http import HttpResponse
 from .models import Book
 from .models import BorrowedBook
@@ -16,10 +16,13 @@ from openpyxl.styles import NamedStyle
 from openpyxl.utils import get_column_letter
 from tempfile import NamedTemporaryFile
 from .models import BookRequest 
+from .forms import BookForm, EditBookForm
 
 
-def detail(request):
-    return render(request, 'employee/detail.html')
+
+def detail(request,book_id):
+    book= get_object_or_404(Book,id=book_id)
+    return render(request, 'employee/detail.html', {"book":book})
 
 
 
@@ -162,88 +165,104 @@ def borrowedbook(request):
 def changepw(request):
     return render(request, 'employee/changepw.html')
 
+
+
+
 @login_required
 def addbook(request):
-    if request.method == 'POST':
-        # Process the form data and save the book
-        book_id = request.POST.get('bookID')
-        book_name = request.POST.get('bookName')
-        author = request.POST.get('author')
-        category = request.POST.get('category')
 
-        # Save the book to the database
-        book = Book.objects.create(
-            book_id=book_id,
-            book_name=book_name,
-            author=author,
-            category=category,
-        )
+    if request.method == "POST":
+       
+        # create a form instance and populate it with data from the request:
+        form = BookForm(request.POST, request.FILES)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            form.save()
+            # ...
+            # redirect to a new URL:
+            return redirect(reverse ('employee-ebook'))
 
-        # Return the added book details as JSON response
-        return JsonResponse({
-            'book_id': book.book_id,
-            'book_name': book.book_name,
-            'author': book.author,
-            'category': book.category,
-        })
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = BookForm()
+    # if request.method == 'POST':
+    #     # Process the form data and save the book
+    #     book_id = request.POST.get('bookID')
+    #     book_name = request.POST.get('bookName')
+    #     author = request.POST.get('author')
+    #     category = request.POST.get('category')
 
-    return render(request, 'employee/addbook.html')
+    #     # Save the book to the database
+    #     book = Book.objects.create(
+    #         book_id=book_id,
+    #         book_name=book_name,
+    #         author=author,
+    #         category=category,
+    #     )
+
+    #     # Return the added book details as JSON response
+    #     return JsonResponse({
+    #         'book_id': book.book_id,
+    #         'book_name': book.book_name,
+    #         'author': book.author,
+    #         'category': book.category,
+    #     })
+
+    return render(request, 'employee/addbook.html', {"form": form})
 
 @login_required
-def editbook(request):
+def editbook(request, book_id):
+    book=get_object_or_404(Book,id= book_id)
+    form= EditBookForm(instance=book)
     if request.method == 'POST':
-        book_id = request.POST.get('bookID')
-        new_book_name = request.POST.get('bookName')
-        new_author = request.POST.get('author')
-        new_category = request.POST.get('category')
+        # create a form instance and populate it with data from the request:
+        form = EditBookForm(request.POST, request.FILES,instance=book)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            form.save()
+            # ...
+            # redirect to a new URL:
+            return redirect(reverse ('employee-ebook'))
+
+
+            
+    # if request.method == 'POST':
+    #     book_id = request.POST.get('bookID')
+    #     new_book_name = request.POST.get('bookName')
+    #     new_author = request.POST.get('author')
+    #     new_category = request.POST.get('category')
         
 
-        # Use filter to handle multiple books with the same ID
-        books = Book.objects.filter(book_id=book_id)
+    #     # Use filter to handle multiple books with the same ID
+    #     books = Book.objects.filter(book_id=book_id)
 
-        if books.exists():
-            # Iterate over the queryset and update each book
-            for book in books:
-                book.book_name = new_book_name
-                book.author = new_author
-                book.category = new_category
+    #     if books.exists():
+    #         # Iterate over the queryset and update each book
+    #         for book in books:
+    #             book.book_name = new_book_name
+    #             book.author = new_author
+    #             book.category = new_category
                
-                book.save()
+    #             book.save()
 
-            # Return a success message as JSON response
-            return JsonResponse({'message': 'Books updated successfully'})
-        else:
-            # Return an error message as JSON response if no books are found
-            return JsonResponse({'error': 'No books found for the specified ID'}, status=400)
+    #         # Return a success message as JSON response
+    #         return JsonResponse({'message': 'Books updated successfully'})
+    #     else:
+    #         # Return an error message as JSON response if no books are found
+    #         return JsonResponse({'error': 'No books found for the specified ID'}, status=400)
 
     # If the request method is not POST, render the editbook.html template
-    return render(request, 'employee/editbook.html')
+    return render(request, 'employee/editbook.html', {"form": form})
 
 
 @login_required
-def deletebook(request):
-    if request.method == 'POST':
-        book_id = request.POST.get('bookID')
-
-        # Use filter instead of get to handle multiple books with the same ID
-        books = Book.objects.filter(book_id=book_id)
-
-        if books.exists():
-            # Iterate over the queryset and delete each book
-            for book in books:
-                book.delete()
-
-            # Return a success message as JSON response
-            return JsonResponse({'message': 'Books deleted successfully'})
-        else:
-            # Return an error message as JSON response if no books are found
-            return JsonResponse({'error': 'No books found for the specified ID'}, status=400)
-
+def deletebook(request, book_id):
+    book=get_object_or_404(Book,id= book_id)   
+    book.delete()
     # If the request method is not POST, render the deletebook.html template
-    return render(request, 'employee/deletebook.html')
-
-
-
+    return redirect(reverse ('employee-ebook'))
 
 @login_required
 def addborrowedbook(request):

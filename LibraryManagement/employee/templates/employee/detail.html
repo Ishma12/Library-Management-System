@@ -70,18 +70,22 @@
             <div class="charts">
                 <div class="content-container1">
                     <div class="book-item1">
-                        <img src="{%static 'employee/Picture1.jpg'%}" alt="Book Image" class="book-image1">
+                        <img src="{{book.image.url}}" alt="Book Image" class="book-image1">
                         <div class="book-info-box">
-                            <h2>Deep learning</h2>
-                            <p>Author/Creator: Mueller, John Paul., author.; Massaron, Luca , author.</p>
-                            <p>Publication Date: 2019</p>
-                            <p>Subject: Machine learning </p>
-                            <p>Description: Take a deep dive into deep learning Deep learning provides the means for discerning patterns in the data that drive online business and social media outlets. Deep Learning for Dummies gives you the information you need to take the mystery out of the topic—and all of the underlying technologies associated with it. In no time, you’ll make sense of those increasingly confusing algorithms, and find a simple and safe environment to experiment with deep learning. The book develops a sense of precisely what deep learning can do at a high level and then provides examples of the major deep learning application types. Includes sample code Provides real-world examples within the approachable text Offers hands-on activities to make learning easier Shows you how to use Deep Learning more effectively with the right tools This book is perfect for those who want to better understand the basis of the underlying technologies that we use each and every day.</p>
-                            <p>Contents : Intro -- Title Page -- Copyright Page -- Table of Contents -- Introduction -- About This Book -- Foolish Assumptions -- Icons Used in This Book -- Beyond the Book -- Where to Go from Here -- Part 1 Discovering Deep Learning -- Chapter 1 Introducing Deep Learning -- Defining What Deep Learning Means -- Starting from Artificial Intelligence -- Considering the role of AI -- Focusing on machine learning -- Moving from machine learning to deep learning -- Using Deep Learning in the Real World -- Understanding the concept of learning -- Performing deep learning tasks -- Employing deep learning in applications</p>
-                            <p>Publisher: Hoboken, New Jersey : For Dummies</p>
-                            <p>Edition: 1st edition</p>
-                            <p>Source: Library Catalogue</p>
-                            <p>Identifier: ISBN : 1-119-54303-9</p>
+                            <h2>{{ book.book_name}}</h2>
+
+                            <p>Author: {{ book.author }}</p>
+                            <p>Publication Date: {{ book.publication_date }}</p>
+                            <p>Subject:  {{ book.subject}} </p>
+                            <p>Description: {{ book.description }}</p>
+                            <p>Publisher:  {{ book.publisher }}</p>
+                            <p>Edition: {{ book.edition}}</p>
+                            <p>Identifier:{{ book.isbn}}</p>
+                            {% if book.is_available%}
+                            <p>Status: Available</p>
+                            {% else %}
+                            <p>Status: Not Available</p>
+                            {% endif %}
                             
                             
                         </div>
