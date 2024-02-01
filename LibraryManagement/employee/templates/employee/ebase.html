@@ -85,8 +85,10 @@
                                 <p>Status: Not Available</p>
                                 {% endif %}
                                 <a href="{% url 'book-detail' book.id %}">Details</a>
-                                <a href="{% url 'employee-editbook' book.id %}">Edit</a>
-                                <a href="{% url 'employee-deletebook' book.id %}">Delete</a>
+                                <div class="button-container">
+                                    <a href="{% url 'employee-editbook' book.id %}" class="button-link edit-button">Edit</a>
+                                    <a href="{% url 'employee-deletebook' book.id %}" class="button-link delete-button">Delete</a>
+                                </div>
 
 
                             </div>
@@ -101,20 +103,20 @@
     </div>       
     <script src="{% static 'employee/logout.js' %}"></script>
     <script src="{% static 'employee/profile.js' %}"></script>
-<!--  script for search -->
+<!-- script for search -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('searchInput');
-        const rows = document.querySelectorAll('.searchable-content');
+        const bookItems = document.querySelectorAll('.book-item');
 
         searchInput.addEventListener('input', function () {
             const searchTerm = searchInput.value.trim().toLowerCase();
 
-            rows.forEach(function (row) {
-                const contentText = row.innerText.toLowerCase();
+            bookItems.forEach(function (bookItem) {
+                const contentText = bookItem.innerText.toLowerCase();
                 const containsTerm = contentText.includes(searchTerm);
 
-                row.style.display = containsTerm ? '' : 'none';
+                bookItem.style.display = containsTerm ? '' : 'none';
             });
         });
 
@@ -122,15 +124,19 @@
         searchInput.addEventListener('input', function () {
             const searchTerm = searchInput.value.trim().toLowerCase();
 
-            if (searchTerm === '') {
-                rows.forEach(function (row) {
-                    row.style.display = ''; // Reset visibility
-                });
-            }
+            bookItems.forEach(function (bookItem) {
+                if (searchTerm === '') {
+                    bookItem.style.display = ''; // Reset visibility
+                } else {
+                    const contentText = bookItem.innerText.toLowerCase();
+                    const containsTerm = contentText.includes(searchTerm);
+
+                    bookItem.style.display = containsTerm ? '' : 'none';
+                }
+            });
         });
     });
 </script>
-
 
     
 </body>

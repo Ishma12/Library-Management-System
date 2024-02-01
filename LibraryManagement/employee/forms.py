@@ -18,7 +18,7 @@ class BookForm(ModelForm):
             "edition",
             "is_available",
         ]
-
+        
 
 class EditBookForm(ModelForm):
     class Meta:

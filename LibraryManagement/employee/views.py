@@ -26,7 +26,6 @@ def detail(request,book_id):
 
 
 
-
 def bookrequest(request):
     if request.method == 'POST':
         student_id = request.POST.get('studentID')

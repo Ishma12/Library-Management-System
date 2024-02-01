@@ -36,15 +36,9 @@
         <div class="sidebar">
             <ul>
                 <li>
-                    <a href="{% url 'employee-edashboard' %}">
+                    <a href="{% url 'student_dashboard' %}">
                         <i class="fas fa-th-large"></i>
                         <div>Dashboard</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'employee-ebook' %}">
-                        <i class="fas fa-books"></i>
-                        <div> Books</div>
                     </a>
                 </li>
         
@@ -70,11 +64,33 @@
                             <p>Status: Available</p>
                             {% else %}
                             <p>Status: Not Available</p>
-                            {% endif %}
-                            
-                            
+                            {% endif %} 
+                            <div class="borrowed-book-link">
+                                <a href="#" onclick="toggleBorrowedForm()">Borrowed Books</a>
+                            </div>
                         </div>
+                        <div class="form-container" id="borrowedForm">
+                            <form>
+                                <label for="borrowedDate">Borrowed Date:</label>
+                                <input type="date" id="borrowedDate" name="borrowedDate">
+
+                                <label for="returnedDate">Returned Date:</label>
+                                <input type="date" id="returnedDate" name="returnedDate">
+
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email">
+
+                                <label for="studentName">Student Name:</label>
+                                <input type="text" id="studentName" name="studentName">
+
+                                <button type="button" onclick="submitBorrowedForm()">Submit</button>
+                            </form>
+                        </div>
+                             
                     </div>
+                        
+                    
+                </div>
                 
             </div>
          </div>
@@ -82,7 +98,16 @@
     </div>       
     <script src="{% static 'employee/logout.js' %}"></script>
     <script src="{% static 'employee/profile.js' %}"></script>
+    <script>
+        function toggleBorrowedForm() {
+            var borrowedForm = document.getElementById('borrowedForm');
+            borrowedForm.style.display = (borrowedForm.style.display === 'none' || borrowedForm.style.display === '') ? 'block' : 'none';
+        }
 
+        function submitBorrowedForm() {
+            
+        }
+    </script>
 
     
 </body>

@@ -23,17 +23,25 @@
     </style>
 </head>
 <body>
-    <h1>Book Report</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Book ID</th>
-                <th>Book Name</th>
-                <th>Author</th>
-                <th>Category</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1>Books Report</h1>
+        {% for book in books %}
+                                <h2>{{ book.book_name}}</h2>
+                                <p>Book ISBN: {{ book.isbn }}</p>
+                                <p>Book Name: {{ book.book_name }}</p>
+                                <p>Author: {{ book.author }}</p>
+                                <p>Subject: {{ book.subject }}</p>
+                                {% if book.is_available%}
+                                <p>Status: Available</p>
+                                {% else %}
+                                <p>Status: Not Available</p>
+                                {% endif %}
+
+
+                            </div>
+                            
+                        </div>
+                    {% endfor %}
+        <!-- <tbody>
             {% for book in books %}
                 <tr>
                     <td>{{ book.book_id }}</td>
@@ -42,7 +50,7 @@
                     <td>{{ book.category }}</td>
                 </tr>
             {% endfor %}
-        </tbody>
+        </tbody> -->
     </table>
 </body>
 </html>

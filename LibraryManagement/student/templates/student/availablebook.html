@@ -1,66 +1,70 @@
 {% extends 'student/abase.html'%}
 {%block content %}
 <div class="charts">
-    <table class="content-table">
-        <thead>
-            <tr>
-                <th>Book ID</th>
-                <th>Book Name</th>
-                <th>Author</th>
-                <th>Category</th>
+    <div class="content-container">
+        {% for book in books %}
+            <div class="book-item">
+                <img src="{{book.image.url}}" alt="Book Image" class="book-image">
+                <div class="book-info searchable-content">
+                    <h2>{{ book.book_name}}</h2>
+                    <p>Book ISBN: {{ book.isbn }}</p>
+                    <p>Book Name: {{ book.book_name }}</p>
+                    <p>Author: {{ book.author }}</p>
+                    <p>Subject: {{ book.subject }}</p>
+                    {% if book.is_available%}
+                    <p>Status: Available</p>
+                    {% else %}
+                    <p>Status: Not Available</p>
+                    {% endif %}
+                    <a href="{% url 'book-detail' book.id %}">Details</a>
+                    
+
+
+                </div>
                 
-            </tr>
-        </thead>
-        <tbody>
-            {% for book in books %}
-            <tr class="searchable-content">
-                    <td>{{ book.book_id }}</td>
-                    <td>{{ book.book_name }}</td>
-                    <td>{{ book.author }}</td>
-                    <td>{{ book.category }}</td>
-                   
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-                
-            
-    </table>
+            </div>
+        {% endfor %}
+    </div>
 
     </div>
 </div>
+<!-- script for search -->
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-const searchInput = document.getElementById('searchInput');
-const rows = document.querySelectorAll('.searchable-content');
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('searchInput');
+        const bookItems = document.querySelectorAll('.book-item');
 
-searchInput.addEventListener('input', function () {
-const searchTerm = searchInput.value.trim().toLowerCase();
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value.trim().toLowerCase();
 
-rows.forEach(function (row) {
-    const contentText = row.innerText.toLowerCase();
-    const containsTerm = contentText.includes(searchTerm);
+            bookItems.forEach(function (bookItem) {
+                const contentText = bookItem.innerText.toLowerCase();
+                const containsTerm = contentText.includes(searchTerm);
 
-    row.style.display = containsTerm ? '' : 'none';
-});
-});
+                bookItem.style.display = containsTerm ? '' : 'none';
+            });
+        });
 
-// Add this event listener to reset visibility when the input is cleared
-searchInput.addEventListener('input', function () {
-const searchTerm = searchInput.value.trim().toLowerCase();
+        // Add this event listener to reset visibility when the input is cleared
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value.trim().toLowerCase();
 
-if (searchTerm === '') {
-    rows.forEach(function (row) {
-        row.style.display = ''; // Reset visibility
+            bookItems.forEach(function (bookItem) {
+                if (searchTerm === '') {
+                    bookItem.style.display = ''; // Reset visibility
+                } else {
+                    const contentText = bookItem.innerText.toLowerCase();
+                    const containsTerm = contentText.includes(searchTerm);
+
+                    bookItem.style.display = containsTerm ? '' : 'none';
+                }
+            });
+        });
     });
-}
-});
-});
 </script>
 {% endblock %}
 {% load static %}
 {% block js%}
     <script src="{% static 'employee/profile.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-    <script src="{% static 'student/chart.js' %}"></script>
+    
 {%endblock%}

@@ -1,5 +1,5 @@
 
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from employee.models import Book
 from employee.models import BorrowedBook
@@ -10,6 +10,16 @@ from django.http import JsonResponse
 def student_dashboard(request):
     book_data = Book.get_book_data()
     return render(request, 'student/sdashboard.html', book_data)
+
+
+def detail(request,book_id):
+    book= get_object_or_404(Book,id=book_id)
+    return render(request, 'student/sdetail.html', {"book":book})
+
+# def detail(request):
+#     book_data = Book.get_book_data()
+#     return render(request, 'student/sdetail.html', book_data)
+
 
 
 def student_requestform(request):

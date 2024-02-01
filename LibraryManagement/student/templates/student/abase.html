@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
     <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'employee/book.css' %}">
    <title>Student Panel</title>
    {%block css %}
    {% endblock %}
@@ -47,7 +48,7 @@
                         <li>
                             <a href="{% url 'student-availablebook' %}">
                                 <i class="fas fa-books"></i>
-                                <div>Available Books</div>
+                                <div>Books</div>
                             </a>
                         </li>
                         <li>
