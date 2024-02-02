@@ -53,7 +53,7 @@
                         <div class="book-info-box">
                             <h2>{{ book.book_name}}</h2>
 
-                            <p>Author: {{ book.author }}</p>
+                            <p><span class="bold">Author: </span>{{ book.author }}</p>
                             <p>Publication Date: {{ book.publication_date }}</p>
                             <p>Subject:  {{ book.subject}} </p>
                             <p>Description: {{ book.description }}</p>
@@ -65,26 +65,22 @@
                             {% else %}
                             <p>Status: Not Available</p>
                             {% endif %} 
-                            <div class="borrowed-book-link">
-                                <a href="#" onclick="toggleBorrowedForm()">Borrowed Books</a>
-                            </div>
+                            
                         </div>
-                        <div class="form-container" id="borrowedForm">
-                            <form>
+                        <div class="borrowed-form-wrapper"  >
+                            <form class="form-container" id="borrowedForm" method ="post" action="{% url 'borrow-book' book.id %}">
+                                {%csrf_token%}
                                 <label for="borrowedDate">Borrowed Date:</label>
                                 <input type="date" id="borrowedDate" name="borrowedDate">
 
                                 <label for="returnedDate">Returned Date:</label>
                                 <input type="date" id="returnedDate" name="returnedDate">
 
-                                <label for="email">Email:</label>
-                                <input type="email" id="email" name="email">
-
-                                <label for="studentName">Student Name:</label>
-                                <input type="text" id="studentName" name="studentName">
-
-                                <button type="button" onclick="submitBorrowedForm()">Submit</button>
+                                <button type="submit">Submit</button>
                             </form>
+                           
+                                <button class="borrowed-book-link"  onclick="toggleBorrowedForm()">Borrowed Books</button>
+                           
                         </div>
                              
                     </div>

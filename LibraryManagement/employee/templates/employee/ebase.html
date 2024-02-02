@@ -6,12 +6,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
     <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
     <link rel="stylesheet" href="{% static 'employee/book.css' %}">
-    
- 
+
+
     <title>Employee Panel</title>
 </head>
 
@@ -19,7 +20,8 @@
     <div class="container">
         <div class="topbar">
             <div class="logo">
-                <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
+                <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg"
+                        alt="Herald College Logo"></a>
             </div>
             <div class="search">
                 <input type="text" id="searchInput" name="search" placeholder="Search here">
@@ -66,15 +68,18 @@
                         <i class="fas fa-books"></i>
                     </div>
                 </div>
-                
+
             </div>
             <div class="charts">
                 <div class="content-container">
                     {% for book in books %}
-                        <div class="book-item">
-                            <img src="{{book.image.url}}" alt="Book Image" class="book-image">
-                            <div class="book-info searchable-content">
-                                <h2>{{ book.book_name}}</h2>
+                    <div class="book-item">
+                        <img src="{{book.image.url}}" alt="Book Image" class="book-image">
+                        <div class="book-info searchable-content">
+
+                            <div><a href="{% url 'book-detail' book.id %}">
+                                    <h2>{{ book.book_name}}</h2>
+                                </a>
                                 <p>Book ISBN: {{ book.isbn }}</p>
                                 <p>Book Name: {{ book.book_name }}</p>
                                 <p>Author: {{ book.author }}</p>
@@ -84,61 +89,63 @@
                                 {% else %}
                                 <p>Status: Not Available</p>
                                 {% endif %}
-                                <a href="{% url 'book-detail' book.id %}">Details</a>
-                                <div class="button-container">
-                                    <a href="{% url 'employee-editbook' book.id %}" class="button-link edit-button">Edit</a>
-                                    <a href="{% url 'employee-deletebook' book.id %}" class="button-link delete-button">Delete</a>
-                                </div>
-
-
                             </div>
-                            
+
+                            <div class="button-container">
+                                <a href="{% url 'employee-editbook' book.id %}" class="button-link edit-button">Edit</a>
+                                <a href="{% url 'employee-deletebook' book.id %}"
+                                    class="button-link delete-button">Delete</a>
+                            </div>
+
+
                         </div>
+
+                    </div>
                     {% endfor %}
                 </div>
-                
-            </div>
-         </div>
 
-    </div>       
+            </div>
+        </div>
+
+    </div>
     <script src="{% static 'employee/logout.js' %}"></script>
     <script src="{% static 'employee/profile.js' %}"></script>
-<!-- script for search -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const searchInput = document.getElementById('searchInput');
-        const bookItems = document.querySelectorAll('.book-item');
+    <!-- script for search -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchInput');
+            const bookItems = document.querySelectorAll('.book-item');
 
-        searchInput.addEventListener('input', function () {
-            const searchTerm = searchInput.value.trim().toLowerCase();
+            searchInput.addEventListener('input', function () {
+                const searchTerm = searchInput.value.trim().toLowerCase();
 
-            bookItems.forEach(function (bookItem) {
-                const contentText = bookItem.innerText.toLowerCase();
-                const containsTerm = contentText.includes(searchTerm);
-
-                bookItem.style.display = containsTerm ? '' : 'none';
-            });
-        });
-
-        // Add this event listener to reset visibility when the input is cleared
-        searchInput.addEventListener('input', function () {
-            const searchTerm = searchInput.value.trim().toLowerCase();
-
-            bookItems.forEach(function (bookItem) {
-                if (searchTerm === '') {
-                    bookItem.style.display = ''; // Reset visibility
-                } else {
+                bookItems.forEach(function (bookItem) {
                     const contentText = bookItem.innerText.toLowerCase();
                     const containsTerm = contentText.includes(searchTerm);
 
                     bookItem.style.display = containsTerm ? '' : 'none';
-                }
+                });
+            });
+
+            // Add this event listener to reset visibility when the input is cleared
+            searchInput.addEventListener('input', function () {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+
+                bookItems.forEach(function (bookItem) {
+                    if (searchTerm === '') {
+                        bookItem.style.display = ''; // Reset visibility
+                    } else {
+                        const contentText = bookItem.innerText.toLowerCase();
+                        const containsTerm = contentText.includes(searchTerm);
+
+                        bookItem.style.display = containsTerm ? '' : 'none';
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 
-    
+
 </body>
 
 </html>

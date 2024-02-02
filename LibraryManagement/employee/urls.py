@@ -13,7 +13,7 @@ urlpatterns = [
     path('editbook/<book_id>', views.editbook, name='employee-editbook'),
     path('deletebook/<book_id>', views.deletebook, name='employee-deletebook'),
     path('addborrowedbook/', views.addborrowedbook, name='employee-addborrowedbook'),
-    path('editborrowedbook/', views.editborrowedbook, name='employee-editborrowedbook'),
+    path('editborrowedbook/<borrowbook_id>', views.editborrowedbook, name='employee-editborrowedbook'),
     path('deleteborrowedbook/', views.deleteborrowedbook, name='employee-deleteborrowedbook'),
     path('generate_pdf_report/', GeneratePDFReportView.as_view(), name='generate_pdf_report'),
     path('generate-borrowed-books-excel/', generate_borrowed_books_excel, name='generate_borrowed_books_excel'),
@@ -21,5 +21,8 @@ urlpatterns = [
     path('requestfromstudent/approve/<book_id>', views.approve_bookrequest, name='employee-requestfromstudent-approve'),
     path('requestfromstudent/decline/<book_id>', views.decline_bookrequest, name='employee-requestfromstudent-decline'),
     path('book-detail/<book_id>', views.detail, name='book-detail'),
-
+    path('borrow-book/<book_id>', views.borrowbook, name='borrow-book'),
+    path('borrow-book/<borrowbook_id>/approve', views.approve_borrowbook, name='approve-borrow-book'),
+    path('borrow-book/<borrowbook_id>/decline', views.decline_borrowbook, name='decline-borrow-book'),
+    
 ]

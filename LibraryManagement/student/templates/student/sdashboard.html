@@ -3,26 +3,29 @@
 <div class="charts">
     <div class="content-container">
         {% for book in books %}
-            <div class="book-item">
-                <img src="{{book.image.url}}" alt="Book Image" class="book-image">
-                <div class="book-info searchable-content">
+        <div class="book-item">
+            <img src="{{book.image.url}}" alt="Book Image" class="book-image">
+            <div class="book-info searchable-content">
+
+                <a href="{% url 'student-detailbook' book.id %}">
                     <h2>{{ book.book_name}}</h2>
-                    <p>Book ISBN: {{ book.isbn }}</p>
-                    <p>Book Name: {{ book.book_name }}</p>
-                    <p>Author: {{ book.author }}</p>
-                    <p>Subject: {{ book.subject }}</p>
-                    {% if book.is_available%}
-                    <p>Status: Available</p>
-                    {% else %}
-                    <p>Status: Not Available</p>
-                    {% endif %}
-                    <a href="{% url 'student-detailbook' book.id %}">Details</a>
-                    
+                </a>
+                <p>Book ISBN: {{ book.isbn }}</p>
+                <p>Book Name: {{ book.book_name }}</p>
+                <p>Author: {{ book.author }}</p>
+                <p>Subject: {{ book.subject }}</p>
+                {% if book.is_available%}
+                <p>Status: Available</p>
+                {% else %}
+                <p>Status: Not Available</p>
+                {% endif %}
 
 
-                </div>
-                
+
+
             </div>
+
+        </div>
         {% endfor %}
     </div>
 </div>
@@ -63,6 +66,6 @@
 {% endblock %}
 {% load static %}
 {% block js%}
-    <script src="{% static 'employee/profile.js' %}"></script>
-    
+<script src="{% static 'employee/profile.js' %}"></script>
+
 {%endblock%}

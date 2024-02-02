@@ -1,5 +1,7 @@
 
-
+.bold{
+    font-weight: bold;
+}
 .content-container1 {
     display: flex;
     flex-wrap: wrap;
@@ -30,19 +32,30 @@
 }
 
 .borrowed-book-link {
-    position: fixed;
-    bottom: 30px;
-    right: 20px;
     background-color: #fff;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
-    color:  #3498db;
+    color: #299b63;
     text-decoration: none;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: block;
+    outline: none;
+    border: none;
+    min-width: 120px;
 }
 
 .borrowed-book-link:hover {
-    background-color:  #3498db;
+    background-color:  #0ae4ad;
+    color: #f2f8f5;
+}
+.borrowed-form-wrapper{
+    height: 100%;
+    padding: 1rem;
+    position: relative;
+
 }
 
 .form-container {
@@ -50,7 +63,8 @@
     padding: 20px;
     border-radius: 5px;
     margin-top: 20px; 
-    display: none; 
+    display: none;
+    
 }
 
 .form-container label,

@@ -15,89 +15,43 @@
                 <div>Add Borrowed Book</div>
             </a>
         </li>
-        <li>
-            <a href="{% url 'employee-editborrowedbook' %}">
-                <i class="fas fa-book"></i>
-                <div>Edit Borrowed Books</div>
-            </a>
-        </li>
-        <li>
-            <a href="{% url 'employee-deleteborrowedbook' %}">
-                <i class="fas fa-book"></i>
-                <div>Delete Borrowed Books</div>
-            </a>
-        </li>
         
+
         {% include "employee/logout-button.html" %}
     </ul>
 </div>
 {% endblock %}
 {%block charts %}
-    <div class="charts">
-        <div class="add-book-box">
-            <h2>Edit Borrowed Book</h2>
-            <form id="editBorrowedBookForm">
-                <div class="form-group">
-                    <label for="borrowedbookID">Book ID:</label>
-                    <input type="text" id="borrowedbookID" name="borrowedbookID" required>
-                </div>
-                <div class="form-group">
-                    <label for="borrowedbookName">Book Name:</label>
-                    <input type="text" id="borrowedbookName" name="borrowedbookName" required>
-                </div>
-                <div class="form-group">
-                    <label for="studentID">Student ID:</label>
-                    <input type="text" id="studentID" name="studentID" required>
-                </div>
-                <div class="form-group">
-                    <label for="studentName">Student Name:</label>
-                    <input type="text" id="studentName" name="studentName" required>
-                </div>
-                <div class="form-group">
-                    <label for="borrowdate">Borrowed Date:</label>
-                    <input type="date" id="borrowdate" name="borrowdate" required>
-                </div>
-                <div class="form-group">
-                    <label for="returndate">Returned Date:</label>
-                    <input type="date" id="returndate" name="returndate" required>
-                </div>
-                <div class="form-group">
-                    <label for="fine">Fine:</label>
-                    <input type="text" id="fine" name="fine" required>
-                </div>
-                <div class="button-group">
-                    <button type="button" class="add-button" onclick="editBorrowedBook()">Update</button>
-                </div>
-            </form>
-            </div>
-                <button type="button" class="done-button" onclick="redirectToDashboard()">Done</button> <!-- Place the "Done" button here, outside the "Add Book" box -->
-            </div>
+<div class="charts">
+    <div class="add-book-box">
+        <h2>Edit Borrowed Book</h2>
+        <div>
+            <p>{{bbook.book.isbn}}</p>
+            <p>{{bbook.book.book_name}}</p>
         </div>
+        <form id="editBorrowedBookForm" method="post">
+ 
+
+            {%csrf_token%}
+            {% for field in form %}
+            <div class="form-group">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                <p class="help" id="{{ field.auto_id }}_helptext">
+                    {{ field.help_text|safe }}
+                </p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="done-button">Edit</button>
+
+
+
+
+        </form>
+
     </div>
-    <script>
-        function editBorrowedBook() {
-            const formData = new FormData(document.getElementById('editBorrowedBookForm'));
-    
-            fetch('{% url "employee-editborrowedbook" %}', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRFToken': '{{ csrf_token }}'
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the response, you can update the table or do other actions
-                console.log(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    
-        function redirectToDashboard() {
-            window.location.href = '{% url "employee-eborrowedbook" %}';
-        }
-    </script>
+</div>
+
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Book
+from .models import Book, BorrowedBook
 
 
 # Create the form class.
@@ -18,13 +18,13 @@ class BookForm(ModelForm):
             "edition",
             "is_available",
         ]
-        
+
 
 class EditBookForm(ModelForm):
     class Meta:
         model = Book
         fields = [
-             "image",
+            "image",
             "isbn",
             "book_name",
             "publication_date",
@@ -34,4 +34,14 @@ class EditBookForm(ModelForm):
             "publisher",
             "edition",
             "is_available",
+        ]
+
+
+class EditBorrowedBookForm(ModelForm):
+    class Meta:
+        model = BorrowedBook
+        fields = [
+            "borrowed_date",
+            "returned_date",
+            "fine",
         ]

@@ -4,7 +4,7 @@ from .models import Book
 from .models import BorrowedBook
 from django.http import JsonResponse
 from datetime import datetime  
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.views.decorators.csrf import csrf_exempt  
 from django.contrib.auth.decorators import login_required
 from django.template.loader import get_template
@@ -16,9 +16,10 @@ from openpyxl.styles import NamedStyle
 from openpyxl.utils import get_column_letter
 from tempfile import NamedTemporaryFile
 from .models import BookRequest 
-from .forms import BookForm, EditBookForm
+from .forms import BookForm, EditBookForm, EditBorrowedBookForm
 
 
+User=get_user_model()
 
 def detail(request,book_id):
     book= get_object_or_404(Book,id=book_id)
@@ -155,7 +156,7 @@ def book(request):
 
 @login_required
 def borrowedbook(request):
-    borrowed_books = BorrowedBook.objects.all()
+    borrowed_books = BorrowedBook.objects.all().order_by('-id')
     book_count = Book.objects.count()
     borrowed_book_count = BorrowedBook.objects.count()
     return render(request, 'employee/eborrowedbook.html', {'book_count': book_count,  'borrowed_books': borrowed_books,'borrowed_book_count': borrowed_book_count})
@@ -224,35 +225,6 @@ def editbook(request, book_id):
             # ...
             # redirect to a new URL:
             return redirect(reverse ('employee-ebook'))
-
-
-            
-    # if request.method == 'POST':
-    #     book_id = request.POST.get('bookID')
-    #     new_book_name = request.POST.get('bookName')
-    #     new_author = request.POST.get('author')
-    #     new_category = request.POST.get('category')
-        
-
-    #     # Use filter to handle multiple books with the same ID
-    #     books = Book.objects.filter(book_id=book_id)
-
-    #     if books.exists():
-    #         # Iterate over the queryset and update each book
-    #         for book in books:
-    #             book.book_name = new_book_name
-    #             book.author = new_author
-    #             book.category = new_category
-               
-    #             book.save()
-
-    #         # Return a success message as JSON response
-    #         return JsonResponse({'message': 'Books updated successfully'})
-    #     else:
-    #         # Return an error message as JSON response if no books are found
-    #         return JsonResponse({'error': 'No books found for the specified ID'}, status=400)
-
-    # If the request method is not POST, render the editbook.html template
     return render(request, 'employee/editbook.html', {"form": form})
 
 
@@ -303,38 +275,60 @@ def addborrowedbook(request):
 
 
 @login_required
-def editborrowedbook(request):
+def editborrowedbook(request, borrowbook_id):
+    borrowedbook=get_object_or_404(BorrowedBook,id=borrowbook_id)
+    form= EditBorrowedBookForm(instance=borrowedbook)
+
     if request.method == 'POST':
-        borrowedbook_id = request.POST.get('borrowedbookID')
-        new_borrowedbook_name = request.POST.get('borrowedbookName')
-        new_student_id = request.POST.get('studentID')
-        new_student_name = request.POST.get('studentName')
-        new_borrowed_date = request.POST.get('borrowdate')
-        new_returned_date = request.POST.get('returndate')
-        new_fine = request.POST.get('fine')
+        # create a form instance and populate it with data from the request:
+        form = EditBorrowedBookForm(request.POST,instance=borrowedbook)
+        # check whether it's valid:
+        if form.is_valid():
+            
+            new_borrowed_date = form.cleaned_data.get('borrowed_date')
+            new_returned_date = form.cleaned_data.get('returned_date')
+            new_fine = form.cleaned_data.get('fine')
 
-        # Use filter to handle multiple borrowed books with the same ID
-        borrowed_books = BorrowedBook.objects.filter(borrowedbook_id=borrowedbook_id)
+            borrowedbook.borrowed_date = new_borrowed_date
+            borrowedbook.returned_date = new_returned_date
+            borrowedbook.fine = new_fine
+            borrowedbook.save()
+           
+            return redirect(reverse ('employee-eborrowedbook'))
+    return render(request, 'employee/editborrowedbook.html', {"form": form,'bbook':borrowedbook})
 
-        if borrowed_books.exists():
-            # Iterate over the queryset and update each borrowed book
-            for borrowed_book in borrowed_books:
-                borrowed_book.borrowedbook_name = new_borrowedbook_name
-                borrowed_book.student_id = new_student_id
-                borrowed_book.student_name = new_student_name
-                borrowed_book.borrowed_date = new_borrowed_date
-                borrowed_book.returned_date = new_returned_date
-                borrowed_book.fine = new_fine
-                borrowed_book.save()
+    # if request.method == 'POST':
+        
+    #     borrowedbook_id = request.POST.get('borrowedbookID')
+    #     new_borrowedbook_name = request.POST.get('borrowedbookName')
+    #     new_student_id = request.POST.get('studentID')
+    #     new_student_name = request.POST.get('studentName')
+    #     new_borrowed_date = request.POST.get('borrowdate')
+    #     new_returned_date = request.POST.get('returndate')
+    #     new_fine = request.POST.get('fine')
 
-            # Return a success message as JSON response
-            return JsonResponse({'message': 'Borrowed books updated successfully'})
-        else:
-            # Return an error message as JSON response if no borrowed books are found
-            return JsonResponse({'error': 'No borrowed books found for the specified ID'}, status=400)
+    #     # Use filter to handle multiple borrowed books with the same ID
+    #     borrowed_books = BorrowedBook.objects.filter(borrowedbook_id=borrowedbook_id)
 
-    # If the request method is not POST, render the editborrowedbook.html template
-    return render(request, 'employee/editborrowedbook.html')
+    #     if borrowed_books.exists():
+    #         # Iterate over the queryset and update each borrowed book
+    #         for borrowed_book in borrowed_books:
+    #             borrowed_book.borrowedbook_name = new_borrowedbook_name
+    #             borrowed_book.student_id = new_student_id
+    #             borrowed_book.student_name = new_student_name
+    #             borrowed_book.borrowed_date = new_borrowed_date
+    #             borrowed_book.returned_date = new_returned_date
+    #             borrowed_book.fine = new_fine
+    #             borrowed_book.save()
+
+    #         # Return a success message as JSON response
+    #         return JsonResponse({'message': 'Borrowed books updated successfully'})
+    #     else:
+    #         # Return an error message as JSON response if no borrowed books are found
+    #         return JsonResponse({'error': 'No borrowed books found for the specified ID'}, status=400)
+
+    # # If the request method is not POST, render the editborrowedbook.html template
+    # return render(request, 'employee/editborrowedbook.html')
 
 @login_required
 def deleteborrowedbook(request):
@@ -358,5 +352,35 @@ def deleteborrowedbook(request):
     # If the request method is not POST, render the deleteborrowedbook.html template
     return render(request, 'employee/deleteborrowedbook.html')
 
+#student ko view
+def borrowbook(request,book_id):
+    if request.user.usertype == User.EMPLOYEE:
+        return redirect(reverse('book-detail', kwargs={"book_id": book_id}))
+
+    if request.method =='POST':
+        book=get_object_or_404(Book, id=book_id)
+        borrowed_date = request.POST.get('borrowedDate')
+        returned_date = request.POST.get('returnedDate')
+
+        BorrowedBook.objects.create(
+            borrowed_date=borrowed_date,
+            returned_date=returned_date,
+            student=request.user,
+            book=book
+
+        )
+
+    return redirect(reverse('student-detailbook', kwargs={"book_id": book_id}))
 
 
+def approve_borrowbook(request, borrowbook_id):
+    borrowedbook=get_object_or_404(BorrowedBook,id=borrowbook_id)
+    borrowedbook.is_borrowed=True
+    borrowedbook.save()
+    return redirect(reverse('employee-eborrowedbook'))
+
+def decline_borrowbook(request, borrowbook_id):
+    borrowedbook=get_object_or_404(BorrowedBook,id=borrowbook_id)
+    borrowedbook.is_borrowed=False
+    borrowedbook.save()
+    return redirect(reverse('employee-eborrowedbook'))
