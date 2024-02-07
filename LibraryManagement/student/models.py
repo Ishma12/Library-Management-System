@@ -3,7 +3,7 @@ from django.db import models
 from django.conf import settings  
 from django.utils import timezone
 
-class Book(models.Model):
+class MyBook(models.Model):
     book_name = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     category = models.CharField(max_length=255)

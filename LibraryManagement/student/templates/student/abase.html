@@ -19,10 +19,11 @@
     <div class="container">
         <div class="topbar">
             <div class="logo">
-                <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
+                <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg"
+                        alt="Herald College Logo"></a>
             </div>
             <div class="search">
-                <input type="text" id="searchInput" name="search" placeholder="Search here">
+                <input type="text" id="searchInput" name="search" placeholder="search here">
                 <label for="search"><i class="fas fa-search"></i></label>
             </div>
             <i class="fas fa-bell"></i>
@@ -45,18 +46,7 @@
                                 <div>Dashboard</div>
                             </a>
                         </li>
-                        <li>
-                            <a href="{% url 'student-availablebook' %}">
-                                <i class="fas fa-books"></i>
-                                <div>Books</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'student-borrowedbook' %}">
-                                <i class="fas fa-book"></i>
-                                <div>Borrowed Books</div>
-                            </a>
-                        </li>
+                        
                         <li>
                             <a href="{% url 'student-bookselves' %}">
                                 <i class="fas fa-books"></i>

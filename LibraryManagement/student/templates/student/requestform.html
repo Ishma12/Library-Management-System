@@ -6,7 +6,7 @@
 {% block content %}
 <div class="add-book-box">
     <h2>Request Book</h2>
-    <div id="msg-container">
+    <div id="msg-container" style="background-color: green; color: white;">
 
 
     </div>
@@ -34,39 +34,34 @@
     </form>
 </div>
 <script>
-const messagecontainer= document.getElementById("msg-container")      
-const messagebox= `<p class="alert-message">Book Request Sucessful!</p>`
-function submitBook() {
-    const formData = new FormData(document.getElementById('addBookForm'));
+    const messageContainer = document.getElementById("msg-container");
 
-    fetch('{% url "employee-requestfromstudent" %}', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRFToken': formData.get('csrfmiddlewaretoken')
-        },
-    })
-    .then(res=>res.json())
-    .then(data => {
-        console.log(data);
-        if (data.message === 'success') {
-            // Update your employee panel with the book information
-            const bookInfo = data.book_info;
-            // Add logic to update the employee panel with the book information
-            console.log('Book Information:', bookInfo);
-            messagecontainer.innerHTML=messagebox
-        } else {
-            // Handle other cases or show an error message
-            console.error('Error:', data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Fetch Error:', error);
-    });
-}
+    function submitBook() {
+        const formData = new FormData(document.getElementById('addBookForm'));
 
-
-
+        fetch('{% url "employee-requestfromstudent" %}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            },
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if (data.message === 'success') {
+                // Show success message
+                messageContainer.innerHTML = `<p class="success-message">Your request has been submitted!</p>`;
+            } else {
+                // Show error message
+                messageContainer.innerHTML = `<p class="error-message">${data.message}</p>`;
+            }
+        })
+        .catch(error => {
+            console.error('Fetch Error:', error);
+        });
+    }
 </script>
+
 {% endblock %}

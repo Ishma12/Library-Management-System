@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
     <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
     <link rel="stylesheet" href="{% static 'employee/detail.css' %}">
@@ -17,7 +18,8 @@
     <div class="container">
         <div class="topbar">
             <div class="logo">
-                <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
+                <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg"
+                        alt="Herald College Logo"></a>
             </div>
             <div class="search">
                 <input type="text" id="searchInput" name="search" placeholder="Search here">
@@ -47,7 +49,7 @@
                         <div> Books</div>
                     </a>
                 </li>
-        
+
                 {% include "employee/logout-button.html" %}
             </ul>
         </div>
@@ -59,32 +61,32 @@
                         <div class="book-info-box">
                             <h2>{{ book.book_name}}</h2>
 
-                            <p>Author: {{ book.author }}</p>
-                            <p>Publication Date: {{ book.publication_date }}</p>
-                            <p>Subject:  {{ book.subject}} </p>
-                            <p>Description: {{ book.description }}</p>
-                            <p>Publisher:  {{ book.publisher }}</p>
-                            <p>Edition: {{ book.edition}}</p>
-                            <p>Identifier:{{ book.isbn}}</p>
+                            <p><span class="bold">Author: </span>{{ book.author }}</p>
+                            <p><span class="bold">Publication Date: </span>{{ book.publication_date }}</p>
+                            <p><span class="bold">Subject: </span> {{ book.subject}} </p>
+                            <p> <span class="bold">Description: </span>{{ book.description }}</p>
+                            <p> <span class="bold"> Publisher: </span> {{ book.publisher }}</p>
+                            <p> <span class="bold">Edition: </span>{{ book.edition}}</p>
+                            <p><span class="bold">Identifier:</span>{{ book.isbn}}</p>
                             {% if book.is_available%}
-                            <p>Status: Available</p>
+                            <p><span class="bold">Status:</span> Available</p>
                             {% else %}
-                            <p>Status: Not Available</p>
+                            <p><span class="bold">Status: </span>Not Available</p>
                             {% endif %}
-                            
-                            
+
+
                         </div>
                     </div>
-                
+
+                </div>
             </div>
-         </div>
 
-    </div>       
-    <script src="{% static 'employee/logout.js' %}"></script>
-    <script src="{% static 'employee/profile.js' %}"></script>
+        </div>
+        <script src="{% static 'employee/logout.js' %}"></script>
+        <script src="{% static 'employee/profile.js' %}"></script>
 
 
-    
+
 </body>
 
 </html>

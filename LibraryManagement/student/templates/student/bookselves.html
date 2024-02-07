@@ -14,10 +14,11 @@
         <div class="container">
             <div class="topbar">
                 <div class="logo">
-                    <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg" alt="Herald College Logo"></a>
+                    <a href="/"><img src="https://heraldcollege.edu.np/images/footer/footer-logo.svg"
+                            alt="Herald College Logo"></a>
                 </div>
                 <div class="search">
-                    <input type="text" name="search" placeholder="search here">
+                    <input type="text" id="searchInput" name="search" placeholder="search here">
                     <label for="search"><i class="fas fa-search"></i></label>
                 </div>
                 <i class="fas fa-bell"></i>
@@ -83,12 +84,12 @@
           </tr>
         </thead>
         <tbody>
-            {% for book in books %}
+            {% for mybook in books %}
                 <tr class="searchable-content">
-                    <td>{{ book.book_name }}</td>
-                    <td>{{ book.author }}</td>
-                    <td>{{ book.category }}</td>
-                    <td>{{ book.about }}</td>
+                    <td>{{ mybook.book_name }}</td>
+                    <td>{{ mybook.author }}</td>
+                    <td>{{ mybook.category }}</td>
+                    <td>{{ mybook.about }}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -98,6 +99,31 @@
 
 </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const rows = document.querySelectorAll('.searchable-content');
+
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+
+        rows.forEach(function (row) {
+            const contentText = row.innerText.toLowerCase();
+            const containsTerm = contentText.includes(searchTerm);
+
+            row.style.display = containsTerm ? '' : 'none';
+        });
+
+        // Reset visibility if search term is empty
+        if (searchTerm === '') {
+            rows.forEach(function (row) {
+                row.style.display = '';
+            });
+        }
+    });
+});
+
+</script>
     
 
     

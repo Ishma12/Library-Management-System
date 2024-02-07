@@ -36,6 +36,17 @@ class EditBookForm(ModelForm):
             "is_available",
         ]
 
+class AddBorrowedBookForm(ModelForm):
+    class Meta:
+        model = BorrowedBook
+        fields = [
+            "book",
+            "student",
+            "borrowed_date",
+            "returned_date",
+            "fine",
+            "is_borrowed",
+        ]
 
 class EditBorrowedBookForm(ModelForm):
     class Meta:

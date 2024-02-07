@@ -97,9 +97,9 @@
                             <td>{{ borrowed_book.fine }}</td>
                             {% if  borrowed_book.is_borrowed is None %}
                             <td>
-                                <a href="{%url 'employee-editborrowedbook' borrowed_book.id %}">Edit</a>
-                                <a href="{%url 'approve-borrow-book' borrowed_book.id %}">Approve</a>
-                                <a href="{%url 'decline-borrow-book' borrowed_book.id %}">Decline</a>
+                                <a href="{%url 'employee-editborrowedbook' borrowed_book.id %}"  >Edit</a>
+                                <a href="{%url 'approve-borrow-book' borrowed_book.id %}" style=" color: green;" >Approve</a>
+                                <a href="{%url 'decline-borrow-book' borrowed_book.id %}" style=" color: red;" >Decline</a>
                             </td>
                             {% else %}
                             <td>

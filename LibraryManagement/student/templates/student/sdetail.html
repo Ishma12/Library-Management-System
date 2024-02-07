@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
     <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
     <link rel="stylesheet" href="{% static 'employee/detail.css' %}">
-    <title>Employee Panel</title>
+    <title>Student Panel</title>
 </head>
 
 <body>
@@ -54,22 +54,24 @@
                             <h2>{{ book.book_name}}</h2>
 
                             <p><span class="bold">Author: </span>{{ book.author }}</p>
-                            <p>Publication Date: {{ book.publication_date }}</p>
-                            <p>Subject:  {{ book.subject}} </p>
-                            <p>Description: {{ book.description }}</p>
-                            <p>Publisher:  {{ book.publisher }}</p>
-                            <p>Edition: {{ book.edition}}</p>
-                            <p>Identifier:{{ book.isbn}}</p>
+                            <p><span class="bold">Publication Date: </span>{{ book.publication_date }}</p>
+                            <p><span class="bold">Subject: </span> {{ book.subject}} </p>
+                            <p> <span class="bold">Description: </span>{{ book.description }}</p>
+                            <p> <span class="bold"> Publisher: </span> {{ book.publisher }}</p>
+                            <p> <span class="bold">Edition: </span>{{ book.edition}}</p>
+                            <p><span  class="bold">Identifier:</span>{{ book.isbn}}</p>
                             {% if book.is_available%}
-                            <p>Status: Available</p>
+                            <p><span class="bold">Status:</span> Available</p>
                             {% else %}
-                            <p>Status: Not Available</p>
+                            <p><span class="bold">Status: </span>Not Available</p>
                             {% endif %} 
                             
                         </div>
-                        <div class="borrowed-form-wrapper"  >
+                        <div class="borrowed-form-wrapper" >
                             <form class="form-container" id="borrowedForm" method ="post" action="{% url 'borrow-book' book.id %}">
                                 {%csrf_token%}
+                                
+                                <!-- <div id="borrowedMessageContainer" style="background-color: green; color: white;"></div> -->
                                 <label for="borrowedDate">Borrowed Date:</label>
                                 <input type="date" id="borrowedDate" name="borrowedDate">
 
@@ -101,7 +103,8 @@
         }
 
         function submitBorrowedForm() {
-            
+            const borrowedMessageContainer = document.getElementById('borrowedMessageContainer');
+            borrowedMessageContainer.innerHTML = '<p class="success-message">Your request has been submitted!</p>';
         }
     </script>
 
