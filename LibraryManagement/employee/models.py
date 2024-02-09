@@ -29,8 +29,8 @@ class Book(models.Model):
     def __str__(self):
         return self.book_name
 
-
 class BorrowedBook(models.Model):
+
     book = models.ForeignKey(
         "employee.Book",
         on_delete=models.CASCADE,
@@ -45,7 +45,7 @@ class BorrowedBook(models.Model):
     is_borrowed=models.BooleanField(default=None, null=True, blank=True)
 
     def __str__(self):
-        return self.borrowedbook_name
+        return self.book.book_name
 
 
 class BookRequest(models.Model):

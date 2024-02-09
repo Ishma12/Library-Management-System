@@ -27,8 +27,11 @@ def detail(request,book_id):
 def student_requestform(request):
     return render(request,'student/requestform.html')
 
-def reviews(request):
-    return render(request,'student/reviews.html')
+def student_borrowed(request):
+    borrowedbooks=BorrowedBook.objects.filter(student=request.user)
+    book_count = Book.objects.count()
+    borrowed_book_count = BorrowedBook.objects.count()
+    return render(request,'student/borrowedbook.html', {'bbooks':borrowedbooks, 'book_count':book_count, 'borrowed_book_count': borrowed_book_count})
 
 @login_required
 def addbook(request):

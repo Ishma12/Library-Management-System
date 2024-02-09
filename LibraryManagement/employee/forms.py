@@ -1,6 +1,10 @@
 from django.forms import ModelForm
 from .models import Book, BorrowedBook
+from django import forms
+from django.contrib.auth import get_user_model
 
+
+User=get_user_model()
 
 # Create the form class.
 class BookForm(ModelForm):
@@ -37,15 +41,18 @@ class EditBookForm(ModelForm):
         ]
 
 class AddBorrowedBookForm(ModelForm):
+    student = forms.ModelChoiceField(queryset=User.objects.filter(usertype=User.STUDENT), empty_label="(Select)")
+
     class Meta:
+        
         model = BorrowedBook
         fields = [
             "book",
             "student",
             "borrowed_date",
             "returned_date",
-            "fine",
-            "is_borrowed",
+            
+            
         ]
 
 class EditBorrowedBookForm(ModelForm):

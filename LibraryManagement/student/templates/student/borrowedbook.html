@@ -3,29 +3,29 @@
 <div class="charts">
             <table class="content-table" >
                 <thead>
-                  <tr>
-                    <th>Book ID</th>
-                    <th>Book Name</th>
-                    <th>Student ID</th>
-                    <th>Student Name</th>
-                    <th>Borrowed Date</th>
-                    <th>Returned Date</th>
-            
-                  </tr>
+                    <tr>
+                        <th>Book ID</th>
+                        <th>Book Name</th>
+                        <th>Student Name</th>
+                        <th>Borrowed Date</th>
+                        <th>Returned Date</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  {% for borrowed_book in borrowed_books %}
-                  <tr class="searchable-content">
-                          <td>{{ borrowed_book.borrowedbook_id }}</td>
-                          <td>{{ borrowed_book.borrowedbook_name }}</td>
-                          <td>{{ borrowed_book.student_id }}</td>
-                          <td>{{ borrowed_book.student_name }}</td>
-                          <td>{{ borrowed_book.borrowed_date }}</td>
-                          <td>{{ borrowed_book.returned_date }}</td>
-        
-                      </tr>
-                  {% endfor %}
-              </tbody>
+                    {% for borrowed_book in bbooks %}
+                    <tr class="searchable-content">
+                        <td>{{ borrowed_book.book.isbn }}</td>
+                        <td>{{ borrowed_book.book.book_name }}</td>
+
+                        <td>{{ borrowed_book.student.username }}</td>
+                        <td>{{ borrowed_book.borrowed_date }}</td>
+                        <td>{{ borrowed_book.returned_date }}</td>
+
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
             
     </table>
 

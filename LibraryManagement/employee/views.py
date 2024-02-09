@@ -219,14 +219,16 @@ def addborrowedbook(request):
      if request.method == 'POST':
         form = AddBorrowedBookForm(request.POST)
         if form.is_valid():
-            form.save()
+            borrowedbook= form.save()
+            borrowedbook.is_borrowed= True
+            borrowedbook.save()
             # Redirect to a success page or perform other actions
-            return redirect('success_page')
+            return redirect(reverse ('employee-eborrowedbook'))
     else:
         form = AddBorrowedBookForm()  
 
 
-    return render(request, 'employee/addborrowedbook.html')
+    return render(request, 'employee/addborrowedbook.html', {"form":form})
 
 
 

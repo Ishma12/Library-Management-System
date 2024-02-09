@@ -25,7 +25,6 @@
         <div class="add-book-box">
             <h2>Add Borrowed Book</h2>
             <!-- addBorrowedBookForm -->
-           <!-- Update the form fields to use the correct IDs -->
            <form method="post"  enctype="multipart/form-data" id="addBorrowedBookForm">
             {%csrf_token%}
             {% for field in form %}

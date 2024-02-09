@@ -6,13 +6,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
     <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
     <link rel="stylesheet" href="{% static 'employee/book.css' %}">
-   <title>Student Panel</title>
-   {%block css %}
-   {% endblock %}
+    <title>Student Panel</title>
+    {%block css %}
+    {% endblock %}
 </head>
 
 <body>
@@ -46,31 +47,35 @@
                                 <div>Dashboard</div>
                             </a>
                         </li>
-                        
+
                         <li>
                             <a href="{% url 'student-bookselves' %}">
                                 <i class="fas fa-books"></i>
                                 <div>Bookselves</div>
                             </a>
                         </li>
+
+                        <li>
+                            <a href="{% url 'student-borrowed' %}">
+                                <i class="fas fa-books"></i>
+                                <div>Borrowed Books</div>
+                            </a>
+                        </li>
+
+
                         <li>
                             <a href="{% url 'student_request' %}">
                                 <i class="fas fa-books"></i>
                                 <div>Request For Books</div>
                             </a>
                         </li>
-        
-                        <li>
-                            <a href="{%url 'student-reviews'%}">
-                                <i class="fas fa-star"></i>
-                                <div>Reviews and Ratings</div>
-                            </a>
-                        </li>
+
+
                         {% include "employee/logout-button.html" %}
-                        
+
                     </ul>
                 </div>
-        
+
                 <!-- {% include "employee/logout-button.html" %} -->
             </ul>
         </div>
@@ -103,7 +108,7 @@
                         <i class="fas fa-books"></i>
                     </div>
                 </div>
-                
+
             </div>
             {%block content %}
             {% endblock %}
