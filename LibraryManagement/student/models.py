@@ -14,5 +14,3 @@ class MyBook(models.Model):
 
 
 
-
-

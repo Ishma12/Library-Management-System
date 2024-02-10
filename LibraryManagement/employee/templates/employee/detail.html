@@ -73,7 +73,21 @@
                             {% else %}
                             <p><span class="bold">Status: </span>Not Available</p>
                             {% endif %}
-
+                            <div id="reviewsContainer">
+                                <h3>Reviews</h3>
+                                {% for review in book.reviews.all %}
+                                <div>
+                                    <p><strong>Rating:</strong> {{review.rating}}</p><p><strong>Review:</strong>{{review.review}}</p>
+                                    <p><strong>Rated by:</strong> {{review.user.username}}</p>
+                                </div>
+                                
+                                {%endfor%}
+                                {%if not book.reviews.all|length  %}
+                                <div>
+                                    No reviews yet.
+                                </div>
+                                {% endif %}
+                            </div>
 
                         </div>
                     </div>

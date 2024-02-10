@@ -1,0 +1,90 @@
+#bellIcon {
+    position: relative;
+    font-size: 1.5rem;
+}
+
+#notificationCount {
+    position: absolute;
+    top: -5px; 
+    right: -5px; 
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 10px; 
+    line-height: 10px; 
+    padding: 4px;
+}
+
+.notification-box {
+    display: none;
+    position: absolute; 
+    top: 100%; 
+    right: 0; 
+    background-color: #fff; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    z-index: 10;
+    width: 300px;
+}
+
+.notification-box.show {
+    display: block;
+}
+
+.notification-item {
+    color: #299b63;
+    padding: 5px;
+}
+.reviews-section {
+    display: none; 
+}
+.reviews-section.show {
+    display: block; 
+}
+
+.notification-wrappper {
+    padding: 0.5rem;
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.notification-inner {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+.notification-inner.unread {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.notification-detail {
+
+}
+
+.notification-detail p:last-child{
+    font-size: 10px;
+    color: gray;
+}
+.notification-outer{
+    position: relative;
+}
+.notification-icon{
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 50rem;
+    color: #299b63;
+}
+.mark-as-read{
+    text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}

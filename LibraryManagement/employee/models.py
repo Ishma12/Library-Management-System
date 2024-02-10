@@ -49,7 +49,10 @@ class BorrowedBook(models.Model):
 
 
 class BookRequest(models.Model):
-    student_id = models.CharField(max_length=50)
+    student = models.ForeignKey(
+        "library.User",
+        on_delete=models.CASCADE,
+    )
     book_name = models.CharField(max_length=255)
     author = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
@@ -57,3 +60,18 @@ class BookRequest(models.Model):
 
     def __str__(self):
         return f"{self.student_id} - {self.book_name}"
+
+
+class Review(models.Model):
+    created_on=models.DateTimeField(auto_now_add=True)
+    review=models.TextField()
+    rating=models.IntegerField()
+    user= models.ForeignKey(
+        "library.User",
+        on_delete=models.CASCADE,
+    )
+    book= models.ForeignKey(
+        Book,
+        on_delete=models.CASCADE,
+        related_name='reviews'
+    )

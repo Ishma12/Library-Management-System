@@ -1,7 +1,7 @@
 
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
-from employee.models import Book
+from employee.models import Book, Review
 from employee.models import BorrowedBook
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -29,9 +29,7 @@ def student_requestform(request):
 
 def student_borrowed(request):
     borrowedbooks=BorrowedBook.objects.filter(student=request.user)
-    book_count = Book.objects.count()
-    borrowed_book_count = BorrowedBook.objects.count()
-    return render(request,'student/borrowedbook.html', {'bbooks':borrowedbooks, 'book_count':book_count, 'borrowed_book_count': borrowed_book_count})
+    return render(request,'student/borrowedbook.html', {'bbooks':borrowedbooks})
 
 @login_required
 def addbook(request):
@@ -91,3 +89,13 @@ def deletebook(request):
 
     # If the request method is not POST, render the deletebook.html template
     return render(request, 'student/deletebook.html')
+
+
+
+def write_review(request, book_id):
+    if request.method == "POST":
+        book= get_object_or_404(Book,id=book_id)
+        review =request.POST.get('review')
+        rating = request.POST.get('rating')
+        Review.objects.create(review=review,rating=rating, user=request.user, book=book)
+    return redirect (reverse('student-detailbook',kwargs={"book_id":book_id}))

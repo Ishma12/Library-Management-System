@@ -1,53 +1,50 @@
-/* style.css */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    }
-    
-    body {
-    min-height: 50vh;
-    display: flex;
-    align-items: center;
+.reviews-link {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
     text-align: center;
-    justify-content: center;
-    background: #fff;
-    font-family: "Poppins", sans-serif;
-    }
+    color: #299b63;
+    text-decoration: none;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: block;
+    outline: none;
+    border: none;
+    min-width: 120px;
+    margin-right: 800px;
+}
+
+.reviews-link:hover {
+    background-color:  #0ae4ad;
+    color: #f2f8f5;
+}
+
+.reviews-section {
+    background-color: #f2f8f5; 
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px; 
+   
     
-    .card {
-    max-width: 33rem;
-    background:  #299B63;
-    margin: 0 1rem;
-    padding: 1rem;
-    box-shadow: 0 0 5px whitesmoke;
-    width: 100%;
-    border-radius: 0.5rem;
-    }
-    
-    .star {
-    font-size: 10vh;
+}
+.reviews-section label,
+.reviews-section input,
+.reviews-section button {
+    display: block;
+    margin-bottom: 3px;
+    color:#299b63;
+}
+
+.reviews-section button {
+    background-color: #299b63;
+    color: #333;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    }
+    margin-top: 0.5rem;
     
-    .one {
-    color: rgb(255, 0, 0);
-    }
-    
-    .two {
-    color: rgb(255, 106, 0);
-    }
-    
-    .three {
-    color: rgb(251, 255, 120);
-    }
-    
-    .four {
-    color: rgb(255, 255, 0);
-    }
-    
-    .five {
-    color: yellow;
-    }
-    
+}
+
+

@@ -21,6 +21,7 @@
     width: 1000px; 
     box-sizing: border-box;
     background-color: #299b63;
+    height: fit-content;
 }
 
 .book-image1 {
@@ -83,3 +84,6 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+

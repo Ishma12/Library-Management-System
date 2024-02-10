@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User
+from .models import User, Notification
 from django.utils.html import format_html
 from django.urls import reverse
 class UserAdmin(admin.ModelAdmin):
@@ -12,5 +12,6 @@ class UserAdmin(admin.ModelAdmin):
                 reverse('library-verify', args=[obj.username]), 
             )
 admin.site.register(User,UserAdmin)
+admin.site.register(Notification)
 
 

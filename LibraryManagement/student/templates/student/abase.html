@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
     <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
     <link rel="stylesheet" href="{% static 'employee/book.css' %}">
+    <link rel="stylesheet" href="{% static 'employee/dropdown.css' %}">
     <title>Student Panel</title>
     {%block css %}
     {% endblock %}
@@ -27,7 +28,8 @@
                 <input type="text" id="searchInput" name="search" placeholder="search here">
                 <label for="search"><i class="fas fa-search"></i></label>
             </div>
-            <i class="fas fa-bell"></i>
+
+       {%include 'student/notification.html'%}
             <div class="user">
                 <img src="{%static 'employee/images.png'%}" alt="" id="user-avatar">
                 <div class="dropdown" id="user-dropdown">
@@ -116,5 +118,18 @@
             {% block js%}
             {% endblock %}
 </body>
+<script>
+
+    window.onclick = function (event) {
+
+        var userDropdown = document.getElementById('user-dropdown');
+        if (userDropdown.classList.contains('show') && !event.target.matches('#user-avatar')) {
+            userDropdown.classList.remove('show');
+        }
+    }
+
+
+
+</script>
 
 </html>

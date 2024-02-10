@@ -63,7 +63,7 @@
                     <tbody>
                         {% for request in book_requests %}
                             <tr>
-                                <td>{{ request.student_id }}</td>
+                                <td>{{ request.student.username }}</td>
                                 <td>{{ request.book_name }}</td>
                                 <td>{{ request.author }}</td>
                                 <td>{{ request.category }}</td>

@@ -1,0 +1,69 @@
+<div class="notification-outer">
+    <i class="fas fa-bell" id="bellIcon">
+        <span id="notificationCount"></span>
+    </i>
+    <div id="notificationBox" class="list-group list-group-alt notification-box">
+
+        <div class="notification-wrappper" id="notification-wrappper">
+
+        </div>
+        <div class="mark-as-read">
+            <a href="#" onclick="handleRead()">Mark all as Read.</a>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById('bellIcon').addEventListener('click', function (event) {
+        event.stopPropagation(); // Prevent the click event from propagating to parent elements
+        var notificationBox = document.getElementById('notificationBox');
+        notificationBox.classList.toggle('show');
+    });
+
+    window.onclick = function (event) {
+        var notificationBox = document.getElementById("notificationBox");
+        if (notificationBox.classList.contains('show') && !event.target.matches('#bellIcon')) {
+            notificationBox.classList.remove('show');
+        }
+
+
+    }
+    window.onload = function (event) {
+        var notificationBox = document.getElementById("notification-wrappper");
+        var notificationCount = document.getElementById("notificationCount")
+        setInterval(() => {
+            let notifications = ''
+            function getHtmlElement(detail, time, is_read) {
+                return `<div class="notification-inner  ${is_read ? '' : 'unread'}"> 
+                            <i class="fa fa-bell notification-icon"></i>
+                            <div class="notification-detail">
+                                <p>
+                                    ${detail}
+                                </p>
+                                <p>${time}</p>
+                            </div>
+                        </div>`
+            }
+            fetch("{%url 'library-notifications'%}").then(res => res.json()).then(res => {
+                const data = res['data']
+                data.map(n => {
+
+                    // notificationBox.appendChild(getHtmlElement(n.detail,n.created_on))
+                    notifications += getHtmlElement(n.detail, new Date(n.created_on).toLocaleString(), n.is_read)
+                    notificationBox.innerHTML = notifications
+
+                })
+
+                notificationCount.innerText = res['unread_count']
+            }).catch(error => console.log(error))
+        }, 1000);
+
+    }
+    function handleRead() {
+        fetch("{%url 'library-notifications-read'%}").then(res => res.json()).then(res => {
+            console.log(res)
+        }).catch(error => console.log(error))
+
+    }
+
+
+</script>

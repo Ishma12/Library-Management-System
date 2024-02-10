@@ -17,6 +17,8 @@ from openpyxl.utils import get_column_letter
 from tempfile import NamedTemporaryFile
 from .models import BookRequest 
 from .forms import BookForm, EditBookForm, EditBorrowedBookForm, AddBorrowedBookForm
+from library.models import Notification
+from copy import deepcopy
 
 
 User=get_user_model()
@@ -29,14 +31,13 @@ def detail(request,book_id):
 
 def bookrequest(request):
     if request.method == 'POST':
-        student_id = request.POST.get('studentID')
         book_name = request.POST.get('bookName')
         author = request.POST.get('author')
         category = request.POST.get('category')
 
         # Save the book request to the database
         BookRequest.objects.create(
-            student_id=student_id,
+            student=request.user,
             book_name=book_name,
             author=author,
             category=category
@@ -51,6 +52,7 @@ def approve_bookrequest(request,book_id):
     req= BookRequest.objects.get(id=book_id)
     req.is_approved=True
     req.save()
+    Notification.objects.create(detail=f"Your request for {req.book_name} has been approved. You can visit library.", user=req.student)
     return redirect("employee-requestfromstudent")
 
 
@@ -58,6 +60,7 @@ def decline_bookrequest(request,book_id):
     req= BookRequest.objects.get(id=book_id)
     req.is_approved=False
     req.save()
+    Notification.objects.create(detail=f"Your request for {req.book_name} has been declined.", user=req.student)
     return redirect("employee-requestfromstudent") 
    
 
@@ -237,16 +240,21 @@ def editborrowedbook(request, borrowbook_id):
     borrowedbook=get_object_or_404(BorrowedBook,id=borrowbook_id)
     form= EditBorrowedBookForm(instance=borrowedbook)
 
+    
     if request.method == 'POST':
+        prev=deepcopy(borrowedbook)
         # create a form instance and populate it with data from the request:
         form = EditBorrowedBookForm(request.POST,instance=borrowedbook)
         # check whether it's valid:
+      
         if form.is_valid():
             
             new_borrowed_date = form.cleaned_data.get('borrowed_date')
             new_returned_date = form.cleaned_data.get('returned_date')
             new_fine = form.cleaned_data.get('fine')
-
+            if new_fine !=  prev.fine:
+                Notification.objects.create(detail=f"You have been fined {new_fine} rupees for {borrowedbook.book.book_name}.", user=borrowedbook.student)
+                print("Notified.")
             borrowedbook.borrowed_date = new_borrowed_date
             borrowedbook.returned_date = new_returned_date
             borrowedbook.fine = new_fine
@@ -304,10 +312,16 @@ def approve_borrowbook(request, borrowbook_id):
     borrowedbook=get_object_or_404(BorrowedBook,id=borrowbook_id)
     borrowedbook.is_borrowed=True
     borrowedbook.save()
+    Notification.objects.create(detail=f"Your book borrow request for {borrowedbook.book.book_name} has been approved. You can visit library.", user=borrowedbook.student)
     return redirect(reverse('employee-eborrowedbook'))
 
 def decline_borrowbook(request, borrowbook_id):
     borrowedbook=get_object_or_404(BorrowedBook,id=borrowbook_id)
     borrowedbook.is_borrowed=False
     borrowedbook.save()
+    Notification.objects.create(detail=f"Your book borrow request for {borrowedbook.book.book_name} has been declined.", user=borrowedbook.student)
     return redirect(reverse('employee-eborrowedbook'))
+
+
+
+
