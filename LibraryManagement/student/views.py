@@ -8,25 +8,27 @@ from django.http import JsonResponse
 from .models import MyBook
 
 
-
+@login_required
 def student_dashboard(request):
     book_data = Book.get_book_data()
     return render(request, 'student/sdashboard.html', book_data)
 
-
+@login_required
 def detail(request,book_id):
+    borrowed=request.GET.get('borrowed')
     book= get_object_or_404(Book,id=book_id)
-    return render(request, 'student/sdetail.html', {"book":book})
+    return render(request, 'student/sdetail.html', {"book":book, 'borrowed': borrowed})
 
 # def detail(request):
 #     book_data = Book.get_book_data()
 #     return render(request, 'student/sdetail.html', book_data)
 
 
-
+@login_required
 def student_requestform(request):
     return render(request,'student/requestform.html')
 
+@login_required
 def student_borrowed(request):
     borrowedbooks=BorrowedBook.objects.filter(student=request.user)
     return render(request,'student/borrowedbook.html', {'bbooks':borrowedbooks})
@@ -65,10 +67,13 @@ def addbook(request):
 
     return render(request, 'student/addbook.html')
 
+@login_required
 def bookselves(request):
     books = MyBook.objects.all()  # Retrieve all books from the database
     return render(request, 'student/bookselves.html', {'books': books})
 
+
+@login_required
 def deletebook(request):
     if request.method == 'POST':
         book_name= request.POST.get('bookName')
@@ -91,7 +96,7 @@ def deletebook(request):
     return render(request, 'student/deletebook.html')
 
 
-
+@login_required
 def write_review(request, book_id):
     if request.method == "POST":
         book= get_object_or_404(Book,id=book_id)

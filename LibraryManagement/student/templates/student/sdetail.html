@@ -56,9 +56,13 @@
         <div class="main">
             <div class="charts">
                 <div class="content-container1">
+                    
                     <div class="book-item1">
                         <img src="{{book.image.url}}" alt="Book Image" class="book-image1">
                         <div class="book-info-box">
+                            {% if borrowed%}
+                            <p style="text-align: right;">Your request has been submit successfully.</p>
+                            {% endif %}
                             <h2>{{ book.book_name}}</h2>
 
                             <p><span class="bold">Author: </span>{{ book.author }}</p>

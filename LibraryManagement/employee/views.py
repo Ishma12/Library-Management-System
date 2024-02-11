@@ -22,13 +22,13 @@ from copy import deepcopy
 
 
 User=get_user_model()
-
+@login_required
 def detail(request,book_id):
     book= get_object_or_404(Book,id=book_id)
     return render(request, 'employee/detail.html', {"book":book})
 
 
-
+@login_required
 def bookrequest(request):
     if request.method == 'POST':
         book_name = request.POST.get('bookName')
@@ -47,7 +47,7 @@ def bookrequest(request):
     book_requests=BookRequest.objects.all().order_by("-id")    
     return render(request, 'employee/requestfromstudent.html', {"book_requests": book_requests})
 
-
+@login_required
 def approve_bookrequest(request,book_id):
     req= BookRequest.objects.get(id=book_id)
     req.is_approved=True
@@ -55,7 +55,7 @@ def approve_bookrequest(request,book_id):
     Notification.objects.create(detail=f"Your request for {req.book_name} has been approved. You can visit library.", user=req.student)
     return redirect("employee-requestfromstudent")
 
-
+@login_required
 def decline_bookrequest(request,book_id):
     req= BookRequest.objects.get(id=book_id)
     req.is_approved=False
@@ -163,7 +163,7 @@ def borrowedbook(request):
     borrowed_book_count = BorrowedBook.objects.count()
     return render(request, 'employee/eborrowedbook.html', {'book_count': book_count,  'borrowed_books': borrowed_books,'borrowed_book_count': borrowed_book_count})
 
-
+@login_required
 def changepw(request):
     return render(request, 'employee/changepw.html')
 
@@ -305,9 +305,9 @@ def borrowbook(request,book_id):
 
         )
 
-    return redirect(reverse('student-detailbook', kwargs={"book_id": book_id}))
+    return redirect(reverse('student-detailbook', kwargs={"book_id": book_id}) + '?borrowed=1')
 
-
+@login_required
 def approve_borrowbook(request, borrowbook_id):
     borrowedbook=get_object_or_404(BorrowedBook,id=borrowbook_id)
     borrowedbook.is_borrowed=True
@@ -315,6 +315,8 @@ def approve_borrowbook(request, borrowbook_id):
     Notification.objects.create(detail=f"Your book borrow request for {borrowedbook.book.book_name} has been approved. You can visit library.", user=borrowedbook.student)
     return redirect(reverse('employee-eborrowedbook'))
 
+
+@login_required
 def decline_borrowbook(request, borrowbook_id):
     borrowedbook=get_object_or_404(BorrowedBook,id=borrowbook_id)
     borrowedbook.is_borrowed=False

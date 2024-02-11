@@ -104,7 +104,7 @@
         .then(response => response.json())
         .then(data => {
             // Check if the deletion was successful
-            if (data.success) {
+            if (data.message) {
                 // Display a success message
                 alert('Book successfully deleted!');
                 
