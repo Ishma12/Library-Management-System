@@ -1,4 +1,11 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -54,7 +61,7 @@ header a:hover {
 }
 
 .container h1 {
-    color: #299b63;
+    color: #74bf44;
     font-family: WorkSans-Black,sans-serif;
     font-size: 50px;
     font-weight: 900;
@@ -87,7 +94,7 @@ header a:hover {
 }
 
 .content {
-    background-color:  #299b63;
+    background-color: #74bf44;
     padding: 7.092% 6.258%;
     width: 89.2%;
 
@@ -101,7 +108,7 @@ header a:hover {
 
 .section .page-title {
     font-weight: 300;
-    color:#299b63;
+    color:#74bf44;
     font-family: WorkSans-Black,sans-serif;
 }
 
@@ -176,8 +183,3 @@ to {
 opacity: 1; /* Opacity 1 makes the image fully visible */
 }
 }       
-
-
-
-
-

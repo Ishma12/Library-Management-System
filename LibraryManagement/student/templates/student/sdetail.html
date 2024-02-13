@@ -56,7 +56,7 @@
         <div class="main">
             <div class="charts">
                 <div class="content-container1">
-                    
+
                     <div class="book-item1">
                         <img src="{{book.image.url}}" alt="Book Image" class="book-image1">
                         <div class="book-info-box">
@@ -78,69 +78,63 @@
                             <p><span class="bold">Status: </span>Not Available</p>
                             {% endif %}
                             <div id="reviewsContainer">
-                                <h3>Reviews</h3>
+                                <h3 style="color: #639c40; margin-top: 1rem;">Reviews</h3>
                                 {% for review in book.reviews.all %}
-                                <div>
-                                    <p><strong>Rating:</strong> {{review.rating}}</p><p><strong>Review:</strong>{{review.review}}</p>
-                                    <p><strong>Rated by:</strong> {{review.user.username}}</p>
+                                <div style="margin-top: 0.25rem; margin-bottom: 0.25rem;">
+                                    <p><strong><span class="bold">Rating:</span></strong> {{review.rating}}</p>
+                                    <p><strong><span class="bold">Review:</span></strong>{{review.review}}</p>
+                                    <p><strong><span class="bold">Rated by:</span></strong> {{review.user.username}}</p>
                                 </div>
                                 {%endfor%}
                             </div>
-                            <a href="#" onclick="toggleReviewsSection()">Reviews and Ratings</a>
-
-                        </div>
-                        <div class="borrowed-form-wrapper">
-                            <form class="form-container" id="borrowedForm" method="post"
-                                action="{% url 'borrow-book' book.id %}">
-                                {%csrf_token%}
-                                <label for="borrowedDate">Borrowed Date:</label>
-                                <input type="date" id="borrowedDate" name="borrowedDate">
-
-                                <label for="returnedDate">Returned Date:</label>
-                                <input type="date" id="returnedDate" name="returnedDate">
-
-                                <button type="submit">Submit</button>
-                            </form>
-
+                            <button onclick="toggleReviewsSection()" class="borrowed-book-link">Reviews and
+                                Ratings</button>
                             <button class="borrowed-book-link" onclick="toggleBorrowedForm()">Borrowed Books</button>
 
-
                         </div>
-
-                      
                     </div>
-                   
+
                 </div>
-                <div class="reviews-section" id="reviewsSection">
-                    <form id="reviewForm" method="post" action="{%url 'student-reviewbook' book.id%}">
-                        {% csrf_token %}
-                        <label for="review">Write a review:</label>
-                        <textarea id="review" name="review" rows="4" cols="50"></textarea>
-                        <br>
-                        <label for="rating">Rating:</label>
-                        <select id="rating" name="rating">
-                            <option value="1">★</option> 
-                            <option value="2">★★</option> 
-                            <option value="3">★★★</option> 
-                            <option value="4">★★★★</option> 
-                            <option value="5">★★★★★</option> 
-                        </select>
-                        <br>
-                        <button type="submit">Submit Review</button>
+                <div class="borrowed-form-wrapper">
+                    <form class="form-container" id="borrowedForm" method="post"
+                        action="{% url 'borrow-book' book.id %}">
+                        {%csrf_token%}
+                        <label for="borrowedDate">Borrowed Date:</label>
+                        <input type="date" id="borrowedDate" name="borrowedDate">
+
+                        <label for="returnedDate">Returned Date:</label>
+                        <input type="date" id="returnedDate" name="returnedDate">
+
+                        <button type="submit">Submit</button>
                     </form>
-    
-    
-    
+                    <div class="reviews-section" id="reviewsSection">
+                        <form id="reviewForm" method="post" action="{%url 'student-reviewbook' book.id%}">
+                            {% csrf_token %}
+                            <label for="review">Write a review:</label>
+                            <textarea id="review" name="review" rows="4" cols="50"></textarea>
+                            <br>
+                            <label for="rating">Rating:</label>
+                            <select id="rating" name="rating">
+                                <option value="1">★</option>
+                                <option value="2">★★</option>
+                                <option value="3">★★★</option>
+                                <option value="4">★★★★</option>
+                                <option value="5">★★★★★</option>
+                            </select>
+                            <br>
+                            <button type="submit">Submit Review</button>
+                        </form>
+                    </div>
                 </div>
+               
             </div>
 
-            
         </div>
     </div>
 
     <script>
         window.onclick = function (event) {
-            
+
 
             var userDropdown = document.getElementById('user-dropdown');
             if (userDropdown.classList.contains('show') && !event.target.matches('#user-avatar')) {
@@ -167,7 +161,7 @@
     </script>
 
     <script src="{% static 'employee/profile.js' %}"></script>
-   
+
 </body>
 
 </html>

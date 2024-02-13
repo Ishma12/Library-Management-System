@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
 
 .add-book-box {
     background-color: #fff;
@@ -11,7 +18,7 @@
 }
 
 .add-book-box h2 {
-    color: #299B63;
+    color: #74bf44;
 }
 
 .add-book-box .form-group {
@@ -20,7 +27,7 @@
 }
 
 .add-book-box label {
-    color: #299B63;
+    color:#333;
     display: block;
 }
 
@@ -29,7 +36,7 @@
     padding: 10px;
     margin: 5px 0;
     border: none;
-    border-bottom: 2px solid #299B63;
+    border-bottom: 2px solid #333;
     outline: none;
 }
 
@@ -39,7 +46,7 @@
 }
 
 .add-book-box .add-button {
-    background-color: #299B63;
+    background-color:#74bf44;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -49,7 +56,8 @@
 
 /* Optional hover effect for the Add button */
 .add-book-box .add-button:hover {
-    background-color: #167B4D;
+    background-color: white;
+    color: #74bf44;
 }
 /* Styles for the charts */
 .charts {
@@ -63,7 +71,7 @@
 }
 /* Styles for the "Done" button */
 .done-button {
-    background-color: #299B63;
+    background-color: #74bf44;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -74,7 +82,7 @@
 
 /* Optional hover effect for the "Done" button */
 .done-button:hover {
-    background-color: #167B4D;
+    background-color: #74bf44;
 }
 
 /* Style the date input fields as a line */
@@ -83,7 +91,7 @@ width: 100%;
 padding: 5px;
 margin-bottom: 15px;
 border: none;
-border-bottom: 2px solid #167B4D; /* Add a bottom border for the line effect */
+border-bottom: 2px solid #74bf44; /* Add a bottom border for the line effect */
 font-size: 16px;
 background-color: transparent; /* Make the background transparent */
 outline: none; /* Remove the default outline when the input is selected */

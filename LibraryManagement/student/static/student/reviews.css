@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
 .reviews-link {
     background-color: #fff;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
-    color: #299b63;
+    color: #74bf44;
     text-decoration: none;
     position: absolute;
     bottom: 1rem;
@@ -13,18 +20,19 @@
     border: none;
     min-width: 120px;
     margin-right: 800px;
+    
 }
 
 .reviews-link:hover {
-    background-color:  #0ae4ad;
+    background-color: #74bf44;
     color: #f2f8f5;
 }
 
 .reviews-section {
-    background-color: #f2f8f5; 
-    padding: 20px;
+    background-color:white; 
+    padding: 1rem;
     border-radius: 5px;
-    margin-top: 20px; 
+    width: fit-content;
    
     
 }
@@ -33,18 +41,24 @@
 .reviews-section button {
     display: block;
     margin-bottom: 3px;
-    color:#299b63;
+    color:#74bf44;
 }
 
 .reviews-section button {
-    background-color: #299b63;
-    color: #333;
+    background-color:#74bf44;
+    color:white;
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 0.5rem;
+    border: 1px solid #74bf44;
+    transition: all ease-in-out 0.3s;
     
 }
 
+.reviews-section button:hover {
+    background-color: white;
+    color: #74bf44;
+}
 

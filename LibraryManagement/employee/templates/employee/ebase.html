@@ -29,7 +29,7 @@
             </div>
             <i class="fas fa-bell"></i>
             <div class="user">
-                <img src="{%static 'employee/images.png'%}" alt="" id="user-avatar">
+                <img src="{%static 'employee/images.jpg'%}" alt="" id="user-avatar">
                 <div class="dropdown" id="user-dropdown">
                     <a href="#">{{user_fullname}}</a>
                     <a href="{% url 'employee-changepw' %}">Change Password</a>
@@ -43,7 +43,7 @@
             <div class="cards">
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">1217</div>
+                        <div class="number">{{student_count}}</div>
                         <div class="card-name">Students</div>
                     </div>
                     <div class="icon-box">
@@ -78,16 +78,16 @@
                         <div class="book-info searchable-content">
 
                             <div><a href="{% url 'book-detail' book.id %}">
-                                    <h2>{{ book.book_name}}</h2>
+                                    <h2 style="color: #639c40;">{{ book.book_name}}</h2>
                                 </a>
-                                <p>Book ISBN: {{ book.isbn }}</p>
-                                <p>Book Name: {{ book.book_name }}</p>
-                                <p>Author: {{ book.author }}</p>
-                                <p>Subject: {{ book.subject }}</p>
+                                <p><span class="bold">Book ISBN:</span> {{ book.isbn }}</p>
+                                <p><span class="bold">Book Name: </span>{{ book.book_name }}</p>
+                                <p><span class="bold">Author:</span> {{ book.author }}</p>
+                                <p><span class="bold">Subject: </span>{{ book.subject }}</p>
                                 {% if book.is_available%}
-                                <p>Status: Available</p>
+                                <p><span class="bold">Status: </span>Available</p>
                                 {% else %}
-                                <p>Status: <span style="color: red;">Not Available</span></p>
+                                <p><span class="bold">Status:</span> <span style="color: #d84949;">Not Available</span></p>
                                 {% endif %}
                             </div>
 

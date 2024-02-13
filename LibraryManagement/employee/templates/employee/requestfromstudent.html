@@ -26,7 +26,7 @@
             </div>
             <i class="fas fa-bell"></i>
             <div class="user">
-                <img src="{%static 'employee/images.png'%}" alt="" id="user-avatar">
+                <img src="{%static 'employee/images.jpg'%}" alt="" id="user-avatar">
                 <div class="dropdown" id="user-dropdown">
                     <a href="#">{{user_fullname}}</a>
                     <a href="{% url 'employee-changepw' %}">Change Password</a>
@@ -47,30 +47,58 @@
         </ul>
         </div>
         <div class="main">
-            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">{{student_count}}</div>
+                        <div class="card-name">Students</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">{{ book_count }}</div>
+                        <div class="card-name">Books</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-books"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">{{ borrowed_book_count }}</div>
+                        <div class="card-name">Book Borrowed</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-books"></i>
+                    </div>
+                </div>
+            </div>
             <div class="charts">
-                <table class="content-table" >
+                <table class="content-table">
                     <thead>
                       <tr>
-                      <th>Student ID</th>
-                      <th>Book Name</th>
-                      <th>Author</th>
-                      <th>Category</th>
-                      <th>Action</th>
+                      <th style="text-align: left;">Student Name</th>
+                      <th style="text-align: left;">Book Name</th>
+                      <th style="text-align: left;">Author</th>
+                      <th style="text-align: left;">Category</th>
+                      <th style="text-align: left;">Action</th>
 
                       </tr>
                     </thead>
                     <tbody>
                         {% for request in book_requests %}
-                            <tr>
+                            <tr class="searchable-content">
                                 <td>{{ request.student.username }}</td>
                                 <td>{{ request.book_name }}</td>
                                 <td>{{ request.author }}</td>
                                 <td>{{ request.category }}</td>
                                 {%if request.is_approved is None %}
                                 <td>
-                                    <a href='{% url "employee-requestfromstudent-decline" request.id %}' style="background-color: red; color: white;">Decline</a>
-                                    <a href='{% url "employee-requestfromstudent-approve" request.id %}' style="background-color: #299b63; color: white;">Approve</a>
+                                    <a href='{% url "employee-requestfromstudent-decline" request.id %}' style="color: red;">Decline</a>
+                                    <a href='{% url "employee-requestfromstudent-approve" request.id %}' style=" color:#299b63;">Approve</a>
                                 </td>
                                 {%endif%}
                                 {%if request.is_approved is True %}
@@ -95,32 +123,32 @@
     <script src="{% static 'employee/profile.js' %}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-        const searchInput = document.getElementById('searchInput');
-        const rows = document.querySelectorAll('.searchable-content');
-        
-        searchInput.addEventListener('input', function () {
-        const searchTerm = searchInput.value.trim().toLowerCase();
-        
-        rows.forEach(function (row) {
-            const contentText = row.innerText.toLowerCase();
-            const containsTerm = contentText.includes(searchTerm);
-        
-            row.style.display = containsTerm ? '' : 'none';
-        });
-        });
-        
-        // Add this event listener to reset visibility when the input is cleared
-        searchInput.addEventListener('input', function () {
-        const searchTerm = searchInput.value.trim().toLowerCase();
-        
-        if (searchTerm === '') {
-            rows.forEach(function (row) {
-                row.style.display = ''; // Reset visibility
+            const searchInput = document.getElementById('searchInput');
+            const rows = document.querySelectorAll('.searchable-content');
+
+            searchInput.addEventListener('input', function () {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+
+                rows.forEach(function (row) {
+                    const contentText = row.innerText.toLowerCase();
+                    const containsTerm = contentText.includes(searchTerm);
+
+                    row.style.display = containsTerm ? '' : 'none';
+                });
             });
-        }
+
+            // Add this event listener to reset visibility when the input is cleared
+            searchInput.addEventListener('input', function () {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+
+                if (searchTerm === '') {
+                    rows.forEach(function (row) {
+                        row.style.display = ''; // Reset visibility
+                    });
+                }
+            });
         });
-        });
-        </script>
+    </script>
 
 
     

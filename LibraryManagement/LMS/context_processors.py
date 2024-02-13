@@ -1,9 +1,10 @@
-from employee.models import Book
-from employee.models import BorrowedBook
+from library.models import User
+from employee.models import BorrowedBook, Book 
+
 
 
 def default_context(request):
-    # return {'user_fullname': "--"}
+    student_count= User.objects.filter(usertype=User.STUDENT).count()
     book_count = Book.objects.count()
     borrowed_book_count = BorrowedBook.objects.count()
     return {
@@ -12,4 +13,5 @@ def default_context(request):
         else "--",
         "book_count": book_count,
         "borrowed_book_count": borrowed_book_count,
+        "student_count": student_count,
     }

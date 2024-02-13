@@ -1,5 +1,14 @@
+/* Global styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
 body {
-    font-family: 'Poppins', sans-serif;
+
     background-image: url('Herald-College-Graduation.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -59,7 +68,7 @@ header a:hover {
 }
 
 .form-group label {
-    color: #299B63;
+    color:#333;
     display: block;
 }
 
@@ -68,7 +77,7 @@ header a:hover {
     padding: 10px;
     margin: 5px 0;
     border: none;
-    border-bottom: 2px solid #299B63;
+    border-bottom: 2px solid #333;
     outline: none;
 }
 
@@ -76,13 +85,33 @@ input[type="text"]::placeholder,
 input[type="email"]::placeholder,
 input[type="password"]::placeholder,
 select::placeholder {
-    color: #299B63;
+    color: #333;
 }
 
 p {
-    color: #299B63;
+    color:#333;
 }
 
 h2 {
-    color: #299B63;
+    color: #74bf44; 
+}
+
+element.style:hover {
+    background-color:white;
+    color: #74bf44;
+}
+.submit-button {
+    background-color: #74bf44;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    height: 35px;
+    width: 70px;
+    border: 1px solid #74bf44;
+    transition: all ease-in-out 0.3s;
+}
+
+.submit-button:hover {
+    background-color: white;
+    color: #74bf44;
 }

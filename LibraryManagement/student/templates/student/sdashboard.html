@@ -8,16 +8,16 @@
             <div class="book-info searchable-content">
 
                 <a href="{% url 'student-detailbook' book.id %}">
-                    <h2>{{ book.book_name}}</h2>
+                    <h2 style="color:  #639c40;;">{{ book.book_name}}</h2>
                 </a>
-                <p>Book ISBN: {{ book.isbn }}</p>
-                <p>Book Name: {{ book.book_name }}</p>
-                <p>Author: {{ book.author }}</p>
-                <p>Subject: {{ book.subject }}</p>
+                <p><span class="bold">Book ISBN:</span> {{ book.isbn }}</p>
+                <p><span class="bold">Book Name: </span>{{ book.book_name }}</p>
+                <p><span class="bold">Author:</span> {{ book.author }}</p>
+                <p><span class="bold">Subject: </span>{{ book.subject }}</p>
                 {% if book.is_available%}
-                <p>Status: Available</p>
+                <p><span class="bold">Status: </span>Available</p>
                 {% else %}
-                <p>Status: <span style="color: red;">Not Available</span></p>
+                <p><span class="bold">Status:</span> <span style="color: #d84949;">Not Available</span></p>
                 {% endif %}
 
 

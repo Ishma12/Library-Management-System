@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="{% static 'employee/addbook.css' %}">
     <link rel="stylesheet" href="{% static 'employee/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'employee/employee.css' %}">
     
     <title>Employee Panel</title>
 </head>
@@ -26,7 +27,7 @@
             </div>
             <i class="fas fa-bell"></i>
             <div class="user">
-                <img src="{%static 'employee/images.png'%}" alt="" id="user-avatar">
+                <img src="{%static 'employee/images.jpg'%}" alt="" id="user-avatar">
                 <div class="dropdown" id="user-dropdown">
                     <a href="#">{{user_fullname}}</a>
                     <a href="{% url 'employee-changepw' %}">Change Password</a>

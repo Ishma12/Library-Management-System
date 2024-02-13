@@ -1,8 +1,9 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .topbar {
@@ -40,35 +41,6 @@ img {
 }
 
 
-.search {
-    position: relative;
-    width: 60%;
-    justify-self: center;
-}
-
-.search input {
-    width: 100%;
-    min-width: 128px;
-    height: 40px;
-    padding: 0 40px;
-    font-size: 16px;
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    background: #f5f5f5;
-}
-
-.search i {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    cursor: pointer;
-}
-
-.fa-bell {
-    justify-self: right;
-}
-
 .user {
     position: relative;
     width: 50px;
@@ -77,14 +49,12 @@ img {
 }
 
 
-/* sidebar */
-
 .sidebar {
     position: fixed;
     top: 60px;
     width: 260px;
     height: calc(100% - 60px);
-    background: #299B63;
+    background:  #639c40;
     overflow-x: hidden;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     z-index: 1; /* Lower z-index value compared to topbar */
@@ -104,7 +74,7 @@ img {
 }
 
 .sidebar ul li:hover a {
-    color: #299B63;
+    color:#74bf44;
 }
 
 .sidebar ul li a {
@@ -140,12 +110,12 @@ img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
     margin: 20px auto;
-    max-width: 400px;
+    max-width: 500px;
     color: #000;
 }
 
 .add-book-box h2 {
-    color: #299B63;
+    color: #639c40;
 }
 
 .add-book-box .form-group {
@@ -154,7 +124,7 @@ img {
 }
 
 .add-book-box label {
-    color: #299B63;
+    color:#333;
     display: block;
 }
 
@@ -163,7 +133,7 @@ img {
     padding: 10px;
     margin: 5px 0;
     border: none;
-    border-bottom: 2px solid #299B63;
+    border-bottom: 2px solid #333;
     outline: none;
 }
 
@@ -173,17 +143,21 @@ img {
 }
 
 .add-book-box .add-button {
-    background-color: #299B63;
+    background-color: #74bf44;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    border: 1px solid #74bf44;
+    transition: all ease-in-out 0.3s;
 }
 
 /* Optional hover effect for the Add button */
 .add-book-box .add-button:hover {
-    background-color: #167B4D;
+    background-color:white;
+    color: #74bf44;
+    
 }
 /* Styles for the charts */
 .charts {
@@ -197,18 +171,21 @@ img {
 }
 /* Styles for the "Done" button */
 .done-button {
-    background-color: #299B63;
+    background-color: #74bf44;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    border: 1px solid #74bf44;
+    transition: all ease-in-out 0.3s;
    
 }
 
 /* Optional hover effect for the "Done" button */
 .done-button:hover {
-    background-color: #167B4D;
+    background-color:  white;
+    color: #74bf44;
 }
 
 /* Style the date input fields as a line */
@@ -217,9 +194,13 @@ width: 100%;
 padding: 5px;
 margin-bottom: 15px;
 border: none;
-border-bottom: 2px solid #167B4D; /* Add a bottom border for the line effect */
+border-bottom: 2px solid #74bf44; /* Add a bottom border for the line effect */
 font-size: 16px;
 background-color: transparent; /* Make the background transparent */
 outline: none; /* Remove the default outline when the input is selected */
 }
 
+textarea, select,input[type='number']{
+    width: 100%;
+    padding: 8px 4px;
+}

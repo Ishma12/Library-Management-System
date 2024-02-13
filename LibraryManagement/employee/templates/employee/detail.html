@@ -58,38 +58,42 @@
                 <div class="content-container1">
                     <div class="book-item1">
                         <img src="{{book.image.url}}" alt="Book Image" class="book-image1">
-                        <div class="book-info-box">
-                            <h2>{{ book.book_name}}</h2>
+                        
 
-                            <p><span class="bold">Author: </span>{{ book.author }}</p>
-                            <p><span class="bold">Publication Date: </span>{{ book.publication_date }}</p>
-                            <p><span class="bold">Subject: </span> {{ book.subject}} </p>
-                            <p> <span class="bold">Description: </span>{{ book.description }}</p>
-                            <p> <span class="bold"> Publisher: </span> {{ book.publisher }}</p>
-                            <p> <span class="bold">Edition: </span>{{ book.edition}}</p>
-                            <p><span class="bold">Identifier:</span>{{ book.isbn}}</p>
-                            {% if book.is_available%}
-                            <p><span class="bold">Status:</span> Available</p>
+                        <div class="book-info-box">
+                            <h2>{{ book.book_name }}</h2>
+                        
+                            <p><span class="bold">Author:</span> {{ book.author }}</p>
+                            <p><span class="bold">Publication Date:</span> {{ book.publication_date }}</p>
+                            <p><span class="bold">Subject:</span> {{ book.subject }}</p>
+                            <p><span class="bold">Description:</span> {{ book.description }}</p>
+                            <p><span class="bold">Publisher:</span> {{ book.publisher }}</p>
+                            <p><span class="bold">Edition:</span> {{ book.edition }}</p>
+                            <p><span class="bold">Identifier:</span> {{ book.isbn }}</p>
+                            {% if book.is_available %}
+                                <p><span class="bold">Status:</span> Available</p>
                             {% else %}
-                            <p><span class="bold">Status: </span>Not Available</p>
+                                <p><span class="bold">Status:</span> Not Available</p>
                             {% endif %}
                             <div id="reviewsContainer">
-                                <h3>Reviews</h3>
+                                <h3 style="color: #639c40; ">Reviews</h3>
                                 {% for review in book.reviews.all %}
-                                <div>
-                                    <p><strong>Rating:</strong> {{review.rating}}</p><p><strong>Review:</strong>{{review.review}}</p>
-                                    <p><strong>Rated by:</strong> {{review.user.username}}</p>
-                                </div>
-                                
-                                {%endfor%}
-                                {%if not book.reviews.all|length  %}
-                                <div>
-                                    No reviews yet.
-                                </div>
+                                    <div>
+                                        <div>
+                                            <p><strong><span class="bold">Rating:</span></strong> {{review.rating}}</p>
+                                            <p><strong><span class="bold">Review:</span></strong>{{review.review}}</p>
+                                            <p><strong><span class="bold">Rated by:</span></strong> {{review.user.username}}</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                {% if not book.reviews.all|length %}
+                                    <div>
+                                        No reviews yet.
+                                    </div>
                                 {% endif %}
                             </div>
-
                         </div>
+                        
                     </div>
 
                 </div>

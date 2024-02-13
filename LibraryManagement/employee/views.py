@@ -52,17 +52,18 @@ def approve_bookrequest(request,book_id):
     req= BookRequest.objects.get(id=book_id)
     req.is_approved=True
     req.save()
-    Notification.objects.create(detail=f"Your request for {req.book_name} has been approved. You can visit library.", user=req.student)
+    Notification.objects.create(detail=f"Hi {req.student.username}! We're delighted to let you know that your request for {req.book_name} has been approved!.", user=req.student)
     return redirect("employee-requestfromstudent")
 
 @login_required
-def decline_bookrequest(request,book_id):
-    req= BookRequest.objects.get(id=book_id)
-    req.is_approved=False
-    req.save()
-    Notification.objects.create(detail=f"Your request for {req.book_name} has been declined.", user=req.student)
-    return redirect("employee-requestfromstudent") 
-   
+def decline_bookrequest(request, book_id):
+    req = BookRequest.objects.get(id=book_id)
+    book_name = req.book_name
+    student = req.student  
+    req.delete()
+    Notification.objects.create(detail=f"Hi {req.student.username}! We're sorry to inform you that your request for {req.book_name} couldn't be fulfilled this time. ", user=student)
+    return redirect("employee-requestfromstudent")
+
 
 def generate_borrowed_books_excel(request):
     # Query the BorrowedBook data
@@ -253,7 +254,7 @@ def editborrowedbook(request, borrowbook_id):
             new_returned_date = form.cleaned_data.get('returned_date')
             new_fine = form.cleaned_data.get('fine')
             if new_fine !=  prev.fine:
-                Notification.objects.create(detail=f"You have been fined {new_fine} rupees for {borrowedbook.book.book_name}.", user=borrowedbook.student)
+                Notification.objects.create(detail=f"Hi {borrowedbook.student.username}! We wanted to inform you with a gentle reminder that you've been fined {new_fine} rupees for not returning {borrowedbook.book.book_name} on time. ", user=borrowedbook.student)
                 print("Notified.")
             borrowedbook.borrowed_date = new_borrowed_date
             borrowedbook.returned_date = new_returned_date
@@ -312,17 +313,19 @@ def approve_borrowbook(request, borrowbook_id):
     borrowedbook=get_object_or_404(BorrowedBook,id=borrowbook_id)
     borrowedbook.is_borrowed=True
     borrowedbook.save()
-    Notification.objects.create(detail=f"Your book borrow request for {borrowedbook.book.book_name} has been approved. You can visit library.", user=borrowedbook.student)
+    Notification.objects.create(detail=f"Hi {borrowedbook.student.username}! We're thrilled to inform you that your book borrow request for {borrowedbook.book.book_name} has been approved!", user=borrowedbook.student)
     return redirect(reverse('employee-eborrowedbook'))
 
 
 @login_required
 def decline_borrowbook(request, borrowbook_id):
-    borrowedbook=get_object_or_404(BorrowedBook,id=borrowbook_id)
-    borrowedbook.is_borrowed=False
-    borrowedbook.save()
-    Notification.objects.create(detail=f"Your book borrow request for {borrowedbook.book.book_name} has been declined.", user=borrowedbook.student)
+    borrowedbook = get_object_or_404(BorrowedBook, id=borrowbook_id)
+    book_name = borrowedbook.book.book_name  
+    student = borrowedbook.student  
+    borrowedbook.delete()
+    Notification.objects.create(detail=f"Hi {student.username}, we regret to inform you that your book borrow request for {book_name} has been declined.", user=student)
     return redirect(reverse('employee-eborrowedbook'))
+
 
 
 

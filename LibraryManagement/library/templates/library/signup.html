@@ -8,7 +8,7 @@
 <!-- Signup form container -->
 <div class="signup-container">
     <h2>Library Request Form!</h2>
-    <form method="POST">
+    <form id="signup-form" method="POST">
         {% csrf_token %}
         <div class="form-group">
             <label for="{{ form.username.id_for_label }}">Enter your Username:</label>
@@ -33,11 +33,11 @@
             <div>
                 {{ form.usermode }}
             </div>
-
         </div>
         <div class="errormessages">{{ form.non_field_errors }}</div>
-        <input type="submit" value="Submit" style="background-color: lightgreen; color: white; border: none; padding: 5px 10px; border-radius: 3px; height: 35px; width: 70px;">
+        <input type="submit" class="submit-button" value="Submit">
     </form>
+   
 </div>
 
 {% endblock %}

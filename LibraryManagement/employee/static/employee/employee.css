@@ -1,8 +1,9 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .topbar {
@@ -60,8 +61,8 @@ img {
 
 .search i {
     position: absolute;
-    right: 15px;
-    top: 15px;
+    right: 10px;
+    top: 8px;
     cursor: pointer;
 }
 
@@ -84,7 +85,7 @@ img {
     top: 60px;
     width: 260px;
     height: calc(100% - 60px);
-    background: #299B63;
+    background: #639c40;
     overflow-x: hidden;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     z-index: 2;
@@ -104,7 +105,7 @@ img {
 }
 
 .sidebar ul li:hover a {
-    color: #299B63;
+    color:#74bf44;
 }
 
 .sidebar ul li a {
@@ -153,7 +154,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background-color:  white;
+    border: 1px solid rgb(205, 203, 203);
     border-radius: 10px;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 }
@@ -161,17 +163,17 @@ img {
 .number {
     font-size: 35px;
     font-weight: 500;
-    color:  #299b63;
+    color:#333;
 }
 
 .card-name {
-    color: #888;
+    color: #333;
     font-weight: 600;
 }
 
 .icon-box i {
     font-size: 45px;
-    color: #299b63;
+    color:  #74bf44;
 }
 
 
@@ -189,11 +191,12 @@ img {
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 	text-align:left;
 	padding-left: 30px;
+    
 
   }
   
   .content-table thead tr {
-	background-color: #299b63;
+	background-color:#639c40;
 	color: #ffffff;
 	text-align: center;
 	font-weight: bold;
@@ -213,7 +216,7 @@ img {
   }
   
   .content-table tbody tr:last-of-type {
-	border-bottom: 2px solid  #299b63;
+	border-bottom: 2px solid #74bf44;
   }
   
   .table{
@@ -243,8 +246,12 @@ img {
     cursor: pointer;
 }
 
+fa-bell:before {
+    content: "\f0f3";
+}
 
-
-
-
-  
+.fa, .fas {
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    font-size: 1.5rem;
+}

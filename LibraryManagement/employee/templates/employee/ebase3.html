@@ -28,7 +28,7 @@
             </div>
             <i class="fas fa-bell"></i>
             <div class="user">
-                <img src="{%static 'employee/images.png'%}" alt="" id="user-avatar">
+                <img src="{%static 'employee/images.jpg'%}" alt="" id="user-avatar">
                 <div class="dropdown" id="user-dropdown">
                     <a href="#">{{user_fullname}}</a>
                     <a href="{% url 'employee-changepw' %}">Change Password</a>
@@ -42,7 +42,7 @@
             <div class="cards">
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">1217</div>
+                        <div class="number">{{student_count}}</div>
                         <div class="card-name">Students</div>
                     </div>
                     <div class="icon-box">
@@ -73,13 +73,13 @@
                 <table class="content-table">
                     <thead>
                         <tr>
-                            <th>Book ID</th>
-                            <th>Book Name</th>
-                            <th>Student Name</th>
-                            <th>Borrowed Date</th>
-                            <th>Returned Date</th>
-                            <th>Fine</th>
-                            <th>
+                            <th style="text-align: left;">Book ID</th>
+                            <th style="text-align: left;">Book Name</th>
+                            <th style="text-align: left;">Student Name</th>
+                            <th style="text-align: left;">Borrowed Date</th>
+                            <th style="text-align: left;">Returned Date</th>
+                            <th style="text-align: left;">Fine</th>
+                            <th style="text-align: left;">
                                 Action
                             </th>
 
@@ -97,10 +97,11 @@
                             <td>{{ borrowed_book.fine }}</td>
                             {% if  borrowed_book.is_borrowed is None %}
                             <td>
-                                <a href="{%url 'employee-editborrowedbook' borrowed_book.id %}"  >Edit</a>
-                                <a href="{%url 'approve-borrow-book' borrowed_book.id %}" style=" color: green;" >Approve</a>
-                                <a href="{%url 'decline-borrow-book' borrowed_book.id %}" style=" color: red;" >Decline</a>
+                                <a href="{% url 'employee-editborrowedbook' borrowed_book.id %}" style="margin-right: 10px;">Edit</a>
+                                <a href="{% url 'approve-borrow-book' borrowed_book.id %}" style="margin-right: 10px; color: green;">Approve</a>
+                                <a href="{% url 'decline-borrow-book' borrowed_book.id %}" style= "color: red;">Decline</a>
                             </td>
+                            
                             {% else %}
                             <td>
                                 <a href="{%url 'employee-editborrowedbook' borrowed_book.id %}">Edit</a>

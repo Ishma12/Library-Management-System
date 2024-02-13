@@ -87,6 +87,8 @@ def user_login(request):
         elif request.user.usertype == User.STUDENT:
             return redirect("student_dashboard")
 
+    requested=request.GET.get('requested')
+
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -112,7 +114,7 @@ def user_login(request):
     else:
         form = LoginForm()
 
-    return render(request, "library/login.html", {"form": form})
+    return render(request, "library/login.html", {"form": form, "requested":requested})
 
 
 def signup(request):
@@ -134,7 +136,7 @@ def signup(request):
             user.set_password(password)
             user.is_active = False
             user.save()
-            return redirect("login")
+            return redirect(reverse("login")+'?requested=1')
     else:
         form = SignupForm()
 
