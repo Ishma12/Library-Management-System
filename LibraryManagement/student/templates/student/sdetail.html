@@ -63,6 +63,9 @@
                             {% if borrowed%}
                             <p style="text-align: right;">Your request has been submit successfully.</p>
                             {% endif %}
+                            {% if msg%}
+                            <p style="text-align: right; color: #d84949;">{{msg}}</p>
+                            {% endif %}
                             <h2>{{ book.book_name}}</h2>
 
                             <p><span class="bold">Author: </span>{{ book.author }}</p>

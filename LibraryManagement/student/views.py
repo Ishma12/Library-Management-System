@@ -16,8 +16,9 @@ def student_dashboard(request):
 @login_required
 def detail(request,book_id):
     borrowed=request.GET.get('borrowed')
+    msg=request.GET.get('msg')
     book= get_object_or_404(Book,id=book_id)
-    return render(request, 'student/sdetail.html', {"book":book, 'borrowed': borrowed})
+    return render(request, 'student/sdetail.html', {"book":book, 'borrowed': borrowed, 'msg':msg})
 
 # def detail(request):
 #     book_data = Book.get_book_data()

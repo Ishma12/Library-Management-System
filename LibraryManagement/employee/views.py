@@ -297,6 +297,9 @@ def borrowbook(request,book_id):
         book=get_object_or_404(Book, id=book_id)
         borrowed_date = request.POST.get('borrowedDate')
         returned_date = request.POST.get('returnedDate')
+        if returned_date < borrowed_date:
+            msg="Returned date cannot be less than borrowed date."
+            return redirect(reverse('student-detailbook', kwargs={"book_id": book_id}) + f'?msg={msg}')
 
         BorrowedBook.objects.create(
             borrowed_date=borrowed_date,
