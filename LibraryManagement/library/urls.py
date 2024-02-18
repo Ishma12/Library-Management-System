@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='library-index'),
     path('aboutus/', views.aboutus, name='library-aboutus'),
+    path('terms/', views.terms, name='library-terms'),
     path('services/', views.services, name='library-services'),
     path('login/', views.user_login, name='login'),
     path('forgetpw/', views.forgetpw, name='library-forgetpw'),

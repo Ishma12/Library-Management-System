@@ -106,9 +106,9 @@
                             <td>
                                 <a href="{%url 'employee-editborrowedbook' borrowed_book.id %}">Edit</a>
                                 {% if borrowed_book.is_borrowed%}
-                                <span>Approved</span>
+                                <span style=" color:#299b63;">Approved</span>
                                 {% else %}
-                                <span>Declined</span>
+                                <span style="color:red;">Declined</span>
                                 {% endif %} 
                             </td>
                             {% endif %} 

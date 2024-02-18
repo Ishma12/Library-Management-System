@@ -49,6 +49,7 @@ def addbook(request):
                 author=author,
                 category=category,
                 about=about,
+                user=request.user,
             )
 
             # Return the added book details as JSON response
@@ -69,7 +70,7 @@ def addbook(request):
 
 @login_required
 def bookselves(request):
-    books = MyBook.objects.all()  # Retrieve all books from the database
+    books = MyBook.objects.filter(user=request.user)  
     return render(request, 'student/bookselves.html', {'books': books})
 
 

@@ -7,7 +7,7 @@
     font-family: 'Open Sans', sans-serif;
 }
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -139,7 +139,7 @@ header a:hover {
 
 .img-holder .aboutimg {
     position: absolute;
-    left: 48%;
+    left: 45%;
     bottom:2rem;
     width: 40%;
 

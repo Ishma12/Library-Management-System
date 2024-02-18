@@ -16,6 +16,9 @@ from .models import User, Notification
 def index(request):
     return render(request, "library/index.html")
 
+def terms(request):
+    return render(request, "library/terms.html")
+
 
 def aboutus(request):
     return render(request, "library/aboutus.html")
